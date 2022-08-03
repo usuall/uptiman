@@ -12,16 +12,19 @@ project_path = os.path.abspath(os.getcwd())
 lib_path = project_path + '/lib'
 img_path = project_path + '/capture/'
 
-
-
 # 크롬 브라우저 오픈
 options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-logging"])  # '시스템에 부착된 장치가 작동하지 않습니다' 오류 제거
+# '시스템에 부착된 장치가 작동하지 않습니다' 오류 제거
+options.add_experimental_option("excludeSwitches", ["enable-logging"])
+
+# 브라우져 창 최대화
 #options.add_argument("--start-maximized")
-options.add_argument("--headless") # 브라우져 창 최소화
+# 브라우져 창 최소화
+options.add_argument("--headless") 
 driver = webdriver.Chrome(lib_path + '/chromedriver.exe', chrome_options=options)
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  # InsecureRequestWarning  메시지 제거
+# InsecureRequestWarning  메시지 제거
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  
 
 # start_url = 'https://www.google.com'
 driver.implicitly_wait(10)
