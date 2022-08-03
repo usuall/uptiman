@@ -30,6 +30,6 @@ https://chromedriver.chromium.org/downloads
 pip install selenium
 pip install requests
 
--- optional
+# optional
 pip install gtts
 pip install playsound
