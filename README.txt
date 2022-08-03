@@ -33,3 +33,6 @@ pip install requests
 # optional
 pip install gtts
 pip install playsound
+
+# mysql
+pip install pymysql
