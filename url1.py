@@ -13,7 +13,7 @@ lib_path = project_path + '/lib'
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
 driver = webdriver.Chrome(lib_path + '/chromedriver.exe', chrome_options=options)
-start_url = 'https://www.nirs.go.kr'
+start_url = 'https://www.google.com'
 driver.implicitly_wait(10)
 driver.get(start_url)
 
