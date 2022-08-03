@@ -29,5 +29,7 @@ https://chromedriver.chromium.org/downloads
 # 셀레니움 다운로드
 pip install selenium
 pip install requests
-pip install gtts       #optional
-pip install playsound  #optional
+
+-- optional
+pip install gtts
+pip install playsound
