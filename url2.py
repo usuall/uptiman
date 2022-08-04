@@ -8,9 +8,8 @@ import myfunc
 
 # from mysql_config import dbconn # DB설정
 # cur = dbconn().cursor()
-
-cur = myfunc.dbconn().cursor()
-
+conn = myfunc.dbconn()
+cur = conn.cursor()
 
 # 실행경로
 project_path = os.path.abspath(os.getcwd())
@@ -69,3 +68,4 @@ while 1:
             print ('URL점검 이벤트 발생 : ' + web_url)  #음성 맨트
             #break   #주석 풀면 url_list 처음부터 시작
             
+conn.close()
