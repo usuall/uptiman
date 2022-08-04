@@ -11,7 +11,6 @@ import myfunc
 
 cur = myfunc.dbconn().cursor()
 
-
 # 실행경로
 project_path = os.path.abspath(os.getcwd())
 lib_path = project_path + '/lib'
