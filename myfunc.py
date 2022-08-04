@@ -1,6 +1,5 @@
-# mysql 
+# mysql
 import pymysql
-
 
 # DB 환경에 맞게 입력할것
 host = "localhost"
@@ -21,7 +20,6 @@ def dbconn2():
     conn = pymysql.connect(host=host, user=username, password=password, db=database, use_unicode=True, charset='utf8')
     curs = conn.cursor(pymysql.cursors.DictCursor)
     return curs
-
 
 # 새창 뜨는 경우 닫기 기능
 def close_new_tabs(driver):
