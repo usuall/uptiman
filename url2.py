@@ -3,9 +3,14 @@ import requests
 import urllib3
 import time
 import os
+import myfunc 
 
-from mysql_config import dbconn # DB설정
-cur = dbconn().cursor()
+
+# from mysql_config import dbconn # DB설정
+# cur = dbconn().cursor()
+
+cur = myfunc.dbconn().cursor()
+
 
 # 실행경로
 project_path = os.path.abspath(os.getcwd())
@@ -18,9 +23,9 @@ options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
 # 브라우져 창 최대화
-#options.add_argument("--start-maximized")
+options.add_argument("--start-maximized")
 # 브라우져 창 최소화
-options.add_argument("--headless") 
+#options.add_argument("--headless") 
 driver = webdriver.Chrome(lib_path + '/chromedriver.exe', chrome_options=options)
 
 # InsecureRequestWarning  메시지 제거
@@ -29,15 +34,6 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # start_url = 'https://www.google.com'
 driver.implicitly_wait(10)
 # driver.get(start_url)
-
-def close_new_tabs(driver):
-    tabs = driver.window_handles
-    while len(tabs) != 1:
-        driver.switch_to.window(tabs[1])
-        driver.close()
-        tabs = driver.window_handles
-    driver.switch_to.window(tabs[0])
-    
 
 while 1:
     
@@ -54,8 +50,7 @@ while 1:
         driver.get(web_url)        
         
         # 새창 닫기
-        close_new_tabs(driver)
-        
+        myfunc.close_new_tabs(driver)
         
         # response = requests.get(web_url) 
         response = requests.get(web_url, verify=False) # SSLerror 오류 발생 회피 
