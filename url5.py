@@ -1,11 +1,11 @@
-import pymysql
 from selenium import webdriver
 from PIL import Image
+import pymysql
 import requests
 import urllib3
 import time
 import os
-import myfunc 
+import myfunc
 
 
 # 실행경로
@@ -13,6 +13,8 @@ project_path = os.path.abspath(os.getcwd())
 lib_path = project_path + '/lib'
 img_path = project_path + '/capture/'
 img_resize_path = project_path + '/capture_resized/'
+
+# 실행환경
 headless = 0
 user_agent ='user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'
 
@@ -26,7 +28,6 @@ def img_resizer(img_path, img_str):
 
 # 브라우저 기본 설정
 def set_browser_option(options):
-    global headless
     # '시스템에 부착된 장치가 작동하지 않습니다' 오류 제거
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
     # 브라우져 창 최대화
@@ -73,7 +74,13 @@ def main():
                 web_url = row['url_type']+row['url_addr']
                 str1 = str(row['url_no']) + ' : ' + web_url
                 print(str1)
-                driver.get(web_url)
+                
+                try:
+                    driver.get(web_url)
+                except TimeOutException as ex:
+                    print(ex.Message)
+                    driver.navigate().refresh()
+                    pass
                 
                 # todo timeout exception
                 
