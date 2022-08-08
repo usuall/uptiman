@@ -26,13 +26,13 @@ pip install html-similarity
 # 크롬 드라이버 다운로드
 https://chromedriver.chromium.org/downloads
 
-# 셀레니움 다운로드
+# 관련 다운로드
+pip install PySimpleGUI
+pip install pymysql
 pip install selenium
 pip install requests
+pip install pillow
 
 # optional
 pip install gtts
 pip install playsound
-
-# mysql
-pip install pymysql
