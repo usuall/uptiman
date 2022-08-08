@@ -30,7 +30,7 @@ def get_url_list(c):
 
 @with_cursor
 def get_org_list(c):
-    c.execute("SELECT * FROM tb_org")
+    c.execute("SELECT * FROM tb_org order by org_title")
     return c.fetchall()
 
 @with_cursor

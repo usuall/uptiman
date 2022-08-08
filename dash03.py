@@ -67,6 +67,7 @@ def my_org_list_combo():
     org_list = ['기관 전체']
     result = get_org_list()
     for row in result:
+        #org_list.append(row['org_title']+'['+row['org_no']+']')
         org_list.append(row['org_title'])
 
     return org_list
@@ -125,15 +126,16 @@ def main():
         # [sg.InputText('', key='in1')],
         # [sg.Listbox(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
         [sg.Text('기관 선택'), sg.Combo(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
-        [sg.CBox('반복 점검', key='refeat', default=True), sg.CBox('비활성화 URL 포함', key='url_fg'), sg.CBox('백그라운드 실행', key='background')],
-        [sg.Text('타임아웃'), sg.Radio('5초', "RADIO1", key='timeout1'),
-         sg.Radio('10초', "RADIO1", key='timeout2', default=True),
-         sg.Radio('15초', "RADIO1", key='timeout3'),
-         sg.Radio('20초', "RADIO1", key='timeout4'),
-         sg.Radio('25초', "RADIO1", key='timeout5'),
-         sg.Radio('30초', "RADIO1", key='timeout6')],
+        [sg.Text(' 사이트명'), sg.InputText('', key='-SITE_TITLE-', size=(25, 1)),sg.Text('  URL'), sg.InputText('', key='-SITE_URL-', size=(25, 1))],
+        [sg.CBox('반복 점검', key='-REPEAT-', default=True), sg.CBox('비활성화 URL 포함', key='-DISABLED-'), sg.CBox('백그라운드 실행', key='-BG_EXE-')],
+        [sg.Text('타임아웃'), sg.Radio('5초', "v_timeout", key='timeout1'),
+                            sg.Radio('10초', "v_timeout", key='timeout2', default=True),
+                            sg.Radio('15초', "v_timeout", key='timeout3'),
+                            sg.Radio('20초', "v_timeout", key='timeout4'),
+                            sg.Radio('25초', "v_timeout", key='timeout5'),
+                            sg.Radio('30초', "v_timeout", key='timeout6')],
 
-        [sg.MLine(default_text='LOG AREA\n', font='돋움', size=(80, 20), key='-OUTPUT-', autoscroll=True, disabled=True)],
+        [sg.MLine(default_text='LOG AREA\n', font='Lucida', size=(80, 20), key='-OUTPUT-', autoscroll=True, disabled=True)],
         # [sg.Combo(('Combobox 1', 'Combobox 2'), key='combo', size=(20, 1)),sg.Slider(range=(1, 100), orientation='h', size=(34, 20), key='slide1', default_value=85)],
         # [sg.Combo(('Combobox 1', 'Combobox 2'), key='combo', size=(20, 1))],
         # [sg.OptionMenu(('Menu Option 1', 'Menu Option 2', 'Menu Option 3'), key='optionmenu')],
@@ -141,8 +143,8 @@ def main():
         # [sg.Text('Choose A Folder', size=(35, 1))],
         # [sg.Text('Your Folder', size=(15, 1), justification='right'),
         # sg.InputText('Default Folder', key='folder'), sg.FolderBrowse()],
-        [sg.Button('Exit'),
-         sg.Text(' ' * 40), sg.Button('     시 작     '), sg.Button('중 지')]
+        [sg.Button('종 료', key='-BUTTON_EXIT-', button_color=('white', 'firebrick3')),
+         sg.Text(' ' * 50), sg.Button('     시 작     ', key='-BUTTON_START-'), sg.Button('중 지', key='-BUTTON_STOP-', button_color=('white', 'firebrick3'))]
     ]
 
     window = sg.Window('Uptime Health Check Manager for NIRS', layout, default_element_size=(40, 1),
@@ -153,7 +155,7 @@ def main():
 
 
 
-        if event == '     시 작     ':
+        if event == '-BUTTON_START-':
             print('시작')
             
             #조회 조건
@@ -177,12 +179,14 @@ def main():
             # filename = sg.popup_get_file('Save Settings', save_as=True, no_window=True)
             # window.SaveToDisk(filename)
             # save(values)
-        elif event == '중 지':
+        elif event == '-BUTTON_STOP-':
             print('중지')
             # filename = sg.popup_get_file('Load Settings', no_window=True)
             # window.LoadFromDisk(filename)
             # load(form)
-        elif event in ('Exit', None):
+        elif event in ('-BUTTON_EXIT-', None):
+            # Todo : browser & dbconnection close.
+            
             break
 
     window.close()
