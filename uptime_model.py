@@ -28,6 +28,10 @@ def get_url_list(c):
     c.execute("SELECT * FROM tb_url where url_fg = 1")
     return c.fetchall()
 
+@with_cursor
+def get_org_list(c):
+    c.execute("SELECT * FROM tb_org")
+    return c.fetchall()
 
 @with_cursor
 def add_blog(c, subject, content):
