@@ -79,10 +79,15 @@ def get_monitoring(window, org_name):
         window['-OUTPUT-'].update(value=row['url_addr']+'\n', append=True)
 
 def get_monitoring_all(window):
+    
+    from datetime import datetime
+    sysdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    
     result = get_org_url_list_all()
     for row in result:
         print(row)
-        window['-OUTPUT-'].update(value=row['url_addr']+'\n', append=True)
+        str1 = '[' + str(sysdate) + '] '+ row['url_addr']+'\n'
+        window['-OUTPUT-'].update(value=str1, append=True)
         
     
 
@@ -119,7 +124,7 @@ def main():
          sg.Radio('25초', "RADIO1", key='timeout5'),
          sg.Radio('30초', "RADIO1", key='timeout6')],
 
-        [sg.MLine(default_text='monitoring logging area', size=(80, 20), key='-OUTPUT-', autoscroll=True, disabled=True)],
+        [sg.MLine(default_text='LOG AREA\n', font='돋움', size=(80, 20), key='-OUTPUT-', autoscroll=True, disabled=True)],
         # [sg.Combo(('Combobox 1', 'Combobox 2'), key='combo', size=(20, 1)),sg.Slider(range=(1, 100), orientation='h', size=(34, 20), key='slide1', default_value=85)],
         # [sg.Combo(('Combobox 1', 'Combobox 2'), key='combo', size=(20, 1))],
         # [sg.OptionMenu(('Menu Option 1', 'Menu Option 2', 'Menu Option 3'), key='optionmenu')],
