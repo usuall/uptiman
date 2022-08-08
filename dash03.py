@@ -62,15 +62,36 @@ def my_org_list():
 
     return org_list
 
-def get_monitoring():
-    print(' 모니터링 시작 ')
+def my_org_list_combo():
 
+    org_list = ['기관 전체']
+    result = get_org_list()
+    for row in result:
+        org_list.append(row['org_title'])
+
+    return org_list
+
+def get_monitoring(window, org_name):
+    print(' 모니터링 시작 : ' + org_name)
+    result = get_org_url_list(org_name)
+    for row in result:
+        print(row)
+        window['-OUTPUT-'].update(value=row['url_addr']+'\n', append=True)
+
+def get_monitoring_all(window):
+    result = get_org_url_list_all()
+    for row in result:
+        print(row)
+        window['-OUTPUT-'].update(value=row['url_addr']+'\n', append=True)
+        
+    
 
 
 def main():
 
     #모니터링 실시
-    org_list = my_org_list()
+    #org_list = my_org_list()
+    org_list = my_org_list_combo()
 
     # GUI 실행
     sg.theme('TanBlue')
@@ -88,9 +109,9 @@ def main():
         [sg.Text('Uptime HealthCheck Manager', size=(30, 1), font=("Helvetica", 25))],
         [sg.Text('URL 모니터링 툴입니다. 실행전에 아래 설정부분을 선택하고 실행바랍니다.')],
         # [sg.InputText('', key='in1')],
-        [sg.Text('기관 선택'),
-         sg.Listbox(values=(org_list), size=(30, 5), key='org_list_box', select_mode='LISTBOX_SELECT_MODE_SINGLE')],
-        [sg.CBox('점검 반복', key='refeat', default=True), sg.CBox('비활성화 URL 포함', key='url_fg')],
+        # [sg.Listbox(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
+        [sg.Text('기관 선택'), sg.Combo(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
+        [sg.CBox('반복 점검', key='refeat', default=True), sg.CBox('비활성화 URL 포함', key='url_fg')],
         [sg.Text('타임아웃'), sg.Radio('5초', "RADIO1", key='timeout1'),
          sg.Radio('10초', "RADIO1", key='timeout2', default=True),
          sg.Radio('15초', "RADIO1", key='timeout3'),
@@ -98,7 +119,7 @@ def main():
          sg.Radio('25초', "RADIO1", key='timeout5'),
          sg.Radio('30초', "RADIO1", key='timeout6')],
 
-        [sg.MLine(default_text='monitoring logging area', size=(80, 20), key='multi1')],
+        [sg.MLine(default_text='monitoring logging area', size=(80, 20), key='-OUTPUT-', autoscroll=True, disabled=True)],
         # [sg.Combo(('Combobox 1', 'Combobox 2'), key='combo', size=(20, 1)),sg.Slider(range=(1, 100), orientation='h', size=(34, 20), key='slide1', default_value=85)],
         # [sg.Combo(('Combobox 1', 'Combobox 2'), key='combo', size=(20, 1))],
         # [sg.OptionMenu(('Menu Option 1', 'Menu Option 2', 'Menu Option 3'), key='optionmenu')],
@@ -115,13 +136,22 @@ def main():
 
     while True:
         event, values = window.read()
-        print(values)
-        #print(org_list_box.get())
+
+
 
         if event == '     시 작     ':
             print('시작')
             mon_status = 1
-            get_monitoring()
+            org_title = values['-ORG_LIST-']
+            if org_title == '기관 전체':
+                print('전체 점검..... ')
+                get_monitoring_all(window)
+
+            else:
+                print('기관 검색')
+                get_monitoring(window, org_title)
+
+
 
 
 
