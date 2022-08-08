@@ -26,6 +26,7 @@ project_path = os.path.abspath(os.getcwd())
 lib_path = project_path + '/lib'
 img_path = project_path + '/capture/'
 img_resize_path = project_path + '/capture_resized/'
+mon_status = 0 #모니터링 시작 유무
 
 # 실행환경
 headless = 0
@@ -64,6 +65,8 @@ def my_org_list():
 def get_monitoring():
     print(' 모니터링 시작 ')
 
+
+
 def main():
 
     #모니터링 실시
@@ -86,7 +89,7 @@ def main():
         [sg.Text('URL 모니터링 툴입니다. 실행전에 아래 설정부분을 선택하고 실행바랍니다.')],
         # [sg.InputText('', key='in1')],
         [sg.Text('기관 선택'),
-         sg.Listbox(values=(org_list), size=(30, 5), key='listbox', select_mode='LISTBOX_SELECT_MODE_SINGLE')],
+         sg.Listbox(values=(org_list), size=(30, 5), key='org_list_box', select_mode='LISTBOX_SELECT_MODE_SINGLE')],
         [sg.CBox('점검 반복', key='refeat', default=True), sg.CBox('비활성화 URL 포함', key='url_fg')],
         [sg.Text('타임아웃'), sg.Radio('5초', "RADIO1", key='timeout1'),
          sg.Radio('10초', "RADIO1", key='timeout2', default=True),
@@ -112,10 +115,17 @@ def main():
 
     while True:
         event, values = window.read()
+        print(values)
+        #print(org_list_box.get())
 
         if event == '     시 작     ':
             print('시작')
+            mon_status = 1
             get_monitoring()
+
+
+
+
             # filename = sg.popup_get_file('Save Settings', save_as=True, no_window=True)
             # window.SaveToDisk(filename)
             # save(values)
