@@ -71,26 +71,35 @@ def my_org_list_combo():
 
     return org_list
 
+#현재시각
+def get_sysdate():
+    from datetime import datetime
+    sysdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    return str(sysdate)
+
+#기관단위 모니터링
 def get_monitoring(window, org_name):
     print(' 모니터링 시작 : ' + org_name)
     result = get_org_url_list(org_name)
     for row in result:
         print(row)
-        window['-OUTPUT-'].update(value=row['url_addr']+'\n', append=True)
+        str1 = '[' + get_sysdate() + '] '+ row['url_addr']+'\n'
+        window['-OUTPUT-'].update(value=str1, append=True)
 
-def get_monitoring_all(window):
-    
-    from datetime import datetime
-    sysdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    
+#전체 기관 모니터링
+def get_monitoring_all(window):    
     result = get_org_url_list_all()
     for row in result:
         print(row)
-        str1 = '[' + str(sysdate) + '] '+ row['url_addr']+'\n'
+        str1 = '[' + get_sysdate() + '] '+ row['url_addr']+'\n'
         window['-OUTPUT-'].update(value=str1, append=True)
         
     
-
+def getCondition(window):
+    str1 = '[' + get_sysdate() + '] ' +'\n'
+    window['-OUTPUT-'].update(value=str1 + '검색조건 : ' +'\n', append=True)
+    window['-OUTPUT-'].update(value='___________________________________\n', append=True)
+    
 
 def main():
 
@@ -116,7 +125,7 @@ def main():
         # [sg.InputText('', key='in1')],
         # [sg.Listbox(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
         [sg.Text('기관 선택'), sg.Combo(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
-        [sg.CBox('반복 점검', key='refeat', default=True), sg.CBox('비활성화 URL 포함', key='url_fg')],
+        [sg.CBox('반복 점검', key='refeat', default=True), sg.CBox('비활성화 URL 포함', key='url_fg'), sg.CBox('백그라운드 실행', key='background')],
         [sg.Text('타임아웃'), sg.Radio('5초', "RADIO1", key='timeout1'),
          sg.Radio('10초', "RADIO1", key='timeout2', default=True),
          sg.Radio('15초', "RADIO1", key='timeout3'),
@@ -146,6 +155,10 @@ def main():
 
         if event == '     시 작     ':
             print('시작')
+            
+            #조회 조건
+            getCondition(window)
+            
             mon_status = 1
             org_title = values['-ORG_LIST-']
             if org_title == '기관 전체':
