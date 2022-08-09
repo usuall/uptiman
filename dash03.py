@@ -15,6 +15,7 @@ import urllib3
 import time
 import os
 import myfunc
+import asyncio
 
 
 '''
@@ -98,6 +99,7 @@ def get_sysdate():
 #기관단위 모니터링
 def get_monitoring(window, keyword):
     
+    stime = time.time()
     # 브라우저 환경 설정 취득
     bg_exec = keyword.get('DISABLED') # 백그라운드 실행
     driver = set_browser_option(bg_exec)
@@ -126,9 +128,11 @@ def get_monitoring(window, keyword):
         window['-OUTPUT-'].update(value='\n', append=True)
         window.refresh() # 작업창 멈추는 현상 해결 및 작업내용 출력 반영
 
-    print (' : ', cnt)
-    window['-OUTPUT-'].update(value='(Check Completed) 처리 URL : ' + str(cnt) +' \n', append=True)
-    
+    if(cnt > 0):
+        window['-OUTPUT-'].update(value='-------------------------------------------\n', append=True)
+        window['-OUTPUT-'].update(value='▶ (처리 URL) ' + str(cnt) +'건, (처리시간) '+ str(round(time.time()-stime, 2)) + '초 \n', append=True)
+    else:
+        window['-OUTPUT-'].update(value='▶ 검색 결과 없음', append=True)
     # 작업 종료후 버튼 활성화
     button_activate(window, 1)
 
