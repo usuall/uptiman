@@ -81,19 +81,25 @@ def get_sysdate():
     return str(sysdate)
 
 #기관단위 모니터링
-def get_monitoring(window, org_name):
-    print(' 모니터링 시작 : ' + org_name)
-    result = get_org_url_list(org_name)
+def get_monitoring(window, keyword):
+    # org_name = keyword.get('ORG_LIST')
+    cnt = 0
+    print(' 모니터링 시작 : ')
+    result = get_org_url_list(keyword)
     for row in result:
-        print(row)
+        #print(row)
         str1 = '[' + get_sysdate() + '] '+ row['url_addr']+'\n'
         window['-OUTPUT-'].update(value=str1, append=True)
+        cnt += 1
+
+    print ('데이터 갯수 : ', cnt)
+
 
 #전체 기관 모니터링
 def get_monitoring_all(window):    
     result = get_org_url_list_all()
     for row in result:
-        print(row)
+        #print(row)
         str1 = '[' + get_sysdate() + '] '+ row['url_addr']+'\n'
         window['-OUTPUT-'].update(value=str1, append=True)
         
@@ -116,9 +122,8 @@ def getCondition(window, values):
     else:
         timeout_term = 12
 
-    print ('condition : ' + str(timeout_term))
-
-    
+    # print ('condition : ' + str(timeout_term))
+   
     window['-OUTPUT-'].update(value='- 실행시간 : ' + str1 + '\n', append=True)
     window['-OUTPUT-'].update(value='<검색조건>' + '\n', append=True)
     window['-OUTPUT-'].update(value='- 기관 선택 : ' + values['-ORG_LIST-'] + '\n', append=True)
@@ -131,6 +136,19 @@ def getCondition(window, values):
     
     window['-OUTPUT-'].update(value='                                       \n', append=True)
     
+    #검색 조건 저장
+    keyword = {'ORG_LIST':      values['-ORG_LIST-'], 
+                'SITE_TITLE':   values['-SITE_TITLE-'], 
+                'SITE_URL':     values['-SITE_URL-'], 
+                'REPEAT':       values['-REPEAT-'], 
+                'DISABLED':     values['-DISABLED-'], 
+                'BG_EXE':       values['-BG_EXE-'], 
+                'TIME_OUT':     timeout_term }
+
+    for k in keyword.values():
+        print('>>>',k)
+
+    return keyword
 
 def main():
 
@@ -147,8 +165,10 @@ def main():
         # [sg.InputText('', key='in1')],
         # [sg.Listbox(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
         [sg.Text('기관 선택'), sg.Combo(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
-        [sg.Text(' 사이트명'), sg.InputText('', key='-SITE_TITLE-', size=(30, 1)),sg.Text('  URL'), sg.InputText('', key='-SITE_URL-', size=(30, 1))],
-        [sg.CBox('반복 점검', key='-REPEAT-', default=True), sg.CBox('비활성화 URL 포함', key='-DISABLED-'), sg.CBox('백그라운드 실행', key='-BG_EXE-')],
+        [sg.Text(' 사이트명'), sg.InputText('', key='-SITE_TITLE-', size=(30, 1)),
+         sg.Text('  URL'), sg.InputText('', key='-SITE_URL-', size=(30, 1))],
+        [sg.CBox('반복 점검', key='-REPEAT-', default=True), 
+         sg.CBox('비활성화 URL 포함', key='-DISABLED-'), sg.CBox('백그라운드 실행', key='-BG_EXE-')],
         [sg.Text('타임아웃'), sg.Radio('5초',  group_id="RADIO1", key='-TIMEOUT1-'),
                             sg.Radio('10초', group_id="RADIO1", default=True, key='-TIMEOUT2-'),
                             sg.Radio('15초', group_id="RADIO1", key='-TIMEOUT3-'),
@@ -187,17 +207,22 @@ def main():
                 window[key].update(disabled=True)
 
             #조회조건 출력
-            getCondition(window, values)
+            keyword = getCondition(window, values)
             
             mon_status = 1
-            org_title = values['-ORG_LIST-']
-            if org_title == '전 체':
-                print('전체 점검..... ')
-                get_monitoring_all(window)
 
-            else:
-                print('기관 검색')
-                get_monitoring(window, org_title)
+            # print('---->', keyword.get('ORG_LIST'))
+            # org_title = keyword.get('ORG_LIST')
+            # org_title = values['-ORG_LIST-']
+            get_monitoring(window, keyword)
+
+            # if org_title == '전 체':
+            #     print('전체 점검..... ')
+            #     get_monitoring_all(window)
+
+            # else:
+            #     print('기관 검색')
+            #     get_monitoring(window, keyword)
 
 
 

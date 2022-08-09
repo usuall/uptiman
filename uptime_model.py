@@ -34,10 +34,36 @@ def get_org_list(c):
     return c.fetchall()
 
 @with_cursor
-def get_org_url_list(c, org_title):
-    print('>>>>>>> '+org_title);
-    c.execute("select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no where b.url_fg = 1 and a.org_title=%s", org_title)
+def get_org_url_list(c, keyword):
+    
+    #sql = "select * from customer where category=%s and region=%s"
+    #curs.execute(sql, (1, '서울'))
+
+    sql = f"select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no  "
+    if(keyword.get('DISABLED') == True):
+        sql += f" where 1=1"
+    else:
+        sql += f" where b.url_fg=1"
+
+    if(keyword.get('ORG_LIST') != '전 체' and len(keyword.get('ORG_LIST')) > 0):
+        sql += f" and a.org_title='{keyword.get('ORG_LIST')}'"
+    if(keyword.get('SITE_TITLE')):
+        sql += f" and b.url_title='{keyword.get('SITE_TITLE')}'"
+    if(keyword.get('SITE_URL')):
+        sql += f" and b.url_addr='{keyword.get('SITE_URL')}'"
+    
+
+    #sql += f"select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no where b.url_fg = 1 and a.org_title='{org_title}'"
+    print(sql)
+    c.execute(sql)
+
+    #c.execute("select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no where b.url_fg = 1 and a.org_title=%s", org_title)
     return c.fetchall()
+
+# def get_org_url_list(c, org_title):
+#     print('>>>>>>> '+org_title);
+#     c.execute("select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no where b.url_fg = 1 and a.org_title=%s", org_title)
+#     return c.fetchall()
 
 @with_cursor
 def get_org_url_list_all(c):
