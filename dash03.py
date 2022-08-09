@@ -36,23 +36,37 @@ user_agent = 'user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/5
 # myfont = lib_path + '/font/NanumGothic-Regular.ttf'
 
 # 브라우저 기본 설정
-def set_browser_option(options):
+def set_browser_option(bg_exec):
+    
+    print ('bg_exec ',bg_exec)
+    # 크롬 브라우저 오픈
+    options = webdriver.ChromeOptions()
+    
+    # 브라우져 옵션 설정
+    driver = webdriver.Chrome(lib_path + '/chromedriver.exe', chrome_options=options)
+    
+    # start_url = 'https://www.google.com'
+    driver.implicitly_wait(10)
+    driver.set_window_size(1920, 1080)
+    # driver.get(start_url)
+    
     # '시스템에 부착된 장치가 작동하지 않습니다' 오류 제거
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
     # 브라우져 창 최대화
     options.add_argument("--start-maximized")
 
     # 브라우져 창 최소화
-    if (headless == 1):
+    if (bg_exec == 1):
+        print ('-------------bg_executed ----')
         options.add_argument('--window-size=900,700')
         options.add_argument("--headless")
-
-        # 실행되는 브라우저 크기를 지정할 수 있습니다.
 
     options.add_argument(user_agent)
 
     # InsecureRequestWarning  메시지 제거
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    
+    return driver
 
 # 기관 리스트 취득
 def my_org_list():
@@ -82,26 +96,39 @@ def get_sysdate():
 
 #기관단위 모니터링
 def get_monitoring(window, keyword):
-    # org_name = keyword.get('ORG_LIST')
+    
+    # 브라우저 환경 설정 취득
+    bg_exec = keyword.get('DISABLED') # 백그라운드 실행
+    driver = set_browser_option(bg_exec)
+        
     cnt = 0
     print(' 모니터링 시작 : ')
     result = get_org_url_list(keyword)
     for row in result:
+        cnt += 1
         #print(row)
         str1 = '[' + get_sysdate() + '] '+ row['url_addr']+'\n'
         window['-OUTPUT-'].update(value=str1, append=True)
-        cnt += 1
+        
+        web_url = row['url_type']+row['url_addr']
+        driver.get(web_url)
+        
+        # 새창 닫기
+        myfunc.close_new_tabs(driver)
+        window['-OUTPUT-'].update(value='new table closed', append=True)
+        #print('new table closed : '+ str1)
+                
 
     print ('데이터 갯수 : ', cnt)
 
 
-#전체 기관 모니터링
-def get_monitoring_all(window):    
-    result = get_org_url_list_all()
-    for row in result:
-        #print(row)
-        str1 = '[' + get_sysdate() + '] '+ row['url_addr']+'\n'
-        window['-OUTPUT-'].update(value=str1, append=True)
+# #전체 기관 모니터링
+# def get_monitoring_all(window):    
+#     result = get_org_url_list_all()
+#     for row in result:
+#         #print(row)
+#         str1 = '[' + get_sysdate() + '] '+ row['url_addr']+'\n'
+#         window['-OUTPUT-'].update(value=str1, append=True)
         
     
 def getCondition(window, values):
@@ -134,7 +161,7 @@ def getCondition(window, values):
     window['-OUTPUT-'].update(value='- 백그라운드 실행 : ' + str(values['-BG_EXE-']) + '\n', append=True)
     window['-OUTPUT-'].update(value='- 타임아웃 설정 : ' + str(timeout_term) + '초\n', append=True)
     
-    window['-OUTPUT-'].update(value='                                       \n', append=True)
+    window['-OUTPUT-'].update(value='-------------------------------------------\n', append=True)
     
     #검색 조건 저장
     keyword = {'ORG_LIST':      values['-ORG_LIST-'], 
@@ -145,8 +172,8 @@ def getCondition(window, values):
                 'BG_EXE':       values['-BG_EXE-'], 
                 'TIME_OUT':     timeout_term }
 
-    for k in keyword.values():
-        print('>>>',k)
+    # for k in keyword.values():
+    #     print('>>>',k)
 
     return keyword
 
@@ -160,11 +187,11 @@ def main():
     sg.theme('TanBlue')
 
     layout = [
-        [sg.Text('Uptime Manager', size=(30, 1), font=("Helvetica", 25))],
+        [sg.Text('URL Health-Check Manager', size=(30, 1), font=("Helvetica", 25))],
         [sg.Text('URL 모니터링 툴입니다. 조건을 선택하고 실행하세요')],
         # [sg.InputText('', key='in1')],
         # [sg.Listbox(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
-        [sg.Text('기관 선택'), sg.Combo(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
+        [sg.Text('기관 선택'), sg.Combo(values=(org_list), default_value='전 체', size=(30, 1), key='-ORG_LIST-', enable_events=True)],
         [sg.Text(' 사이트명'), sg.InputText('', key='-SITE_TITLE-', size=(30, 1)),
          sg.Text('  URL'), sg.InputText('', key='-SITE_URL-', size=(30, 1))],
         [sg.CBox('반복 점검', key='-REPEAT-', default=True), 
@@ -185,7 +212,7 @@ def main():
         # [sg.Text('Your Folder', size=(15, 1), justification='right'),
         # sg.InputText('Default Folder', key='folder'), sg.FolderBrowse()],
         [sg.Button('종 료', key='-BUTTON_EXIT-', button_color=('white', 'firebrick3')),
-         sg.Text('  ' * 35), sg.Button('     실 행     ', key='-BUTTON_START-'), sg.Button('중 지', key='-BUTTON_STOP-', disabled=True, button_color=('black', 'lightblue'))]
+         sg.Text('  ' * 30), sg.Button('     실 행     ', key='-BUTTON_START-'), sg.Button('중 지', key='-BUTTON_STOP-', disabled=True, button_color=('black', 'lightblue'))]
     ]
 
     obj_list = '-ORG_LIST-', '-TIMEOUT1-', '-TIMEOUT2-', '-TIMEOUT3-', '-TIMEOUT4-', '-TIMEOUT5-', '-TIMEOUT6-', '-DISABLED-', '-SITE_TITLE-', '-SITE_URL-', '-BG_EXE-', '-BUTTON_START-', '-BUTTON_EXIT-'
@@ -195,43 +222,25 @@ def main():
     while True:
         event, values = window.read()
 
-
-
-
+        # 각종 버튼에 대한 이벤트 처리
         if event == '-BUTTON_START-':
             print('시작')
             window['-OUTPUT-'].update(value='', append=False)
+            
             # 버튼 활성화 전환
             window['-BUTTON_STOP-'].update(disabled=False)
             for key in obj_list:
                 window[key].update(disabled=True)
 
-            #조회조건 출력
+            # 조회조건 출력
             keyword = getCondition(window, values)
             
+            # 모니터링 중
             mon_status = 1
-
-            # print('---->', keyword.get('ORG_LIST'))
-            # org_title = keyword.get('ORG_LIST')
-            # org_title = values['-ORG_LIST-']
+            
+            # 모니터링 작업
             get_monitoring(window, keyword)
-
-            # if org_title == '전 체':
-            #     print('전체 점검..... ')
-            #     get_monitoring_all(window)
-
-            # else:
-            #     print('기관 검색')
-            #     get_monitoring(window, keyword)
-
-
-
-
-
-
-            # filename = sg.popup_get_file('Save Settings', save_as=True, no_window=True)
-            # window.SaveToDisk(filename)
-            # save(values)
+            
         elif event == '-BUTTON_STOP-':
             print('중지')
             # 버튼 활성화 전환

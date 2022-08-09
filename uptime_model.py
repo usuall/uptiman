@@ -39,7 +39,7 @@ def get_org_url_list(c, keyword):
     #sql = "select * from customer where category=%s and region=%s"
     #curs.execute(sql, (1, '서울'))
 
-    sql = f"select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no  "
+    sql = f"select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no"
     if(keyword.get('DISABLED') == True):
         sql += f" where 1=1"
     else:
@@ -65,10 +65,10 @@ def get_org_url_list(c, keyword):
 #     c.execute("select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no where b.url_fg = 1 and a.org_title=%s", org_title)
 #     return c.fetchall()
 
-@with_cursor
-def get_org_url_list_all(c):
-    c.execute("select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no where b.url_fg = 1 ")
-    return c.fetchall()
+# @with_cursor
+# def get_org_url_list_all(c):
+#     c.execute("select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no where b.url_fg = 1 ")
+#     return c.fetchall()
 
 @with_cursor
 def add_blog(c, subject, content):
