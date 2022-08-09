@@ -4,6 +4,7 @@ from threading import TIMEOUT_MAX
 import PySimpleGUI as sg
 import pymysql
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 from uptime_model import *
 #from wrapt_timeout_decorator import *
@@ -106,21 +107,30 @@ def get_monitoring(window, keyword):
     result = get_org_url_list(keyword)
     for row in result:
         cnt += 1
-        #print(row)
-        str1 = '[' + get_sysdate() + '] '+ row['url_addr']+'\n'
+        # 작업시간 출력
+        str1 = '[' + get_sysdate() + '] '+ row['url_addr']
         window['-OUTPUT-'].update(value=str1, append=True)
         
+        # 브라우져 URL 탐색
         web_url = row['url_type']+row['url_addr']
         driver.get(web_url)
         
+        window.refresh() # 작업창 멈추는 현상 해결 및 작업내용 출력 반영
+        #selenium.find_element_by_id('body').send_keys(Keys.ESCAPE).perform()
+        #webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+        
         # 새창 닫기
         myfunc.close_new_tabs(driver)
-        window['-OUTPUT-'].update(value='new table closed', append=True)
-        #print('new table closed : '+ str1)
-                
+        window.refresh() # 작업창 멈추는 현상 해결 및 작업내용 출력 반영
+        window['-OUTPUT-'].update(value=' → Tab', append=True)
+        window['-OUTPUT-'].update(value='\n', append=True)
+        window.refresh() # 작업창 멈추는 현상 해결 및 작업내용 출력 반영
 
-    print ('데이터 갯수 : ', cnt)
-
+    print (' : ', cnt)
+    window['-OUTPUT-'].update(value='(Check Completed) 처리 URL : ' + str(cnt) +' \n', append=True)
+    
+    # 작업 종료후 버튼 활성화
+    button_activate(window, 1)
 
 # #전체 기관 모니터링
 # def get_monitoring_all(window):    
@@ -177,6 +187,22 @@ def getCondition(window, values):
 
     return keyword
 
+
+def button_activate(window, activate):
+    
+    obj_list = '-ORG_LIST-', '-TIMEOUT1-', '-TIMEOUT2-', '-TIMEOUT3-', '-TIMEOUT4-', '-TIMEOUT5-', '-TIMEOUT6-', '-DISABLED-', '-SITE_TITLE-', '-SITE_URL-', '-BG_EXE-', '-BUTTON_START-', '-BUTTON_EXIT-'
+    # 버튼 활성화 전환
+    if activate == 0:
+        window['-OUTPUT-'].update(value='', append=False)
+        window['-BUTTON_STOP-'].update(disabled=False)
+        for key in obj_list:
+            window[key].update(disabled=True)
+    else:
+        window['-BUTTON_STOP-'].update(disabled=True)
+        for key in obj_list:
+            window[key].update(disabled=False)
+        
+    
 def main():
 
     #모니터링 실시
@@ -215,7 +241,7 @@ def main():
          sg.Text('  ' * 30), sg.Button('     실 행     ', key='-BUTTON_START-'), sg.Button('중 지', key='-BUTTON_STOP-', disabled=True, button_color=('black', 'lightblue'))]
     ]
 
-    obj_list = '-ORG_LIST-', '-TIMEOUT1-', '-TIMEOUT2-', '-TIMEOUT3-', '-TIMEOUT4-', '-TIMEOUT5-', '-TIMEOUT6-', '-DISABLED-', '-SITE_TITLE-', '-SITE_URL-', '-BG_EXE-', '-BUTTON_START-', '-BUTTON_EXIT-'
+    
     window = sg.Window('Uptime Manager for NIRS', layout, default_element_size=(40, 1),
                        grab_anywhere=False)
 
@@ -225,12 +251,15 @@ def main():
         # 각종 버튼에 대한 이벤트 처리
         if event == '-BUTTON_START-':
             print('시작')
-            window['-OUTPUT-'].update(value='', append=False)
             
-            # 버튼 활성화 전환
-            window['-BUTTON_STOP-'].update(disabled=False)
-            for key in obj_list:
-                window[key].update(disabled=True)
+            #버튼 비활성화 전환
+            button_activate(window, 0)
+            # window['-OUTPUT-'].update(value='', append=False)
+            
+            # # 버튼 활성화 전환
+            # window['-BUTTON_STOP-'].update(disabled=False)
+            # for key in obj_list:
+            #     window[key].update(disabled=True)
 
             # 조회조건 출력
             keyword = getCondition(window, values)
@@ -244,9 +273,10 @@ def main():
         elif event == '-BUTTON_STOP-':
             print('중지')
             # 버튼 활성화 전환
-            window['-BUTTON_STOP-'].update(disabled=True)
-            for key in obj_list:
-                window[key].update(disabled=False)
+            button_activate(window, 1)
+            # window['-BUTTON_STOP-'].update(disabled=True)
+            # for key in obj_list:
+            #     window[key].update(disabled=False)
 
         elif event in ('-BUTTON_EXIT-', 'Escape:27', sg.WIN_CLOSED):
             # Todo : browser & dbconnection close.
