@@ -1,5 +1,7 @@
 __pycache__
+*.ttf
 .venv
+.vevn
 venv.bat
 *.png
 .idea
