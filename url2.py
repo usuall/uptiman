@@ -23,7 +23,7 @@ options.add_experimental_option("excludeSwitches", ["enable-logging"])
 # 브라우져 창 최대화
 #options.add_argument("--start-maximized")
 # 브라우져 창 최소화
-options.add_argument("--headless") 
+#options.add_argument("--headless") 
 driver = webdriver.Chrome(lib_path + '/chromedriver.exe', chrome_options=options)
 
 # InsecureRequestWarning  메시지 제거

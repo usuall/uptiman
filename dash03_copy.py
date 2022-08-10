@@ -44,9 +44,6 @@ def set_browser_option(bg_exec):
     options = webdriver.ChromeOptions()
     # USER_Agent 지정
     options.add_argument(user_agent)
-    options.add_argument("disable-gpu")
-    # '시스템에 부착된 장치가 작동하지 않습니다' 오류 제거
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
     # 브라우져 창 최소화 유무
     if (bg_exec == True):
         print ('------------- 백그라운드 실행 = true -----------')
@@ -55,12 +52,14 @@ def set_browser_option(bg_exec):
     else:
         # driver.set_window_size(1920, 1080)
         options.add_argument("--start-maximized")
-    
+
+    # '시스템에 부착된 장치가 작동하지 않습니다' 오류 제거
+    options.add_experimental_option("excludeSwitches", ["enable-logging"])
     # 브라우져 옵션 설정
     driver = webdriver.Chrome(lib_path + '/chromedriver.exe', chrome_options=options)    
 
     # 명시적으로 대기(10초) 
-    #driver.implicitly_wait(10)
+    driver.implicitly_wait(10)    
     
     # InsecureRequestWarning  메시지 제거
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -121,25 +120,26 @@ def get_monitoring(window, keyword):
         # 브라우져 URL 탐색
         web_url = row['url_type']+row['url_addr']
         driver.get(web_url)
-        redirected = driver.current_url
-        print('redirected -->', driver.current_url)
         window.refresh() # 작업내용 출력 반영        
+        
+        
+        
+        # Request Code 취득 : (200 : ok, 404 : page not found)
+        req_code = get_request_code(web_url)
+        window['-OUTPUT-'].update(value=' → ReqCode : ' + str(req_code), append=True)
+        window.refresh()
+        #selenium.find_element_by_id('body').send_keys(Keys.ESCAPE).perform()
+        #webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
         
         # 이미지 캡쳐 (브라우져 크기 설정후 캡쳐 사이즈 지정 필요)
         # redirect 된 url로 이미지 캡쳐 필요
         img_str = str(row['url_no'])+ "__" + row['url_addr'] + ".png"
         time.sleep(2) # 화면캡쳐 전 2초대기
         driver.save_screenshot(img_path + img_str)
-        
-        # Request Code 취득 : (200 : ok, 404 : page not found)
-        #req_code = get_request_code(web_url)
-        req_code = get_request_code(redirected)
-        
-        window['-OUTPUT-'].update(value=' → ReqCode : ' + str(req_code), append=True)
-        window.refresh()
 
         # 새창 닫기
         myfunc.close_new_tabs(driver)
+        window.refresh() # 작업창 멈추는 현상 해결 및 작업내용 출력 반영
         window['-OUTPUT-'].update(value=' → Tab', append=True)
         window['-OUTPUT-'].update(value=' ('+str(round(time.time()-pertime, 2)) + 's)', append=True)        
         window['-OUTPUT-'].update(value='\n', append=True)
@@ -151,12 +151,8 @@ def get_monitoring(window, keyword):
         window['-OUTPUT-'].update(value='▶ (처리 URL) ' + str(cnt) +'건, (처리시간) '+ str(round(endtime-stime, 2)) + '초, (평균처리 시간) '+ str(round((endtime-stime)/cnt,2)) +'초 \n', append=True)
     else:
         window['-OUTPUT-'].update(value='▶ 검색 결과 없음', append=True)
-    
     # 작업 종료후 버튼 활성화
     button_activate(window, 1)
-
-    #처리건수 리턴
-    return cnt
 
 # #전체 기관 모니터링
 # def get_monitoring_all(window):    
@@ -251,7 +247,7 @@ def main():
         [sg.Text(' 사이트명'), sg.InputText('', key='-SITE_TITLE-', size=(30, 1)),
          sg.Text('  URL'), sg.InputText('', key='-SITE_URL-', size=(30, 1))],
         [sg.CBox('반복 점검', key='-REPEAT-', default=True), 
-         sg.CBox('비활성화 URL 포함', key='-DISABLED-'), sg.CBox('백그라운드 실행', key='-BG_EXE-', default=True)],
+         sg.CBox('비활성화 URL 포함', key='-DISABLED-'), sg.CBox('백그라운드 실행', key='-BG_EXE-')],
         [sg.Text('타임아웃'), sg.Radio('5초',  group_id="RADIO1", key='-TIMEOUT1-'),
                             sg.Radio('10초', group_id="RADIO1", default=True, key='-TIMEOUT2-'),
                             sg.Radio('15초', group_id="RADIO1", key='-TIMEOUT3-'),
@@ -281,10 +277,16 @@ def main():
 
         # 각종 버튼에 대한 이벤트 처리
         if event == '-BUTTON_START-':
-                        
-            cnt = 1
-            # 버튼 비활성화 전환
+            print('시작')
+            
+            #버튼 비활성화 전환
             button_activate(window, 0)
+            # window['-OUTPUT-'].update(value='', append=False)
+            
+            # # 버튼 활성화 전환
+            # window['-BUTTON_STOP-'].update(disabled=False)
+            # for key in obj_list:
+            #     window[key].update(disabled=True)
 
             # 조회조건 출력
             keyword = getCondition(window, values)
@@ -293,22 +295,15 @@ def main():
             mon_status = 1
             
             # 모니터링 작업
-            while True:
-                # print ('repeat -->', keyword.get('REPEAT'))
-                # 반복작업 선택시
-                if (keyword.get('REPEAT') == True or cnt == 1):
-                    url_cnt = get_monitoring(window, keyword)
-                    if(url_cnt == 0):
-                        break
-                    cnt += 1
-
-                else:
-                    break
+            get_monitoring(window, keyword)
             
         elif event == '-BUTTON_STOP-':
             print('중지')
             # 버튼 활성화 전환
             button_activate(window, 1)
+            # window['-BUTTON_STOP-'].update(disabled=True)
+            # for key in obj_list:
+            #     window[key].update(disabled=False)
 
         elif event in ('-BUTTON_EXIT-', 'Escape:27', sg.WIN_CLOSED):
             # Todo : browser & dbconnection close.
@@ -319,4 +314,7 @@ def main():
 
 
 if __name__ == '__main__':
+    # DB접속
+    cur = myfunc.dbconn2()
+
     main()
