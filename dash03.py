@@ -22,7 +22,6 @@ import asyncio
     URL healthcheck dashboard introduction...
     ....
     .... copyright usuall@gmail.com
-
 '''
 
 # 실행경로
@@ -121,8 +120,8 @@ def get_monitoring(window, keyword):
         # 브라우져 URL 탐색
         web_url = row['url_type']+row['url_addr']
         driver.get(web_url)
-        redirected = driver.current_url
-        print('redirected -->', driver.current_url)
+        redirected_url = driver.current_url
+        # print('redirected -->', driver.current_url)
         window.refresh() # 작업내용 출력 반영        
         
         # 이미지 캡쳐 (브라우져 크기 설정후 캡쳐 사이즈 지정 필요)
@@ -133,9 +132,13 @@ def get_monitoring(window, keyword):
         
         # Request Code 취득 : (200 : ok, 404 : page not found)
         #req_code = get_request_code(web_url)
-        req_code = get_request_code(redirected)
+        req_code = get_request_code(redirected_url)
         
-        window['-OUTPUT-'].update(value=' → ReqCode : ' + str(req_code), append=True)
+        t_color='Black'
+        if(req_code != 200):
+            t_color='Red'
+        
+        window['-OUTPUT-'].update(value=' (' + str(req_code) +')', append=True, text_color_for_value=t_color)
         window.refresh()
 
         # 새창 닫기
@@ -188,7 +191,7 @@ def getCondition(window, values):
     # print ('condition : ' + str(timeout_term))
    
     # window['-OUTPUT-'].update(value='- 실행시간 : ' + str1 + '\n', append=True)
-    window['-OUTPUT-'].update(value='<검색조건>' + '\n', append=True)
+    window['-OUTPUT-'].update(value='------ <검색조건> ------' + '\n', append=True)
     window['-OUTPUT-'].update(value='- 기관 선택 : ' + values['-ORG_LIST-'] + '\n', append=True)
     window['-OUTPUT-'].update(value='- 사이트명 : ' + values['-SITE_TITLE-'] + '\n', append=True)
     window['-OUTPUT-'].update(value='- URL명 : ' + values['-SITE_URL-'] + '\n', append=True)
