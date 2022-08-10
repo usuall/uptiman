@@ -277,7 +277,7 @@ def main():
 
     
     window = sg.Window('Uptime Manager for NIRS', layout, default_element_size=(40, 1),
-                       grab_anywhere=False)
+                       grab_anywhere=False, location=sg.user_settings_get_entry('-LOCATION-', (None, None)))
 
     while True:
         event, values = window.read()
@@ -314,6 +314,8 @@ def main():
             button_activate(window, 1)
 
         elif event in ('-BUTTON_EXIT-', 'Escape:27', sg.WIN_CLOSED):
+            # 재실행시 종료한 위치에 실행됨
+            sg.user_settings_set_entry('-LOCATION-', window.current_location())
             # Todo : browser & dbconnection close.
             print('exit....')
             break
