@@ -276,12 +276,12 @@ def main():
     ]
 
     
-    window = sg.Window('Uptime Manager for NIRS', layout, default_element_size=(40, 1),
-                       grab_anywhere=False, location=sg.user_settings_get_entry('-LOCATION-', (None, None)))
+    #window = sg.Window('Uptime Manager for NIRS', layout, default_element_size=(40, 1), grab_anywhere=False, location=sg.user_settings_get_entry('-LOCATION-', (None, None)))
+    window = sg.Window('Uptime Manager for NIRS', layout, default_element_size=(40, 1), grab_anywhere=False )
+
 
     while True:
         event, values = window.read()
-
         # 각종 버튼에 대한 이벤트 처리
         if event == '-BUTTON_START-':
                         
