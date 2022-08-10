@@ -43,25 +43,26 @@ def set_browser_option(bg_exec):
     print ('bg_exec ',bg_exec)
     # 크롬 브라우저 오픈
     options = webdriver.ChromeOptions()
+    # '시스템에 부착된 장치가 작동하지 않습니다' 오류 제거
+    options.add_experimental_option("excludeSwitches", ["enable-logging"])
+    
+    # 브라우져 창 최소화
+    if (bg_exec == False):
+        print ('-------------bg_executed ----')
+        options.add_argument('--window-size=900,700')
+        options.add_argument("--headless")
+    else:
+        driver.set_window_size(1920, 1080)
+        options.add_argument("--start-maximized")
     
     # 브라우져 옵션 설정
     driver = webdriver.Chrome(lib_path + '/chromedriver.exe', chrome_options=options)
     
-    # start_url = 'https://www.google.com'
+    # 명시적으로 대기(10초)
     driver.implicitly_wait(10)
-    driver.set_window_size(1920, 1080)
-    # driver.get(start_url)
     
-    # '시스템에 부착된 장치가 작동하지 않습니다' 오류 제거
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
-    # 브라우져 창 최대화
-    options.add_argument("--start-maximized")
 
-    # 브라우져 창 최소화
-    if (bg_exec == 1):
-        print ('-------------bg_executed ----')
-        options.add_argument('--window-size=900,700')
-        options.add_argument("--headless")
+    
 
     options.add_argument(user_agent)
 
@@ -132,8 +133,9 @@ def get_monitoring(window, keyword):
         window.refresh() # 작업창 멈추는 현상 해결 및 작업내용 출력 반영
 
     if(cnt > 0):
+        endtime = time.time()
         window['-OUTPUT-'].update(value='-------------------------------------------\n', append=True)
-        window['-OUTPUT-'].update(value='▶ (처리 URL) ' + str(cnt) +'건, (처리시간) '+ str(round(time.time()-stime, 2)) + '초 \n', append=True)
+        window['-OUTPUT-'].update(value='▶ (처리 URL) ' + str(cnt) +'건, (처리시간) '+ str(round(endtime-stime, 2)) + '초, (평균처리 시간) '+ str(round((endtime-stime)/cnt,2)) +'초 \n', append=True)
     else:
         window['-OUTPUT-'].update(value='▶ 검색 결과 없음', append=True)
     # 작업 종료후 버튼 활성화
@@ -196,8 +198,10 @@ def getCondition(window, values):
 
 
 def button_activate(window, activate):
-    
+
+    # 화면 요소ID
     obj_list = '-ORG_LIST-', '-TIMEOUT1-', '-TIMEOUT2-', '-TIMEOUT3-', '-TIMEOUT4-', '-TIMEOUT5-', '-TIMEOUT6-', '-DISABLED-', '-SITE_TITLE-', '-SITE_URL-', '-BG_EXE-', '-BUTTON_START-', '-BUTTON_EXIT-'
+    
     # 버튼 활성화 전환
     if activate == 0:
         window['-OUTPUT-'].update(value='', append=False)
@@ -213,7 +217,8 @@ def button_activate(window, activate):
 def main():
 
     #모니터링 실시
-    #org_list = my_org_list()
+    
+    #카테고리 취득
     org_list = my_org_list_combo()
 
     # GUI 실행
