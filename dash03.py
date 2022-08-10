@@ -8,6 +8,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 from uptime_model import *
 #from wrapt_timeout_decorator import *
+from bs4 import BeautifulSoup
 
 from PIL import Image
 import requests
@@ -129,6 +130,14 @@ def get_monitoring(window, keyword):
         img_str = str(row['url_no'])+ "__" + row['url_addr'] + ".png"
         time.sleep(2) # 화면캡쳐 전 2초대기
         driver.save_screenshot(img_path + img_str)
+        
+        #html 소스코드 취득
+        html_source = driver.page_source
+        print(html_source)
+        window['-OUTPUT-'].update(value=html_source, append=True)
+        
+        html_source = BeautifulSoup(html_source, 'html.parser').prettify
+        print(html_source)
         
         # Request Code 취득 : (200 : ok, 404 : page not found)
         #req_code = get_request_code(web_url)
@@ -277,7 +286,7 @@ def main():
 
     
     #window = sg.Window('Uptime Manager for NIRS', layout, default_element_size=(40, 1), grab_anywhere=False, location=sg.user_settings_get_entry('-LOCATION-', (None, None)))
-    window = sg.Window('Uptime Manager for NIRS', layout, default_element_size=(40, 1), grab_anywhere=False )
+    window = sg.Window('Uptime Manager for NIRS', layout, default_element_size=(40, 1), grab_anywhere=True )
 
 
     while True:
