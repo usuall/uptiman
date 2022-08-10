@@ -109,6 +109,8 @@ def get_monitoring(window, keyword):
     result = get_org_url_list(keyword)
     for row in result:
         cnt += 1
+        
+        pertime = time.time() # 개별작업시간
         # 작업시간 출력
         str1 = '[' + get_sysdate() + '] '+ row['url_addr']
         window['-OUTPUT-'].update(value=str1, append=True)
@@ -125,6 +127,7 @@ def get_monitoring(window, keyword):
         myfunc.close_new_tabs(driver)
         window.refresh() # 작업창 멈추는 현상 해결 및 작업내용 출력 반영
         window['-OUTPUT-'].update(value=' → Tab', append=True)
+        window['-OUTPUT-'].update(value=' ('+str(round(time.time()-pertime, 2)) + 's)', append=True)        
         window['-OUTPUT-'].update(value='\n', append=True)
         window.refresh() # 작업창 멈추는 현상 해결 및 작업내용 출력 반영
 
