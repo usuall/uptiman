@@ -11,7 +11,7 @@ from selenium.webdriver.common.keys import Keys
 
 from webdriver_manager.chrome import ChromeDriverManager
 # from selenium.webdriver.common.keys import Keys
-# from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException
 
 from uptime_model import *
 #from wrapt_timeout_decorator import *
@@ -162,11 +162,11 @@ def get_monitoring(window, keyword):
         #브라우져 무한로딩시 timeout 으로 회피(jnpolice.go.kr 사례) / 해결하는데 5일 걸림
         get_url_timout = keyword.get('TIME_OUT') #디폴트 10초
         driver.set_page_load_timeout(get_url_timout)
-        print('1111')
+        print('1111 ' + web_url)
         try:
             driver.get(web_url)
             print('2222')
-        except:
+        except TimeoutException as ex:
             print('3333')
             pass
         
