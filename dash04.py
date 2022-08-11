@@ -145,14 +145,17 @@ def get_monitoring(window, keyword):
     # print('resutl ',type(result), len(result))
     total_cnt = len(result) # 조회 건수
     window['-OUTPUT-'].update(value='- 조회건수 : '+ str(total_cnt) +'건\n', append=True)
-    window['-OUTPUT-'].update(value='------------------------------\n\n', append=True)
+    window['-OUTPUT-'].update(value='------------------------------\n', append=True)
 
     for row in result:
         cnt += 1
         
+        window['-OUTPUT-'].update(value='\n', append=True)
+        window.refresh() 
+        
         pertime = time.time() # 개별작업시간
         # 작업시간 출력
-        str1 = '[' + get_sysdate() + '] ['+ str(cnt) + '/' + str(total_cnt) + ' (' + str(row['url_no']) + ')] ' + row['url_addr'] +'\n'
+        str1 = '[' + get_sysdate() + '] ['+ str(cnt) + '/' + str(total_cnt) + '] ' + row['url_addr'] + ' (NO:' + str(row['url_no'])  +')\n'
         window['-OUTPUT-'].update(value=str1, append=True)
         window.refresh() 
 
@@ -162,19 +165,20 @@ def get_monitoring(window, keyword):
         #브라우져 무한로딩시 timeout 으로 회피(jnpolice.go.kr 사례) / 해결하는데 5일 걸림
         get_url_timout = keyword.get('TIME_OUT') #디폴트 10초
         driver.set_page_load_timeout(get_url_timout)
-        print('1111 ' + web_url)
+        outtime = time.time()
+        print('url_get(1/2)', time.time() - outtime, web_url)
         try:
             driver.get(web_url)
-            print('2222')
+            print('url_get(2/2)', time.time() - outtime)
         except TimeoutException as ex:
-            print('3333')
+            print('url_get(time_out exception !)', time.time() - outtime)
             pass
         
         redirected_url = driver.current_url
-        print('3333')
+        print('next_stepping .... ')
         # 특정 태그
         #element = driver.find_element(By.TAG_NAME, "body")
-        window['-OUTPUT-'].update(value=' Redirected → '+redirected_url+'\n', append=True)
+        window['-OUTPUT-'].update(value=' Redirected → '+redirected_url+ ' ('+ str(round(time.time()-pertime, 2))+'s)\n', append=True)
         # print('redirected -->', driver.current_url)
         window.refresh() # 작업내용 출력 반영        
         
@@ -182,9 +186,11 @@ def get_monitoring(window, keyword):
         # redirect 된 url로 이미지 캡쳐 필요
         img_str = str(row['url_no'])+ "__" + row['url_addr'] + ".png"
         time.sleep(2) # 화면캡쳐 전 2초대기
-        driver.save_screenshot(img_path + img_str)
-        window['-OUTPUT-'].update(value=' → Image captured ('+ str(round(time.time()-pertime, 2))+'s)', append=True)
         
+        #todo timeout.... exception...
+        driver.save_screenshot(img_path + img_str)
+        window['-OUTPUT-'].update(value=' → captured ('+ str(round(time.time()-pertime, 2))+'s)', append=True)
+        window.refresh() 
         #html 소스코드 취득
         html_source = driver.page_source # redirected 최종 URL의 소스를 취득
         #window['-OUTPUT-'].update(value=' redirected2 -> '+ driver.current_url, append=True)
@@ -201,8 +207,9 @@ def get_monitoring(window, keyword):
         #html 저장
         #add_html_source(row['url_no'], row['url_no'], html_source)
         file_name = save_html(row['url_no'], row['url_no'], html_source)
-        window['-OUTPUT-'].update(value=' → html saved ('+ str(round(time.time()-pertime, 2))+'s) ', append=True)
-
+        window['-OUTPUT-'].update(value=' → html ('+ str(round(time.time()-pertime, 2))+'s) ', append=True)
+        window.refresh()
+        
         # Request Code 취득 : (200 : ok, 404 : page not found)
         #req_code = get_request_code(web_url)
         req_code = get_request_code(redirected_url)
@@ -210,8 +217,8 @@ def get_monitoring(window, keyword):
         t_color='Black'
         if(req_code != 200):
             t_color='Red'
-        
-        window['-OUTPUT-'].update(value='→ (Code ' + str(req_code) +')', append=True, text_color_for_value=t_color)
+        # http Status code 
+        window['-OUTPUT-'].update(value='→ (Status ' + str(req_code) + ', '+ str(round(time.time()-pertime, 2))+'s) ', append=True, text_color_for_value=t_color)
         window.refresh()
 
         # 새창 닫기
