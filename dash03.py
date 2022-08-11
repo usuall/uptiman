@@ -4,11 +4,15 @@ from threading import TIMEOUT_MAX
 import PySimpleGUI as sg
 import pymysql
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+# from selenium.webdriver.common.keys import Keys
+# from selenium.common.exceptions import TimeoutException
+
 from uptime_model import *
 #from wrapt_timeout_decorator import *
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 from PIL import Image
 import requests
@@ -18,7 +22,6 @@ import os
 import myfunc
 import asyncio
 
-
 '''
     URL healthcheck dashboard introduction...
     ....
@@ -26,10 +29,11 @@ import asyncio
 '''
 
 # 실행경로
-project_path = os.path.abspath(os.getcwd())
-lib_path = project_path + '/lib'
-img_path = project_path + '/capture/'
-img_resize_path = project_path + '/capture_resized/'
+project_path = os.path.abspath(os.getcwd()) + '\\'
+lib_path = project_path + 'lib\\'
+img_path = project_path + 'capture\\'
+html_path = project_path + 'html\\'
+img_resize_path = project_path + 'capture_resized\\'
 mon_status = 0 #모니터링 시작 유무
 
 # 실행환경
@@ -39,7 +43,7 @@ user_agent = 'user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/5
 # 브라우저 기본 설정
 def set_browser_option(bg_exec):
     
-    print ('bg_exec ',bg_exec)
+    # print ('bg_exec ',bg_exec)
     # 크롬 브라우저 오픈
     options = webdriver.ChromeOptions()
     # USER_Agent 지정
@@ -52,12 +56,17 @@ def set_browser_option(bg_exec):
         print ('------------- 백그라운드 실행 = true -----------')
         options.add_argument('--window-size=1900,1080')
         options.add_argument("--headless")
+        # options.headless = True
+
     else:
         # driver.set_window_size(1920, 1080)
         options.add_argument("--start-maximized")
     
     # 브라우져 옵션 설정
-    driver = webdriver.Chrome(lib_path + '/chromedriver.exe', chrome_options=options)    
+    # driver = webdriver.Chrome(lib_path + 'chromedriver.exe', options=options) # deprecated option
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+ 
 
     # 명시적으로 대기(10초) 
     #driver.implicitly_wait(10)
@@ -89,7 +98,6 @@ def my_org_list_combo():
 
 #현재시각
 def get_sysdate():
-    from datetime import datetime
     sysdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     return str(sysdate)
 
@@ -98,6 +106,23 @@ def get_request_code(web_url):
     requests_code = response.status_code
     return requests_code        
 
+def save_html(url_no, mon_no, src_text):
+
+    sysdate = datetime.now().strftime('%Y%m%d_%H%M%S_%f')
+    # print(html_path + str(url_no)+'_'+str(sysdate)+'.html')
+    file_name = str(url_no)+'_'+str(sysdate)+'.html'
+    full_path_name = html_path + file_name
+    f = open(full_path_name, 'w', encoding='UTF-8')
+    # print(type(src_text))
+    f.write(str(src_text))
+    f.close()
+
+    return file_name
+    # DB insert
+    
+
+
+    
 #기관단위 모니터링
 def get_monitoring(window, keyword):
     
@@ -109,12 +134,17 @@ def get_monitoring(window, keyword):
     cnt = 0
     print(' 모니터링 시작 : ')
     result = get_org_url_list(keyword)
+    # print('resutl ',type(result), len(result))
+    total_cnt = len(result) # 조회 건수
+    window['-OUTPUT-'].update(value='- 조회건수 : '+ str(total_cnt) +'건\n', append=True)
+    window['-OUTPUT-'].update(value='-------------------------------------------\n', append=True)
+
     for row in result:
         cnt += 1
         
         pertime = time.time() # 개별작업시간
         # 작업시간 출력
-        str1 = '[' + get_sysdate() + '] '+ row['url_addr']
+        str1 = '[' + get_sysdate() + '] ['+ str(row['url_no']) + '] ' + row['url_addr'] +'\n'
         window['-OUTPUT-'].update(value=str1, append=True)
         window.refresh() 
 
@@ -122,6 +152,8 @@ def get_monitoring(window, keyword):
         web_url = row['url_type']+row['url_addr']
         driver.get(web_url)
         redirected_url = driver.current_url
+        window['-OUTPUT-'].update(value=' Redirected → '+redirected_url+'\n', append=True)
+
         # print('redirected -->', driver.current_url)
         window.refresh() # 작업내용 출력 반영        
         
@@ -132,13 +164,23 @@ def get_monitoring(window, keyword):
         driver.save_screenshot(img_path + img_str)
         
         #html 소스코드 취득
-        html_source = driver.page_source
-        print(html_source)
-        window['-OUTPUT-'].update(value=html_source, append=True)
+        html_source = driver.page_source # redirected 최종 URL의 소스를 취득
+        #window['-OUTPUT-'].update(value=' redirected2 -> '+ driver.current_url, append=True)
+        #print(html_source)
+        # window['-OUTPUT-'].update(value='11111-------------------------------------------\n', append=True)
+        # window['-OUTPUT-'].update(value=html_source, append=True)
         
         html_source = BeautifulSoup(html_source, 'html.parser').prettify
-        print(html_source)
+        # window['-OUTPUT-'].update(value='22222-------------------------------------------\n', append=True)
+        # window['-OUTPUT-'].update(value=html_source, append=True)
+        # window['-OUTPUT-'].update(value='33333-------------------------------------------\n', append=True)
+        window.refresh()
         
+        #html 저장
+        #add_html_source(row['url_no'], row['url_no'], html_source)
+        file_name = save_html(row['url_no'], row['url_no'], html_source)
+        window['-OUTPUT-'].update(value=' html saved ('+ str(round(time.time()-pertime, 2))+'s) ', append=True)
+
         # Request Code 취득 : (200 : ok, 404 : page not found)
         #req_code = get_request_code(web_url)
         req_code = get_request_code(redirected_url)
@@ -147,7 +189,7 @@ def get_monitoring(window, keyword):
         if(req_code != 200):
             t_color='Red'
         
-        window['-OUTPUT-'].update(value=' (' + str(req_code) +')', append=True, text_color_for_value=t_color)
+        window['-OUTPUT-'].update(value='→ (Code ' + str(req_code) +')', append=True, text_color_for_value=t_color)
         window.refresh()
 
         # 새창 닫기
@@ -156,6 +198,9 @@ def get_monitoring(window, keyword):
         window['-OUTPUT-'].update(value=' ('+str(round(time.time()-pertime, 2)) + 's)', append=True)        
         window['-OUTPUT-'].update(value='\n', append=True)
         window.refresh() # 작업창 멈추는 현상 해결 및 작업내용 출력 반영
+
+        #모니터링 데이터 DB
+        add_monitoring(row['url_no'], req_code, file_name)
 
     if(cnt > 0):
         endtime = time.time()
@@ -181,7 +226,7 @@ def get_monitoring(window, keyword):
     
 def getCondition(window, values):
     str1 = '[' + get_sysdate() + '] '
-    print ('condition : '+values['-ORG_LIST-'])
+    #print ('condition : '+values['-ORG_LIST-'])
     if(values['-TIMEOUT1-'] == True ):
         timeout_term = 5
     elif(values['-TIMEOUT2-'] == True ):
@@ -208,9 +253,8 @@ def getCondition(window, values):
     window['-OUTPUT-'].update(value='- 비활성화 URL포함. : ' + str(values['-DISABLED-']) + '\n', append=True)
     window['-OUTPUT-'].update(value='- 백그라운드 실행 : ' + str(values['-BG_EXE-']) + '\n', append=True)
     window['-OUTPUT-'].update(value='- 타임아웃 설정 : ' + str(timeout_term) + '초\n', append=True)
-    
-    window['-OUTPUT-'].update(value='-------------------------------------------\n', append=True)
-    
+    # window['-OUTPUT-'].update(value='-------------------------------------------\n', append=True)
+
     #검색 조건 저장
     keyword = {'ORG_LIST':      values['-ORG_LIST-'], 
                 'SITE_TITLE':   values['-SITE_TITLE-'], 
@@ -255,7 +299,7 @@ def main():
     layout_left = [[sg.Button('종 료', key='-BUTTON_EXIT-', button_color=('white', 'firebrick3'))]]
     layout_right =[[sg.Button('     실 행     ', key='-BUTTON_START-'), sg.Button('중 지', key='-BUTTON_STOP-', disabled=True, button_color=('black', 'lightblue'))]]
     layout = [
-        [sg.Text('URL Health-Check Manager', size=(30, 1), font=("Helvetica", 25))],
+        [sg.Text('URL Health-Check Manager, by 유주열', size=(30, 1), font=("Helvetica", 25))],
         [sg.Text('URL 모니터링 툴입니다. 조건을 선택하고 실행하세요')],
         # [sg.InputText('', key='in1')],
         # [sg.Listbox(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
@@ -288,7 +332,7 @@ def main():
     #window = sg.Window('Uptime Manager for NIRS', layout, default_element_size=(40, 1), grab_anywhere=False, location=sg.user_settings_get_entry('-LOCATION-', (None, None)))
     window = sg.Window('Uptime Manager for NIRS', layout, default_element_size=(40, 1), grab_anywhere=True )
 
-
+    
     while True:
         event, values = window.read()
         # 각종 버튼에 대한 이벤트 처리

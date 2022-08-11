@@ -71,6 +71,14 @@ def get_org_url_list(c, keyword):
 #     c.execute("select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no where b.url_fg = 1 ")
 #     return c.fetchall()
 
+
+@with_cursor
+def add_monitoring(c, url_no, status_code, file_name):
+    sql_data = ("INSERT INTO tb_monitor (url_no, status_code, file_name ) VALUES ( %s, %s, %s)")
+    sql_val = (url_no, status_code, file_name)
+    c.execute(sql_data, sql_val)
+    
+
 @with_cursor
 def add_blog(c, subject, content):
     c.execute("INSERT INTO blog (subject, content, date) VALUES (?, ?, ?)", 
