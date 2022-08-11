@@ -112,6 +112,12 @@ def save_html(url_no, mon_no, src_text):
     # print(html_path + str(url_no)+'_'+str(sysdate)+'.html')
     file_name = str(url_no)+'_'+str(sysdate)+'.html'
     full_path_name = html_path + file_name
+    
+    # 저장용 디렉토리 존재 유무 확인 및 생성
+    isExist = os.path.exists(html_path)
+    if(isExist == False):
+        os.makedirs(html_path)
+        
     f = open(full_path_name, 'w', encoding='UTF-8')
     # print(type(src_text))
     f.write(str(src_text))
@@ -137,14 +143,14 @@ def get_monitoring(window, keyword):
     # print('resutl ',type(result), len(result))
     total_cnt = len(result) # 조회 건수
     window['-OUTPUT-'].update(value='- 조회건수 : '+ str(total_cnt) +'건\n', append=True)
-    window['-OUTPUT-'].update(value='-------------------------------------------\n', append=True)
+    window['-OUTPUT-'].update(value='------------------------------\n\n', append=True)
 
     for row in result:
         cnt += 1
         
         pertime = time.time() # 개별작업시간
         # 작업시간 출력
-        str1 = '[' + get_sysdate() + '] ['+ str(row['url_no']) + '] ' + row['url_addr'] +'\n'
+        str1 = '[' + get_sysdate() + '] ['+ str(cnt) + '/' + str(total_cnt) + ' (' + str(row['url_no']) + ')] ' + row['url_addr'] +'\n'
         window['-OUTPUT-'].update(value=str1, append=True)
         window.refresh() 
 
@@ -245,8 +251,8 @@ def getCondition(window, values):
     # print ('condition : ' + str(timeout_term))
    
     # window['-OUTPUT-'].update(value='- 실행시간 : ' + str1 + '\n', append=True)
-    window['-OUTPUT-'].update(value='------ <검색조건> ------' + '\n', append=True)
-    window['-OUTPUT-'].update(value='- 기관 선택 : ' + values['-ORG_LIST-'] + '\n', append=True)
+    window['-OUTPUT-'].update(value='--------- <검색조건> ---------' + '\n', append=True)
+    window['-OUTPUT-'].update(value='- 카테고리 : ' + values['-ORG_LIST-'] + '\n', append=True)
     window['-OUTPUT-'].update(value='- 사이트명 : ' + values['-SITE_TITLE-'] + '\n', append=True)
     window['-OUTPUT-'].update(value='- URL명 : ' + values['-SITE_URL-'] + '\n', append=True)
     window['-OUTPUT-'].update(value='- 반복 점검 : ' + str(values['-REPEAT-']) + '\n', append=True)
@@ -256,7 +262,7 @@ def getCondition(window, values):
     # window['-OUTPUT-'].update(value='-------------------------------------------\n', append=True)
 
     #검색 조건 저장
-    keyword = {'ORG_LIST':      values['-ORG_LIST-'], 
+    keyword = { 'ORG_LIST':     values['-ORG_LIST-'], 
                 'SITE_TITLE':   values['-SITE_TITLE-'], 
                 'SITE_URL':     values['-SITE_URL-'], 
                 'REPEAT':       values['-REPEAT-'], 
@@ -273,7 +279,7 @@ def getCondition(window, values):
 def button_activate(window, activate):
 
     # 화면 요소ID
-    obj_list = '-ORG_LIST-', '-TIMEOUT1-', '-TIMEOUT2-', '-TIMEOUT3-', '-TIMEOUT4-', '-TIMEOUT5-', '-TIMEOUT6-', '-DISABLED-', '-SITE_TITLE-', '-SITE_URL-', '-BG_EXE-', '-BUTTON_START-', '-BUTTON_EXIT-'
+    obj_list = '-ORG_LIST-', '-TIMEOUT1-', '-TIMEOUT2-', '-TIMEOUT3-', '-TIMEOUT4-', '-TIMEOUT5-', '-TIMEOUT6-', '-DISABLED-', '-SITE_TITLE-', '-SITE_URL-', '-REPEAT-', '-BG_EXE-', '-BUTTON_START-', '-BUTTON_EXIT-'
     
     # 버튼 활성화 전환
     if activate == 0:
@@ -299,23 +305,24 @@ def main():
     layout_left = [[sg.Button('종 료', key='-BUTTON_EXIT-', button_color=('white', 'firebrick3'))]]
     layout_right =[[sg.Button('     실 행     ', key='-BUTTON_START-'), sg.Button('중 지', key='-BUTTON_STOP-', disabled=True, button_color=('black', 'lightblue'))]]
     layout = [
-        [sg.Text('URL Health-Check Manager, by 유주열', size=(30, 1), font=("Helvetica", 25))],
-        [sg.Text('URL 모니터링 툴입니다. 조건을 선택하고 실행하세요')],
+        [sg.Text('URL Health-Check Manager', size=(30, 1), font=("Helvetica", 25))],
+        [sg.Text('URL 모니터링 툴입니다. 조건을 선택하고 실행하세요'),sg.Text('URL 모니터링 툴입니다. 조건을 선택하고 실행하세요')],
         # [sg.InputText('', key='in1')],
         # [sg.Listbox(values=(org_list), size=(30, 1), key='-ORG_LIST-', enable_events=True)],
-        [sg.Text('기관 선택'), sg.Combo(values=(org_list), default_value='전 체', size=(30, 1), key='-ORG_LIST-', enable_events=True)],
-        [sg.Text(' 사이트명'), sg.InputText('', key='-SITE_TITLE-', size=(30, 1)),
-         sg.Text('  URL'), sg.InputText('', key='-SITE_URL-', size=(30, 1))],
-        [sg.CBox('반복 점검', key='-REPEAT-', default=True), 
-         sg.CBox('비활성화 URL 포함', key='-DISABLED-'), sg.CBox('백그라운드 실행', key='-BG_EXE-', default=True)],
+        [sg.Text('카테고리'), sg.Combo(values=(org_list), default_value='전 체', size=(30, 1), key='-ORG_LIST-', enable_events=False, tooltip='카테고리를 선택해주세요.')],
+        [sg.Text('사이트명'), sg.InputText('', key='-SITE_TITLE-', size=(30, 1), tooltip='사이트명을 입력하세요.'),
+         sg.Text('  URL명'), sg.InputText('', key='-SITE_URL-', size=(30, 1), tooltip='도메인(URL)을 입력하세요.')],
+        [sg.CBox('반복 점검', key='-REPEAT-', default=False, tooltip='체크 대상을 반복하여 점검합니다.'), 
+         sg.CBox('비활성화 URL 포함', key='-DISABLED-'), sg.CBox('백그라운드 실행', key='-BG_EXE-', default=True, tooltip='임시 비활성화 URL 대상까지 검색')],
+        [sg.CBox('AP작업 포함', key='-AP_WORK-', default=TRUE, tooltip='AP작업중 URL.....'), 
+         sg.CBox('추가 항목', key='-ADD1-'), sg.CBox('추가 항목2', key='-ADD2-', default=True)],
+        [sg.MLine(default_text='', font='Gothic', size=(80, 20), key='-OUTPUT-', autoscroll=True, disabled=True)],
         [sg.Text('타임아웃'), sg.Radio('5초',  group_id="RADIO1", key='-TIMEOUT1-'),
                             sg.Radio('10초', group_id="RADIO1", default=True, key='-TIMEOUT2-'),
                             sg.Radio('15초', group_id="RADIO1", key='-TIMEOUT3-'),
                             sg.Radio('20초', group_id="RADIO1", key='-TIMEOUT4-'),
                             sg.Radio('25초', group_id="RADIO1", key='-TIMEOUT5-'),
                             sg.Radio('30초', group_id="RADIO1", key='-TIMEOUT6-')],
-
-        [sg.MLine(default_text='', font='Gothic', size=(80, 20), key='-OUTPUT-', autoscroll=True, disabled=True)],
         # [sg.Combo(('Combobox 1', 'Combobox 2'), key='combo', size=(20, 1)),sg.Slider(range=(1, 100), orientation='h', size=(34, 20), key='slide1', default_value=85)],
         # [sg.Combo(('Combobox 1', 'Combobox 2'), key='combo', size=(20, 1))],
         # [sg.OptionMenu(('Menu Option 1', 'Menu Option 2', 'Menu Option 3'), key='optionmenu')],
@@ -355,10 +362,12 @@ def main():
                 if (keyword.get('REPEAT') == True or cnt == 1):
                     url_cnt = get_monitoring(window, keyword)
                     if(url_cnt == 0):
+                        print('--- Working Completed(cnt=0) ---')
                         break
                     cnt += 1
 
                 else:
+                    print('--- Working Completed.(REPEAT=False) ---')
                     break
             
         elif event == '-BUTTON_STOP-':

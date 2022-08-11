@@ -1,0 +1,3999 @@
+<bound method Tag.prettify of <html class="OUTLINE_DISABLED" lang="ko"><head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+<meta content="정부의 서비스, 민원, 정책·정보를 통합·제공하는 대한민국 정부 대표포털" name="description"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="http://www.gov.kr/images/etc/og_image_600.png" property="og:image"/>
+<link href="/2017/lib/css/popup.css?time=2022081200" rel="stylesheet" type="text/css"/>
+<link href="/2017/lib/css/page1.css?time=2022081200" rel="stylesheet" type="text/css"/>
+<link href="/images/etc/icon.png" rel="apple-touch-icon"/>
+<link href="/images/etc/icon72.png" rel="apple-touch-icon-precomposed" sizes="72x72"/>
+<link href="/images/etc/icon144.png" rel="apple-touch-icon-precomposed" sizes="144x144"/>
+<link href="/images/etc/favicon.png" rel="shortcut icon" type="image/png"/>
+<link href="/images/etc/favicon1.png" rel="shortcut icon" type="image/png"/>
+<!-- 2019 css -->
+<link href="/2019/lib/style/base.css?time=2022081200" rel="stylesheet" type="text/css"/>
+<link href="/2019/lib/style/main.css?time=2022081200" rel="stylesheet" type="text/css"/>
+<link href="/2019/lib/style/layout.css?time=2022081200" rel="stylesheet" type="text/css"/>
+<link href="/2019/lib/style/owl.carousel.min.css?time=2022081200" rel="stylesheet" type="text/css"/>
+<link href="/2019/lib/style/owl.theme.default.min.css?time=2022081200" rel="stylesheet" type="text/css"/>
+<!-- 통합검색과 관련된 js -->
+<script src="/2019/lib/script/wnsearch.js" type="text/javascript"></script>
+<script src="/2017/lib/js/wnsearch.js" type="text/javascript"></script>
+<!-- 	<script type="text/javascript" src="/2019/lib/script/arkUnityheader.js"></script> -->
+<!-- 헤더 자동완성 관련 JS -->
+<script src="/2019/lib/script/arkUnity_new.js" type="text/javascript"></script>
+<script src="/2018/lib/js/myKeywordManager.js" type="text/javascript"></script>
+<!-- 2019 js -->
+<script src="/2019/lib/script/jquery-1.12.4.min.js" type="text/javascript"></script>
+<script src="/2018/lib/js/jquery.cookie.js" type="text/javascript"></script>
+<script src="/2019/lib/script/owl.carousel.js" type="text/javascript"></script>
+<!-- <script type="text/javascript" src="/2019/lib/script/main.js"></script> -->
+<script src="/2019/lib/script/gnb.js" type="text/javascript"></script>
+<script src="/ips/js/ipsCall.js?time=2022081200" type="text/javascript"></script>
+<!-- 팝업 공지 -->
+<link href="/2019/lib/style/popup.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+	<script src="/2019/lib/script/html5shiv.min.js"></script>
+	<script src="/2019/lib/script/respond.min.js"></script>
+	<![endif]-->
+<!-- 202004 메인변경작업 -->
+<link href="/renewMain/css/renew_main.css?time=2022081200" rel="stylesheet" type="text/css"/>
+<link href="/renewMain/css/renew_popup.css?time=2022081200" rel="stylesheet" type="text/css"/>
+<script src="/renewMain/js/swiper.jquery.min.js?time=2022081200"></script>
+<!--// 202004 메인변경작업 -->
+<!-- 보조금24 이용동의 팝업 추가 -->
+<script defer="" src="/rcvfvrSvc/js/common/gov-subsidy.min.js?time=2022081200"></script>
+<!-- 보조금24 이용동의 팝업 추가 -->
+<title>정부24</title>
+<meta content="정부서비스 | 정부24" property="og:title"/>
+<meta content="정부의 서비스, 민원, 정책·정보를 통합·제공하는 대한민국 정부 대표포털" property="og:description"/>
+<style type="text/css">
+	
+	/* 국민비서 테블릿에서 모바일용 메뉴 미표출 */
+	@media all and (max-width:719px) {
+		.item-type04,
+		.item-type04-nologin {
+			display: none !important;
+		}
+	}
+	@media (min-width:720px) {
+		.mo-gubbi {
+			display: none;
+		}
+	}
+	
+	#memberLoginPopup {
+		display:none;
+	    z-index: 9999;
+	}
+	
+	.sr-only {
+	    overflow: hidden;
+	    color: transparent;
+	    /* text-indent: 100%; */
+	    white-space: nowrap;
+		/* s:210125 */
+		position:absolute;
+	    width:1px;
+		height:1px;
+		/* e:210125 */
+	}
+	</style>
+<script type="text/javascript">
+	
+		// 주민등록증 모바일 확인 서비스 iPad일경우 버튼 표출 막음
+		$(document).ready(function(){
+			var iPadGbn = navigator.userAgent.indexOf('iPad') > -1 ?  true : false;
+			
+			if(iPadGbn) { // 아이패드 일경우
+				$(".nation-wrap-jumin").attr("style", "display:none");
+			} else {
+				$(".nation-wrap-jumin").attr("style", "display:;");
+			}
+		});
+
+		var lvinfoAgree = "";
+		var userDtlSectCd = "";
+		var prscYn = "";
+		
+		$(function(){
+			
+			//접속제한 202004
+			var ip ='121.147.130.110';
+			var my = "N";  
+			var hstNm = window.location.hostname;     
+			if(hstNm == 'gov.kr' || hstNm == 'www.gov.kr'){
+				if(my!='Y'){
+					checkAPI('gov.kr/main','121.147.130.110','80','main','121.147.130.110'); 
+					$('#title_id').html(''); 
+				}  
+			}   
+			
+			//딥링크 얼럿메세지
+		 	if(my == 'Y'){ 
+				var deepLinkMsg = ''; 
+				if(deepLinkMsg != "" && deepLinkMsg != undefined){
+					alert(deepLinkMsg);
+				}
+			 } 
+			 
+			$("#btnPopCloseSub").click(function() {
+				$(".popWrap").hide();
+				$(".overlay").hide();
+				$('html').attr('style', 'overflow: hidden;'); // 팝업 표출시 배경 스크롤 제한
+			});
+			
+			
+			//팝업관리 기능(쿠키 체크)
+			var popupCookieList = '';
+			var splitPopupCookieList = popupCookieList.split('||'); 
+			var popWrapLength = $(".popWrap").length;
+			var ckCheckFlag = popupCookieCheck(splitPopupCookieList);
+			// 쿠키 값 체크 후, 팝업 오픈
+			if ( popWrapLength > 0  && ckCheckFlag) {
+				// 안드로이드 버전이 5보다 낮으면 팝업 오픈하지 않음
+				var userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36";
+				var androidYn = "N";
+				var androidversion = parseFloat(userAgent.slice(userAgent.indexOf("Android") + 8));
+				if (!(androidYn == "Y" && androidversion < 5)) {
+					$('.wrap').before($(".popWrap"));
+					$(".popWrap").show();
+					//$('body').append('<div class="overlay" style="display:none; opacity:0.5;"></div>');
+					//$(".overlay").show();
+					$('html').attr('style', 'overflow: hidden;'); // 팝업 표출시 배경 스크롤 제한
+				}
+			}
+			
+			// overlay 클릭시 팝업 창닫기(close-box 외 클릭 시)
+			/* $(".popWrap").click(function(e) {
+				if(!$(e.target).parents().hasClass('btnOneday') && !$(e.target).parents().hasClass('popBody')){
+					$(".popWrap").hide();
+					$(".overlay").hide();
+					$('html').attr('style', 'overflow: auto;'); // 팝업 표출시 배경 스크롤 제한
+				}
+			}) */
+			
+			
+			//callArk("main");	//자동완성 call 
+			
+			getPopword();
+			
+			function getPopword(){
+				$.ajax({
+					type:"POST",
+					url:"/search/popword",
+					success:function(data){
+						setPopword(data);
+						rmUI.keywordRoll.activateRoll();	//롤링 시작 호출
+					}
+				});
+			}
+			
+			function setPopword(data){
+				
+				var popword_html = "";
+				var popword_html2 = "";
+				var popword_lst = $('#popword');
+				var popword_lst2 = $('#popword2');
+				var i = 1;
+				
+				$.each(data.Data.Query, function(){	  //"<a href=\"javascript:;\" id=\"arkWord" + i + "\" onclick=\"javascript:$('#headerSearchForm input[name=srhQuery]').val($(this).text()); moreViewSearch('N');\">"
+					
+					if(i<6){
+					popword_html += "<li class=\"item\"><a href=\"javascript:;\"  onclick=\"javascript:$('#headerSearchForm input[name=srhQuery]').val('"+this.content+"'); moreViewSearch('N');\"><strong>"+i+"</strong>"+this.content+"</a></li>";
+					
+					popword_html2 += "<li><a href=\"javascript:;\"  onclick=\"javascript:$('#headerSearchForm input[name=srhQuery]').val('"+this.content+"'); moreViewSearch('N');\"><strong>"+i+"</strong>"+this.content+"</a></li>";
+					//alert(popword_html);
+					i++;}
+					else{
+						return false;
+					}
+				});
+				
+				popword_lst.html(popword_html);
+				popword_lst2.html(popword_html2);
+			}
+			
+			
+		});	
+		
+		//주민번호로 생년 가져오기
+		function getJuminBirth(ihidnumVal){
+			if(ihidnumVal.length==13){
+				// 1,2,5,6  19
+				if(ihidnumVal[6]==1 || ihidnumVal[6]==2
+					|| ihidnumVal[6]==5 || ihidnumVal[6]==6
+					){
+					return "19"+ihidnumVal.substring(0,6);
+				}else{
+					return "20"+ihidnumVal.substring(0,6);
+				}
+			}
+		}
+		
+		//팝업관리 기능 (팝업 오버레이 표출 여부 체크 메소드)
+		function popupCookieCheck(splitPopupCookieList){
+			//표출: true, 미표출: false
+			var resultPopupYn = false;
+			
+			for(var i=0; i<splitPopupCookieList.length; i++){
+				// 나의생활정보동의 팝업 쿠키 체크
+					// 나의생활정보동의 팝업 쿠키 미존재
+						//오버레이 표출
+					// 나의생활정보동의 팝업 쿠키 존재
+						//오버레이 미표출
+				// 그외 팝업 쿠키 체크
+					// 메인 팝업 쿠키 미존재
+						//메인팝업 표츌
+					// 메인 팝업 쿠키 존재
+						//메인팝업 미표출
+				//생활정보 동의 하지 않은 사용자 로그인 조건
+				if("false" == "true" && lvinfoAgree != 'Y' && userDtlSectCd == '101'){
+					if(splitPopupCookieList[i] == 'checkPopup_oneday_lvInfo'){
+						if(($.cookie(splitPopupCookieList[i])) != "true"){
+							return resultPopupYn = true;
+						}
+					} else {
+						if(($.cookie(splitPopupCookieList[i])) != "true"){
+							return resultPopupYn = true;
+						}
+					}
+				}else if("false" == "true" && "" != '01' && (userDtlSectCd == '101' || userDtlSectCd == '102') && "" !=  ""){ //보조금24 재조회
+					
+					if("" > 364){
+						if(splitPopupCookieList[i] == 'checkPopup_nsReVw1y'){
+							if(($.cookie(splitPopupCookieList[i])) != "true"){
+								return resultPopupYn = true;
+							}
+						} else {
+							if(($.cookie(splitPopupCookieList[i])) != "true"){
+								return resultPopupYn = true;
+							}
+						}														
+						
+					}else if("" > 179){
+						if(splitPopupCookieList[i] == 'checkPopup_nsReVw6m'){
+							if(($.cookie(splitPopupCookieList[i])) != "true"){
+								return resultPopupYn = true;
+							}
+						} else {
+							if(($.cookie(splitPopupCookieList[i])) != "true"){
+								return resultPopupYn = true;
+							}
+						}
+						
+					}else if("" > 89){
+						if(splitPopupCookieList[i] == 'checkPopup_nsReVw3m'){
+							if(($.cookie(splitPopupCookieList[i])) != "true"){
+								return resultPopupYn = true;
+							}
+						} else {
+							if(($.cookie(splitPopupCookieList[i])) != "true"){
+								return resultPopupYn = true;
+							}
+						}
+					}	
+							
+				}else if("false" == "true" && "" == '01' && (userDtlSectCd == '101' || userDtlSectCd == '102')){ // 보조금 24 이용동의 N
+					if(splitPopupCookieList[i] == 'checkPopup_nsAgre'){
+						if(($.cookie(splitPopupCookieList[i])) != "true"){
+							return resultPopupYn = true;
+						}
+					} else {
+						if(($.cookie(splitPopupCookieList[i])) != "true"){
+							return resultPopupYn = true;
+						}
+					}
+				}else if("false" == "true" && "" != '01' && (userDtlSectCd == '101' || userDtlSectCd == '102') && "" == "N"){ // 보조금 24 이용동의 Y && 조회 N
+					if(splitPopupCookieList[i] == 'checkPopup_nsGuideN'){
+						if(($.cookie(splitPopupCookieList[i])) != "true"){
+							return resultPopupYn = true;
+						}
+					} else {
+						if(($.cookie(splitPopupCookieList[i])) != "true"){
+							return resultPopupYn = true;
+						}
+					}
+				}else if("false" == "true"){ // 보조금24 비회원
+					if(splitPopupCookieList[i] == 'checkPopup_nsMemUsr'){
+						if(($.cookie(splitPopupCookieList[i])) != "true"){
+							return resultPopupYn = true;
+						}
+					} else {
+						if(($.cookie(splitPopupCookieList[i])) != "true"){
+							return resultPopupYn = true;
+						}
+					}
+				}else if("true" == "true" && "true" == "true"){ // 보조금24 미로그인
+					if(splitPopupCookieList[i] == 'checkPopup_nsMemLogin'){
+						if(($.cookie(splitPopupCookieList[i])) != "true"){
+							return resultPopupYn = true;
+						}
+					} else {
+						if(($.cookie(splitPopupCookieList[i])) != "true"){
+							return resultPopupYn = true;
+						}
+					}
+				}else {
+					if(($.cookie(splitPopupCookieList[i])) != "true"){
+						return resultPopupYn = true;
+					}
+				}
+			}
+				return resultPopupYn;
+		}
+		
+		var cookieClickYn = "N";
+		var cookieNmGlobal = "";
+		var beforeCockieChk = "N";
+		    
+		//팝업관리기능 (팝업 하루동안 보지 않기 쿠키 저장)
+		function cookieSave(cookieNm){
+			
+			cookieNmGlobal = cookieNm;
+			
+			if(beforeCockieChk == "N"){
+				beforeCockieChk = "Y";
+				cookieClickYn = "Y";
+				$(".btn-alldayclose span").css("color", '#1a6fa6');
+				$(".btn-alldayclose").css("background", 'url(/renewMain/img/popup/pop_system_check01_hover.png) no-repeat center left');
+			} else {
+				beforeCockieChk = "N";
+				cookieClickYn = "N";
+				$(".btn-alldayclose span").css("color", '#666666');
+				$(".btn-alldayclose").css("background", 'url(/renewMain/img/popup/pop_system_check01.png) no-repeat center left');
+			}
+			
+			//$(".popWrap").hide();
+			//$(".overlay").hide();
+			//$('html').attr('style', 'overflow: auto;'); // 팝업 표출시 배경 스크롤 제한
+		}
+		
+		//팝업닫기 (팝업 하루동안 보지 않기 체크박스 형태의 팝업에 대한 설정)
+		function checkBoxCloseBtn(){
+			var checkYn = $('.checkBoxNoShow').is(':checked');
+			var cookieNm =  $('.checkBoxNoShow').attr('id');
+			if(checkYn == true){
+				var expVar = parseInt($("#"+cookieNm).val());
+				if(expVar == '' || isNaN(expVar)){
+					expVar = 1;
+				}
+				$.cookie(cookieNm,"true", {path : "/", expires : expVar});
+			}
+			$(".popWrap").hide();
+			$(".overlay").hide();
+			$('html').attr('style', 'overflow: auto;'); // 팝업 표출시 배경 스크롤 제한
+		}
+		
+		//팝업닫기
+		function mainPopupClose(){
+
+			if(cookieClickYn == "Y"){
+				var expVar = parseInt($("#"+cookieNmGlobal).val());
+				if(expVar == '' || isNaN(expVar)){
+					expVar = 1;
+				}
+				$.cookie(cookieNmGlobal,"true", {path : "/", expires : expVar});
+				
+				if('Y' =='N'){
+					location.reload();
+				}
+			}
+			
+			$(".popWrap").hide();
+			$(".overlay").hide();
+			$('html').attr('style', 'overflow: auto;'); // 팝업 표출시 배경 스크롤 제한
+		}
+		
+		//웹품질진단 결과 개선 202006
+		function setTitle(id){ 
+// 			$('.titlejob').removeAttr('title');
+			var text = id+' 선택됨'; 
+			$('#'+id).attr('title',text);
+		}
+		function setTitle2(id){ 
+			$('.titlejob2').removeAttr('title');
+			var text = id+' 선택됨'; 
+			$('#'+id).attr('title',text);
+		}
+		function setTitle3(id){ 
+			$('.titlejob3').removeAttr('title');
+			var text = id+' 선택됨'; 
+			$('#'+id).attr('title',text);
+		}
+
+		//웹 품질 수준진단 결과 개선 202102
+		function setTitle4(name,id){ 
+			$('.linkAnchor1, .linkAnchor2, .linkAnchor3, .linkAnchor4').removeAttr('title');
+			var text = name+' 선택됨'; 
+			$('#'+id).attr('title',text);
+		}
+		
+		function loginImsi() {
+			if(confirm("비회원으로 로그인 하셨습니다.\n비회원을 종료하시겠습니까?")){
+				location.href = "/nlogin/logout?Mcode=10011";
+		      return;
+		  	} 
+		}
+		
+		//툴팁 박스 표출
+        function toolBoxOpen(toolBox){
+            $('.tooltip-box').css('visibility','hidden');
+            $('#'+toolBox).css('visibility','visible');
+        }
+        
+        //툴팁 박스 미표출
+        function toolBoxClose(toolBox){
+            $('#'+toolBox).css('visibility','hidden');
+        }
+        
+        //주민등록등본 간편인증 팝업 표출 
+        function certPopup(){
+        	var loginType = '';
+        	if(loginType == 'certiLogin' || loginType == 'browserLogin'){
+        		location.href = "/mw/AA020InfoCappView.do?CappBizCD=13100000015&HighCtgCD=A01010001&Mcode=10200";
+        	}else {
+	            $('.pop_main_layer').css('display','block');
+	            $('#simpleCert').focus();
+        	}
+           
+        }
+        
+		// 20210125 팝업 닫기
+    	function closePopup(){
+    		 $('.pop_main_layer').hide();
+    		 $('#juminMain').focus();
+    	}
+		
+     	//웹 접근성 210215 (배너 시작, 정지 버튼 포커스 유지)
+    	function autoplayFocus(){
+   			 $(".visual-group .swiper-button-autoplay > button").click(function(){
+   				$(".visual-group .swiper-button-autoplay > button").focus();
+   			 });
+   		}
+     	
+    	function autoplayFocus2(){
+  			 $(".news-type03 .swiper-button-autoplay > button").click(function(){
+  				$(".news-type03 .swiper-button-autoplay > button").focus();
+  			 });
+  		}
+    	
+    	function openPopup(){
+			var usrSectCd = "";
+    		
+    		if(usrSectCd != "101" && usrSectCd != "102" ){
+    			alert("개인회원만 이용가능한 서비스 입니다.");
+    			return false;
+    		}
+    		
+    		// 14세 미만 로그인시 보조금 24 이용동의 팝업 라디오 버튼 숨기기
+			under14Agree();
+    		
+    		$("#mainPop01").show();
+    		$("#mainPop01").attr("tabindex", "0").focus(),
+    		$("body").append('<div class="dim"></div>'),
+    		$("body").css({
+    			overflow: "hidden",
+    			height: "100%"
+    		});
+    	}
+    	
+    	function closeLoginPop(){
+    		$('.subsidy-layer').removeAttr("tabindex");
+    		$('.subsidy-layer').off("click");
+    		$(".subsidy-layer").hide();
+    	    $("body").removeAttr("style");
+    	    $("body").find(".dim").remove();
+    	}
+    	
+    	// 보조금24 동의
+    	function setFixessvcAgre(){
+    		under14Agree();
+    		if($("#chkFixessvcAgre").is(":checked")){
+    			var agreeSttusCd = "N";
+    			if($("#chkChildrenAgre").is(":checked")){
+    				agreeSttusCd = "Y";
+    			}
+
+    			$.ajax({
+    				  type: "post"
+    				, url: "/portal/rcvfvrSvc/mySvc/setFixessvcAgre.do"
+    				,  data: { agreeSttusCd : agreeSttusCd }
+    				, success:function(result) {
+    					if(result == "SUCCESS"){
+    						alert("국가보조금 맞춤형 서비스(보조금24) 이용 동의에 동의하였습니다.");
+    						location.href= '/portal/rcvfvrSvc/main';
+    					}else if(result == "SESSION"){
+    						alert("로그인이 필요한 서비스 입니다.");
+    						location.href = "/nlogin/?curr_url=/portal/rcvfvrSvc/mySvc/myRcvfvrsvc";
+    					}else{
+    						alert("서비스 오류가 발생하였습니다. 잠시후 이용 부탁드립니다.");
+    					}
+
+    				}
+    			, error:function(e) {
+    				alert("서비스 오류가 발생하였습니다. 잠시후 이용 부탁드립니다.");
+    				}
+    			});
+    		}else{
+    			alert("개인정보 수집·이용 조회에 동의해 주세요.");
+    		}
+    	}
+    	
+    	function getTabView(cls){
+        	wStorage = window.sessionStorage;
+
+        	wStorage.setItem("viewTab", cls);
+        	location.href = '/portal/rcvfvrSvc/mySvc/myRcvfvrsvc';
+        }
+    	
+    	function under14Agree(){
+    		var nowStr = '20220812';
+    		var encRrn = '';
+    		var birthStr = getJuminBirth(encRrn);
+    		var rslt = parseInt(nowStr)-parseInt(birthStr)-140000;
+
+    		if(rslt<0){ //14세 미만
+    			$('#chkChildrenAgre').prop('checked',false);
+    			$('.chkChildren14Agre').hide();
+    			$('.layer-agree-head').hide();
+    		}
+    	}
+    	
+    	/* // 세션확인
+    	function checkSession(){
+    		// 정보업데이트
+    		$.ajax({
+    			  type: "post"
+    			, url: "/portal/rcvfvrSvc/mySvc/checkSession.do"
+    			, success:function(result) {
+    				if(result == "TRUE"){
+    					wStorage = window.sessionStorage;
+			        	wStorage.setItem("myRcvfvrsvc",true);			
+			        	location.href = '/portal/rcvfvrSvc/mySvc/myRcvfvrsvc';
+    				}else if(result == "FALSE"){
+    					alert("로그인이 필요한 서비스 입니다.");
+    					location.href = "/nlogin/?curr_url=/portal/rcvfvrSvc/mySvc/myRcvfvrsvc"
+    				}
+    			}
+    		, error:function(e) {}
+    		});
+    	} */
+    	
+    	// 기업생애주기 로그인 연계. 
+    	function smesLoginPopup(flag) {
+    		if(flag == 'Y'){
+    			$('#smesPopup').css('display','block');
+    		}else{
+    			openSmesPopup('');
+    		}
+    	};
+    	
+    	function smesLoginPopupCallback(flag){
+    		if(flag == 'Y'){
+    			$.ajax({
+	      			  type: "post"
+	      			, url: "/portal/getLoginParameter.do"
+	      			, success:function(result) {
+	      				openSmesPopup(result);
+	      			}
+	      			, error:function(e) {
+	      				openSmesPopup('');
+	      			}
+	      		});
+    		}else{
+    			openSmesPopup('');
+    		}
+    	}
+    	
+    	function openSmesPopup(param){
+    		closeSmesPopup();
+    		window.open('https://www.smes.go.kr/lifeCyclePolicy'+param,'_blank');
+    	}
+    	
+    	function closeSmesPopup(){
+    		$('#smesPopup').css('display','none');
+    	}
+	</script>
+<!-- modify-v2022 must head bottom -->
+<link href="/2022/css/modify-v2022.css" rel="stylesheet"/>
+<script defer="" src="/2022/js/modify-v2022.js"></script>
+<!-- //modify-v2022 -->
+<script async="" src="//rum.beusable.net/script/b201201e110113u450/f41fc5f0a9" type="text/javascript"></script><script async="" src="//ba.beusable.net/script/ba/d49af19d5f" type="text/javascript"></script><script async="" src="//rum.beusable.net/script/checker/b201201e110113u450/f41fc5f0a9?url=https%3A%2F%2Fwww.gov.kr%2Fportal%2Fmain" type="text/javascript"></script></head>
+<body>
+<!-- 음성검색 추가 css -->
+<link href="/2018/lib/css/voice.css" rel="stylesheet" type="text/css"/>
+<!-- 음성검색 추가 css -->
+<div id="skipnavi">
+<a class="skip" href="#container">본문 바로가기</a>
+<a class="skip" href="#gnb">주메뉴 바로가기</a>
+</div>
+<script type="text/javascript">
+			    $(document).ready(function() {
+			        $('.notice-banner-close-btn').click(function() {
+			            var chkd = $("#noticeBanner").is(":checked");
+			            if(chkd){
+			                $.cookie('notice-banner-element', 'hidden', {expires : 1});
+			            }
+			            $('.notice-banner-element').hide();
+			        });
+			        if($.cookie('notice-banner-element') == 'hidden'){
+			            $('.notice-banner-element').hide();
+			        }else{
+			            $('.notice-banner-element').show();
+			        }
+			    });
+			</script>
+<!-- 띠배너 html start -->
+<div class="wrapper-element main">
+<!-- mobile search layer -->
+<!-- 202004 상단메뉴영역변경작업(검색포함) -->
+<div class="header-search-layer search-area">
+<div class="header-search-inner">
+<form action="/portal/main" id="headerSearchForm1" method="get" name="headerSearchForm1">
+<fieldset>
+<legend class="hd-element">검색</legend>
+<div class="input-search-wrap">
+<div class="input-wrap">
+<label class="hd-element" for="srhQueryForHeader1">검색어 입력</label>
+<input autocomplete="off" class="input-search" id="srhQueryForHeader1" maxlength="25" name="srhQuery" onkeypress="if(event.keyCode==13){moreViewSearch1('N'); return false;}" placeholder="검색어를 입력해 주세요." type="search"/>
+<input name="Mcode" type="hidden" value="10020"/>
+</div>
+<div class="btn-area">
+<button class="btn-search" id="search_btn" name="search_btn" onclick="moreViewSearch1('N'); return false;" type="button"><span class="hd-element">문자검색</span></button>
+</div>
+</div>
+<div class="renew-search">
+<div class="keyword-layer">
+<div class="keyword-layer-inner">
+<div class="direct-service">
+<p>서비스 바로가기</p>
+<ul id="ark_apply2"></ul>
+</div>
+<ul class="keyword-auto" id="ark_main2"></ul>
+</div>
+</div>
+</div>
+<button class="btn-close"><span>닫기</span></button>
+</fieldset>
+<div>
+</div></form>
+</div>
+</div>
+<div class="mask-layout"></div>
+<!--// 202004 상단메뉴영역변경작업(검색포함) -->
+<!--// mobile search layer -->
+<!-- header -->
+<div class="header-element main">
+<div class="top-area">
+<div class="inner-area">
+<!-- 202005 외국인서비스 추가 -->
+<div class="renew-lang-select toggle-group">
+<a class="toggle-btn" href="/">For Foreigners</a>
+<ul class="toggle-target">
+<li><a href="/portal/foreigner/ko" target="_blank" title="새창열림">한국어</a></li>
+<li><a href="/portal/foreigner/en" target="_blank" title="새창열림">ENG</a></li>
+<li><a href="/portal/foreigner/zh" lang="ch" target="_blank" title="새창열림">中文</a></li>
+</ul>
+</div>
+<!-- //202005 외국인서비스 추가 -->
+<ul class="left-element">
+<script type="text/javascript">
+function onepassLogin() {
+    window.open("/nlogin/onepassLogin", "", "width=800, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=no");
+}
+</script>
+<li><a href="https://kids.gov.kr/?Mcode=10129" target="_blank" title="새창열림">어린이</a></li>
+<!-- <li><a href="http://life.gov.kr/?Mcode=10128" target="_blank" title="새창열림">생활플러스</a></li> -->
+<!-- <li><a href="http://kids.gov.kr/?Mcode=10129" target="_blank" title="새창열림">어린이</a></li> -->
+<!-- digital onepass login 확인
+		                        
+		                            <li><a href="javascript:onepassLogin();"  title="로그인창연동">DigitalOnePass</a></li>
+		                        
+		                        -->
+<!-- digital onepass login 끝 -->
+</ul>
+<ul class="right-element">
+<!--                        <li><a href="/nlogin/loginOnepassChannel?serviceType=LOGIN">디지털원패스</a></li> -->
+<li><a href="/nlogin?Mcode=10003">로그인</a></li>
+<li><a href="/nlogin/usr?Mcode=10004">회원가입</a></li>
+<li><a href="/portal/govSumry?Mcode=11005">정부24소개</a></li>
+<!-- 			 			<li><a href="/etc/AA090_g4c_admin.jsp?Mcode=12000">e하나로민원</a></li> -->
+<li><a href="/portal/siteMap?Mcode=11274">누리집 안내지도</a></li>
+<!-- 05-16 추가 -->
+<li>
+<span>화면크기</span>
+<span class="zoom-element">
+<span class="zoom-btn out"><a href="#" onclick="javascript:zoomControl.zoomOut()"><span class="hd-element">화면축소</span></a></span><span class="zoom-text"><a href="#" onclick="javascript:zoomControl.zoomReset()" title="화면확대축소 초기화">100%</a></span><span class="zoom-btn in"><a href="#" onclick="javascript:zoomControl.zoomIn()"><span class="hd-element">화면확대</span></a></span><!-- 접근성 -->
+</span>
+</li><!--// 05-16 추가 -->
+</ul>
+</div>
+</div>
+<div class="body-area">
+<div class="gnb-element">
+<div class="btn-menu-all"><a href="#" role="button"><span>전체메뉴</span></a></div><!-- responsive -->
+<h1 class="logo-area"><a href="/portal/main"><img alt="정부24" src="/2019/lib/image/img-gov-logo.png"/></a></h1>
+<!-- mobile search -->
+<div class="mobile-other-element">
+<ul>
+<li class="top-mygov"><a href="javascript:checkUserImsi();" role="button"><span>My Gov</span></a></li>
+</ul>
+</div>
+<!--// -->
+<!-- gnb -->
+<div class="gnb-mobile-element" data-focus="mo_gnb" data-focus-prev="mo_gnb_01" tabindex="0"><!-- responsive -->
+<div class="gnb-header">
+<a class="gnb-btn-login login" href="/nlogin/?Mcode=10003"><span class="login-text">로그인</span></a>
+<a class="gnb-btn-login join" href="/nlogin/usr?Mcode=10004"><span class="login-text">회원가입</span></a>
+<a class="btn-menu-all-close" href="#"><span class="hd-element">메뉴닫기</span></a>
+</div>
+<ul class="gnb-area" id="gnb"><!-- 04-30 -->
+<li>
+<a href="#">
+				 					서비스<span></span>
+</a>
+<div class="depth-2 pos1">
+<div class="gnb-visual gv-1">
+<span class="title">서비스</span>
+</div>
+<div class="gnb-menu">
+<ul class="has-gnb-other">
+<li>
+<a class="gnb-other" href="#">신청/확인/공유<span>하위메뉴열기</span></a>
+<ul class="depth-3">
+<li><a href="/search/applyMw?Mcode=11166">신청·조회·발급</a></li>
+<li><a href="/mw/AA210LifeSvcInfo.do?Mcode=11195">나의 생활정보</a></li>
+<li><a href="/mw/EgovPageLink.do?link=confirm/AA040_confirm_index&amp;Mcode=11167">사실/진위확인</a></li>
+<li><a href="/portal/service/publicResrceOpn?Mcode=11168">공공자원 공유</a></li>
+<li><a href="/etc/AA090_g4c_admin.jsp?Mcode=12000">행정정보공동이용<br/>(e하나로민원)</a></li>
+</ul>
+</li>
+<li>
+<a class="gnb-other" href="#">찾기/안내<span>하위메뉴열기</span></a>
+<ul class="depth-3">
+<!-- 202006 원스톱/생애주기/꾸러미 서비스 메뉴명 링크 변경 --> <li><a href="/portal/fertility.do?Mcode=11169">원스톱/생애주기/꾸러미 서비스</a></li>
+<li><a href="/portal/service/clmser?Mcode=11170">연령/대상별 서비스</a></li>
+<li><a href="/search/svcmidMw?Mcode=11171">분야별 서비스</a></li>
+<li><a href="/search/svcmidCor?Mcode=11173">기업단체 서비스</a></li>
+<!-- 202005 외국인서비스 추가 --> <li><a href="/portal/foreigner" target="_blank" title="새창열림">외국인 서비스</a></li>
+<!-- 202005 위치찾기서비스 명칭 수정 --> <li><a href="/portal/mapGis" target="_blank" title="새창열림">돌봄시설 등 위치 찾기</a></li>
+<!-- 													<li><a href="/portal/coronaPolicy/list?Mcode=11193">코로나19 정부지원</a></li> -->
+</ul>
+</li>
+<!-- 											<li> -->
+<!-- 												<a href="#" class="gnb-other">e하나로민원<span>하위메뉴닫기</span></a> -->
+<!-- 												<ul class="depth-3"> -->
+<!-- 													<li><a href="/etc/AA090_pkg_srch_refund.jsp?Mcode=12001">미환급금 찾기</a></li> -->
+<!-- 													<li><a href="/main?a=AA240ServiceInfoListApp&mode=Y&Mcode=12002">사전동의 공동이용 업무</a></li> -->
+<!-- 													<li><a href="/etc/AA240_insert_resultInfo.jsp?Mcode=12003">공동이용사전동의 신청</a></li> -->
+<!-- 													<li><a href="/etc/AA240_readingCharge.jsp?Mcode=12004">열람청구신청</a></li> -->
+<!-- 													<li><a href="/mypage/AA040_address_chargeInfo.jsp?Mcode=12005">주소변경알리미</a></li> -->
+<!-- 													<li><a href="/mypage/AA050_rrn_chargeInfo.jsp?Mcode=12006">주민번호/성명변경알리미</a></li> -->
+<!-- 												</ul> -->
+<!-- 											</li>											 -->
+</ul>
+</div>
+</div>
+</li>
+<li>
+<a href="/portal/rcvfvrSvc/main">보조금24<span></span></a>
+<div class="depth-2 pos1">
+<!-- 211101 클래스 gv-5로 변경 -->
+<div class="gnb-visual gv-5">
+<span class="title">보조금24</span>
+</div>
+<div class="gnb-menu">
+<ul class="has-gnb-other">
+<li>
+<ul>
+<li class="mo-state"><a href="/portal/rcvfvrSvc/main">홈</a></li>
+<li><a href="/portal/rcvfvrSvc/mySvc/myRcvfvrsvc/sumry">나의 혜택</a></li>
+<li><a href="/portal/rcvfvrSvc/infoUseAgreSttus">가족 구성</a></li>
+<li><a href="/portal/rcvfvrSvc/svcFind/simpleFindStepOne">간편 찾기</a></li>
+<li><a href="/portal/rcvfvrSvc/svcFind/svcSearchAll">전체 혜택</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<a href="#">
+				 					정책정보<span></span>
+</a>
+<div class="depth-2 pos2">
+<div class="gnb-visual gv-2">
+<span class="title">정책정보</span>
+</div>
+<div class="gnb-menu">
+<ul>
+<li><a href="/portal/gvrnPolicy/listAll?Mcode=11175">분야별 정책정보</a></li>
+<li><a href="/portal/gvrnPolicy?policyType=G00301&amp;Mcode=11143">정책뉴스</a></li>
+<li><a href="/portal/gvrnPolicy?policyType=G00302&amp;Mcode=11147">연구보고서</a></li>
+<li><a href="/portal/gvrnPolicy?policyType=G00303&amp;Mcode=11145">간행물</a></li>
+<li><a href="/portal/gvrnPolicy?policyType=G00304&amp;Mcode=11159">정책자료</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<a href="#">
+				 					기관정보<span></span>
+</a>
+<div class="depth-2 pos3">
+<div class="gnb-visual gv-3">
+<span class="title">기관정보</span>
+</div>
+<div class="gnb-menu">
+<ul>
+<li><a href="/portal/orgInfo?Mcode=11180">정부/지자체 조직도</a></li>
+<li><a href="/portal/orgSite?Mcode=11181">정부/지자체 운영누리집</a></li>
+<li><a href="/portal/admstinstCmt?Mcode=11191">행정기관위원회</a></li>
+<li><a href="/portal/locgovNews?Mcode=11182">지자체소식</a></li>
+<!-- 코로나19 -->
+<!-- <li><a href="/portal/vfnews?Mcode=11183">지자체 축제/행사</a></li> -->
+<li><a href="/portal/cnstexhb?Mcode=11184">공모전</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<a href="#">
+				 					고객센터<span></span>
+</a>
+<div class="depth-2 pos4">
+<div class="gnb-visual gv-4">
+<span class="title">고객센터</span>
+</div>
+<div class="gnb-menu">
+<ul>
+<li class="pc-menu-block"><a href="/new_info/customer/AA090_info_customer_govGuide_1.jsp?Mcode=11185">정부24 이용방법</a></li>
+<li><a href="/portal/ntcItm?Mcode=11186">공지사항</a></li>
+<li><a href="/main?a=AA100DataDownListAppNew&amp;Mcode=11187">자료실</a></li>
+<li>
+<a href="/mw/new_info/customer/AA090_info_customer_printer_list.jsp?Mcode=11188">서비스지원<span>하위메뉴열기</span></a>
+<ul class="depth-3 mobile-only">
+<li><a href="/mw/new_info/customer/AA090_info_customer_printer_list.jsp?Mcode=11006">프린터 이용 안내</a></li>
+<li><a href="/mw/new_info/customer/AA090_info_customer_elect.jsp?Mcode=11006">전자결제 안내</a></li>
+<li><a href="/mw/AA090NoManMinwonView.do?Mcode=11006">무인민원 발급 안내</a></li>
+<li><a href="/mw/AA020AnyInfoCappView.do">어디서나 민원</a></li>
+</ul>
+</li>
+<li><a href="/portal/faq?Mcode=11189">자주묻는질문(FAQ)</a></li>
+<li><a href="#" onclick="checkUserImp(); return false;">개선의견수렴</a></li>
+<li><a href="#" onclick="checkUserOnln(); return false;">온라인 상담예약</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li class="mobile-menu">
+<a href="#">정부24 소개</a>
+<div class="depth-2 pos5">
+<div class="gnb-menu">
+<ul>
+<li>
+<a href="">정부24 개요<span>하위메뉴열기</span></a>
+<ul class="depth-3">
+<li><a href="/portal/govSumry">정부24 개요</a></li>
+</ul>
+</li>
+<li>
+<a href="">누리집 이용안내<span>하위메뉴열기</span></a>
+<ul class="depth-3">
+<li><a href="/portal/disable">장애인 이용 안내</a></li>
+<li><a href="/portal/privacy">개인정보 처리방침</a></li>
+<li><a href="/portal/cpyrhtPrtc">저작권 보호정책</a></li>
+</ul>
+</li>
+<li><a href="/portal/siteMap?Mcode=11274">누리집 안내지도</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li class="mobile-menu">
+<a href="#">My Gov</a>
+<div class="depth-2 pos6">
+<div class="gnb-menu">
+<ul>
+<li>
+<a href="#">나의 서비스<span>하위메뉴열기</span></a>
+<ul class="depth-3">
+<li><a href="/mw/AA040MyResultsList.do">서비스 신청내역</a></li>
+<li><a href="/portal/onlnResveList">온라인 상담예약 내역</a></li>
+<li><a href="/portal/evntPartcptn">이벤트 참여</a></li>
+<li><a href="#" onclick="checkLvinfoAgree(); return flase;">나의 생활정보</a></li> <!-- 2020.02.10 염희봉 2-3차 프레임워크 전환, 링크 수정 -->
+<li><a href="/mw/allDayCareApplyList.do">온종일 돌봄 신청내역</a></li>
+</ul>
+</li>
+<li>
+<a href="#">회원정보<span>하위메뉴열기</span></a>
+<ul class="depth-3">
+<li><a href="/nlogin/usr/mgrView">회원정보 관리</a></li>
+<li><a href="/nlogin/usr/leaveUsr">회원탈퇴</a></li>
+<li><a href="/nlogin/bioAuthMng">지문 및 간편비밀번호 등록/해지</a></li>
+<li><a href="/nlogin/certRegForm" onclick="javascript:alert('간편인증 또는 인증서(공동, 금융) 등록은 로그인 상태에서만 가능합니다.')">인증등록/관리</a></li>
+<li><a href="/nlogin/authIntro">복합인증 관리</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li class="mobile-menu">
+<a href="#none" style="font-size : 16px;">전자문서지갑</a>
+<div class="depth-2 pos7">
+<div class="gnb-menu">
+<ul class="depth-3">
+<li><a href="#none" onclick="javascript:fnHdElecAgreeAjax('main')">전자문서지갑</a></li>
+<li><a href="#none" onclick="setTimeout(location.href='https://www.dpaper.kr/bbs/notice/BbsNoticeList.do', 500)">공지사항</a></li>
+<li><a href="#none" onclick="setTimeout(location.href='https://www.dpaper.kr/bbs/faq/BbsFaqList.do', 500)">자주 묻는 질문</a></li>
+</ul>
+<div class="gnb_inner_info">
+<span class="gnb_inner_info_tit">전자문서지갑 이용 안내</span>
+<div class="gnb_inner_info_txt">
+<span>고객센터 Tel. 1600-8613</span>
+<span>토, 공휴일 제외</span>
+<span>(점심시간 : 12:00~13:00)</span>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li class="mobile-menu">
+<a href="#noaction" onclick="fnHdMyDataLnk(); return false;" style="font-size : 16px;">공공마이데이터</a>
+<!--//<a href="/portal/mydata/myDataIntroduction?Mcode=11258" class="img_box"><img src="/2019/lib/image/main-mobile/mo_mydata.png" alt="마이데이터"></a>-->
+<!-- <a href="#noaction" onclick="fnHdMyDataLnk(); return false;" class="img_box"><img src="/2019/lib/image/main-mobile/mo_mydata.png" alt="마이데이터"></a> -->
+</li>
+</ul><!--// gnb -->
+</div>
+<!--// gnb -->
+<!-- search -->
+<!-- 202004 상단메뉴영역변경작업(검색포함) -->
+<div class="guide-element">
+<a href="/new_info/customer/AA090_info_customer_govGuide_1.jsp?MCode=11185"><span class="guide-bul"></span>처음오셨나요? <span class="guide-arrow"></span></a>
+</div>
+<!--// 202004 상단메뉴영역변경작업(검색포함) -->
+<!--// search -->
+</div>
+</div>
+</div><!--// header -->
+</div>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+    var str = $.cookie("initMainCookie");
+    if(!str == "") {
+        $("input[value='" + str + "']").click();
+    } else {
+        $("#set-basic").click();
+    }
+
+    $(".keyword-list-area .keyword-item").on('click',function(){
+
+    	var index = $("a").index(this);
+    	var strWord = $("a:eq(" + index + ")").text();
+
+
+    	strWord = strWord.replace("#","");
+    	$("#headerSearchForm1 [id='srhQueryForHeader1']").val(strWord);
+    	//favSearchWordHeader('N',strWord);
+    	moreViewSearch1('N');
+
+    });
+
+
+
+	<!-- 202004 자동완성 호출(와이즈넛) -->
+		callArk("main");   //헤더 자동완성 호출
+	<!--// 202004 자동완성 호출(와이즈넛) -->
+});
+
+//초기 메인 화면 설정
+function setInitMainCookie() {
+    $.cookie("initMainCookie", $("input[name=initsetting]:radio:checked").val(), { path: '/', expires: 365 });
+    alert("시스템 초기화면 설정이 완료되었습니다.");
+}
+
+var isMobile = "N";
+var isApp = "N";
+
+// 사용자 생활정보 동의 여부 체크
+function checkLvinfoAgree() {
+    var loginType = '';
+    var lvinfoAgree = '';
+
+    if(loginType == "multipleAuthLogin" || loginType == "certiLogin") {
+        if(lvinfoAgree == "Y") {
+            location.href = "/mw/AA210LifeMySvcMy.do"; //나의 생활정보 목록  2020.02.10 염희봉 2-3차 프레임워크 전환, 링크 수정
+        } else {
+            if(confirm("생활정보서비스 대상자가 아닙니다.\n생활정보 서비스를 이용하시겠습니까?")) {
+                var returnUrl = encodeURI("/nlogin/usr/addInfo");
+                location.href = "/mw/AA210LifeSvcAddInfo.do?returnUrl=" + returnUrl;  //추가정보 수정 페이지  2020.02.10 염희봉 2-3차 프레임워크 전환, 링크 수정
+            }
+        }
+    } else if(loginType == "generalLogin") {
+        if(lvinfoAgree == "Y") {
+            if(confirm("간편인증 또는 인증서(공동, 금융) 로그인을 해야 이용할 수 있는 기능입니다.\n로그인페이지로 이동하시겠습니까?")) {
+                //location.href = "/nlogin?curr_url=/mw/AA210LifeMySvcMy.do";  //로그인 페이지
+                location.href = "/nlogin";  //로그인 페이지
+            }
+        } else {
+            if(confirm("생활정보서비스 대상자가 아닙니다.\n생활정보 서비스를 이용하시겠습니까?")) {
+                var returnUrl = encodeURI("/nlogin/usr/addInfo");
+                location.href = "/mw/AA210LifeSvcAddInfo.do?returnUrl=" + returnUrl;  //추가정보 수정 페이지  2020.02.10 염희봉 2-3차 프레임워크 전환, 링크 수정
+            }
+        }
+    }
+    	else{
+    		if(confirm("간편인증 또는 인증서(공동, 금융) 로그인을 해야 이용할 수 있는 기능입니다.\n로그인페이지로 이동하시겠습니까?")) {
+	    		//location.href = "/nlogin?curr_url=/mw/AA210LifeMySvcMy.do";
+	    		location.href = "/nlogin";
+    		}
+    }
+}
+  
+//사용자 생활정보 동의 여부 체크, 로그인하지 않았을때 로그인 페이지로 바로 이동
+function checkLvinfoAgree2() {
+    var loginType = '';
+    var lvinfoAgree = '';
+
+    if(loginType == "multipleAuthLogin" || loginType == "certiLogin") {
+        if(lvinfoAgree == "Y") {
+            location.href = "/mw/AA210LifeMySvcMy.do"; //나의 생활정보 목록   2020.02.10 염희봉 2-3차 프레임워크 전환, 링크 수정
+        } else {
+            if(confirm("생활정보서비스 대상자가 아닙니다.\n생활정보 서비스를 이용하시겠습니까?")) {
+                var returnUrl = encodeURI("/nlogin/usr/addInfo");
+                location.href = "/mw/AA210LifeSvcAddInfo.do?returnUrl=" + returnUrl;  //추가정보 수정 페이지  2020.02.10 염희봉 2-3차 프레임워크 전환, 링크 수정
+            }
+        }
+    } else if(loginType == "generalLogin") {
+        if(lvinfoAgree == "Y") {
+            if(confirm("간편인증 또는 인증서(공동, 금융) 로그인을 해야 이용할 수 있는 기능입니다.\n로그인페이지로 이동하시겠습니까?")) {
+                location.href = "/nlogin";  //로그인 페이지
+            }
+        } else {
+            if(confirm("생활정보서비스 대상자가 아닙니다.\n생활정보 서비스를 이용하시겠습니까?")) {
+                var returnUrl = encodeURI("/nlogin/usr/addInfo");
+                location.href = "/mw/AA210LifeSvcAddInfo.do?returnUrl=" + returnUrl;  //추가정보 수정 페이지  2020.02.10 염희봉 2-3차 프레임워크 전환, 링크 수정
+            }
+        }
+    }
+    	else{
+        location.href = "/nlogin";  //로그인 페이지
+    }
+}
+
+
+
+//비회원 로그인 사용자 MyGov 접근 시, 민원신청내역으로 이동
+function checkUserImsi() {
+    var userImsi = "false";
+    var	gnb = "newMain";
+
+    if(userImsi != "true") {
+    	if(gnb == "newMain"){			//202004 상단메뉴영역변경작업(검색포함) main->newMain
+        	location.href = "/portal/myPublicPlner?Mcode=11009";
+    	} else{
+        	location.href = "/portal/myPublicPlner";
+    	}
+    } else {
+        if(confirm("비회원로그인 사용자는 이용할 수 없습니다. 민원신청내역을 이용하시겠습니까?")) {
+        	if(gnb == "newMain"){   	//202004 상단메뉴영역변경작업(검색포함) main->newMain
+        		var searchForQmark = '/mw/AA040MyResultsList.do';
+        		if(searchForQmark.indexOf('?') > -1){
+        			location.href = "/mw/AA040MyResultsList.do&Mcode=11009";
+        		} else {
+        			location.href = "/mw/AA040MyResultsList.do?Mcode=11009";
+        		}
+        	} else{
+            	location.href = "/mw/AA040MyResultsList.do";
+        	}
+    	}
+	}
+}
+
+
+//음성검색 실행
+var setSttVal = "";
+function callNativeStt(inputId, val) {      // inputId: 음성인식 버튼이 눌린 input의 고유값
+	setSttVal = val;
+	//console.log("setSttVal : " + setSttVal);
+
+	if (typeof(window.NativeBridge) === 'undefined') {
+	  location.href = 'ios://callNativeStt?inputId='+inputId;    // call iOS
+	} else {
+	  window.NativeBridge.callNativeStt(inputId);    // call Android
+	}
+}
+
+//음성검색 리턴
+function setInputText(inputId, value) {         // inputId: 음성인식 버튼이 눌린 input의 고유값
+	if (setSttVal == "1") {
+		$("#headerSearchForm1 input[name=srhQuery]").val(value);
+		moreViewSearch1('N');
+	} else {
+		$("#headerSearchForm input[name=srhQuery]").val(value);
+		moreViewSearch('N');
+	}
+}
+
+//앱함수  call - 알람종 푸쉬관련
+function setFcmToken(userId) {
+	if (typeof(window.NativeBridge) === 'undefined') {
+		//푸시장애 확인을 위한 딜레이
+		setTimeout(function () {
+	  		location.href = 'ios://setFcmToken?userId='+userId;   // call iOS
+		}, 500);
+	} else {
+	//alert(userId);
+		setTimeout(function () {
+	  		window.NativeBridge.setFcmToken(userId);    			// call Android
+		}, 500);
+	}
+}
+//앱에서 처리결과를 받기 위한 함수
+function setFcmTokenResult(retCd) {  //retCd : boolean
+//alert(retCd);
+	if( retCd ) {
+		//$.cookie("saveFcmTokenYn", "true", { path: "/", expires: 1 });  1일후에 삭제
+		$.cookie("saveFcmTokenYn", "true", { path: "/"});  //웹브라우저 닫으면 삭제
+	}
+}
+
+
+function fpConfPwdPopForQr(procType, userId, loginGb, keyStr) {
+	if(userId == null || userId =="") {
+		alert("사용자 정보가 없습니다.");
+		return;
+	}
+	var url = "/nlogin/fpConfPwdPop?procType="+ procType + "&userId=" + userId + "&loginGb=" + loginGb + "&keyStr=" + keyStr;
+	location.href = url;
+}
+//QR코드 cleck 시 아래 함수 호출
+function callNativeQr(){
+    if (typeof(window.NativeBridge) === 'undefined') {
+      location.href = 'ios://callNativeQr';    // call iOS
+    } else {
+      window.NativeBridge.callNativeQr();    // call Android
+    }
+}
+
+
+
+//개선의견수렴 메뉴 클릭 시, 로그인하지 않았거나 비회원일 경우 로그인 페이지로 이동
+function checkUserImp() {
+    var loginType = '';
+    var userImsi = "false";
+    
+    if(loginType == "generalLogin" || loginType == "multipleAuthLogin" || loginType == "certiLogin") {
+    	location.href ="/portal/mrfnOpinionClct/imprvm?Mcode=11190";
+    } else if(userImsi == "true"){
+    	if(confirm("개선의견수렴은 회원로그인을 해야 이용하실 수 있습니다.\n로그인 페이지로 이동하시겠습니까?")){
+           	location.href = "/nlogin?curr_url=/portal/mrfnOpinionClct/imprvm";
+    	}
+	} else{
+		if(confirm("개선의견수렴은 회원로그인을 해야 이용하실 수 있습니다.\n로그인 페이지로 이동하시겠습니까?")){
+			location.href = "/nlogin?curr_url=/portal/mrfnOpinionClct/imprvm";
+		}
+	}
+}
+
+//온라인 상담예약 메뉴 클릭 시, 로그인하지 않았거나 비회원일 경우 로그인 페이지로 이동
+function checkUserOnln() {
+    var loginType = '';
+    var userImsi = "false";
+    
+    if(loginType == "generalLogin" || loginType == "multipleAuthLogin" || loginType == "certiLogin") {
+    	location.href ="/portal/onlnResve?Mcode=11192";
+    } else if(userImsi == "true"){
+    	if(confirm("온라인 상담예약은 회원로그인을 해야 이용하실 수 있습니다.\n로그인 페이지로 이동하시겠습니까?")){
+           	location.href = "/nlogin?curr_url=/portal/onlnResve";
+    	}
+	} else{
+		if(confirm("온라인 상담예약은 회원로그인을 해야 이용하실 수 있습니다.\n로그인 페이지로 이동하시겠습니까?")){
+			location.href = "/nlogin?curr_url=/portal/onlnResve";
+		}
+	}
+}
+//]]>
+</script>
+<!-- QR인증 인증서 검증 폼 2018-04-20 -->
+<form action="/nlogin/qrByIdPwd" id="frm_qrcert" method="POST" name="frm_qrcert">
+<input name="a" type="hidden" value="/nlogin/qrByIdPwd"/>
+<input name="currUrl" type="hidden" value="/"/>
+<input id="vidMsg" name="vidMsg" type="hidden" value=""/>
+<input id="xml" name="xml" type="hidden" value=""/>
+<input id="pkcs1Msg" name="pkcs1Msg" type="hidden" value=""/>
+<input name="randomnum" type="hidden" value=""/>
+<input name="loginType" type="hidden" value="certiLogin"/>
+<input id="certiType" name="certiType" type="hidden"/>
+<input id="certiType2" name="certiType2" type="hidden"/>
+<input name="sessionId" type="hidden" value=""/>
+<input name="userId" type="hidden" value=""/>
+<input id="isTouchYn" name="isTouchYn" type="hidden"/>
+</form>
+<!-- 전자지갑 추가 -->
+<script type="text/javascript">
+//<![CDATA[
+	var appYn = "N";
+	var mobileYn = "N";
+	var androidYn = "N";
+	var iosYn = "N";
+	var walletHdUsrDtlSectCd = "";
+	// 전자지갑 동의 여부
+	function fnHdElecAgreeAjax(gubun) {
+		var user = "false"
+		if(user == "true") {
+			// 회원 로그인
+			if(gubun == "dpaper") {
+				if((walletHdUsrDtlSectCd == "101" || walletHdUsrDtlSectCd == "102")) {
+					setTimeout('window.open("https://www.dpaper.kr")', 500);
+					return false;
+				}
+				if((walletHdUsrDtlSectCd == "301" || walletHdUsrDtlSectCd == "302")) {
+					gubun = "main";
+				}
+			}
+			
+			$.ajax({
+				type : 'post',
+		        url : '/main?a=AA040ElecWalletAjaxApp',
+		        cache : false,
+		        data : "type_code=Lnk&user_id=" + "" + "&gubun=" + gubun,
+		        async : false,
+		        dataType : 'json',
+		        success : function(result) {
+		        	var elecWalletCd = result.elecWalletCd;
+		        	var userId = result.userId;
+		        	var msgCont = result.msgCont;
+					if(!fnHdElecWalletCheck(elecWalletCd, userId, msgCont)) {
+						return false;
+					};
+					eWalletLnk(gubun)
+		        },
+				complete: function() {
+				},
+		        error: function(request,status,error) {
+		            // 에러코드
+					alert("전자지갑 동의 여부 조회 중 에러가 발생하였습니다.");
+					// input name, code 초기화
+		            return false;
+		        }
+		    });
+		} else {
+			if(gubun == "dpaper") {
+// 				eWalletLnk(gubun)
+				setTimeout('window.open("https://www.dpaper.kr")', 500);
+			} else {
+				alert("전자문서지갑 서비스는 정부24 로그인 후에 사용할 수 있습니다.");
+
+				// 202004 상단메뉴영역변경작업(검색포함) : 모바일과 다른 부분 병합함.
+				location.href = '/nlogin/?Mcode=10003';
+
+			}
+		}
+	}
+
+	var tmpUserId = "";
+	var iOsConfirmGbn = "";
+	var iOsConfirmLnkGbn = "";
+	// 행공 전자지갑 이동
+	function eWalletLnk(gubun) {
+		var deviceID;
+
+		if(appYn == 'Y') {
+			if (typeof(window.NativeBridge) === 'undefined') {
+				iOsConfirmGbn = "D1";
+				iOsConfirmLnkGbn = gubun;
+				location.href = 'ios://getADID';	// call iOS
+				return false;
+			} else {
+				deviceID = window.BrowserActivity.getADID();	// call Android
+			}
+		}
+		eWalletLnkExec(gubun, deviceID);
+	}
+
+	// 행공 전자문서지갑 이동 실행
+	function eWalletLnkExec(gubun, deviceId) {
+		$.ajax({
+	        url : '/main?a=AA040ElecWalletGetLnkAjaxApp',
+	        type : 'POST',
+	        data : 'type_code=Lnk&gubun=' + gubun + '&device_id=' + deviceId,
+	        dataType : 'json',
+	        async : false,
+	        success : function(result) {
+	            var returnUrl = result.returnUrl;
+	            if((walletHdUsrDtlSectCd == "101" || walletHdUsrDtlSectCd == "102")) {
+	            	if(appYn == 'Y') {
+	            		setTimeout('location.href="' + returnUrl + '"', 500);
+	            	} else {
+	            		setTimeout('window.open("' + returnUrl + '")', 500);
+	            	}
+	            }
+				if((walletHdUsrDtlSectCd == "301" || walletHdUsrDtlSectCd == "302")) {
+					if(appYn == 'Y') {
+						alert("법인회원은 PC에서만 전자문서지갑 사용이 가능합니다.");
+						return false;
+					} else {
+		            	setTimeout('window.open("' + returnUrl + '")', 500);
+					}
+	            }	            
+	        },
+	        error : function(request, status, error) {
+	        }
+		});
+	}
+
+	// 행공 전자지갑 체크
+	//elecWalletCd - 00:신청가능, 01:동의안함, 02:CI 없음, 03:법인번호 없음, 04:지갑없음, 99:정부24 동의 실패
+	function fnHdElecWalletCheck(elecWalletCd, userId, msgCont) {
+		if("00" == elecWalletCd){
+			//다음으로
+			return true;
+		}
+
+		if("01" == elecWalletCd) {
+			var eWltAgrNoti = "전자문서지갑 정보 제공에 동의 하시겠습니까? \n";
+			eWltAgrNoti += " 1. 개인정보를 제공 받는 자 : 전자증명서 발급·유통 센터 \n";
+			eWltAgrNoti += " 2. 제공하는 개인정보의 항목  \n";
+			eWltAgrNoti += "  - 개인회원 : 성명, 성별, 휴대전화번호, 광고식별자 \n";
+			eWltAgrNoti += "  - 법인회원 : 법인명, 법인등록번호, 사업자등록번호";
+
+			// iOS confirm 버그로 인한 분기 추가
+			if(iosYn == "Y"){
+				// confirmIOS 호출
+				iOsConfirmGbn = "M1";
+				tmpUserId = userId;
+				confirm(eWltAgrNoti+"native2");
+			} else {
+				if(confirm(eWltAgrNoti)) {
+					// 동의 테이블 저장 후 다음으로
+					fnHdElecTransAgreeAjax(userId);
+				} else {
+					// input name, code 초기화
+					return false;
+				}
+			}
+		}
+
+		if("02" == elecWalletCd) {
+			//CI 없음
+			alert("휴대폰 본인확인이 되지 않은 (개인)회원은 전자문서지갑이 발급되지 않습니다.\n\n본인확인 경로\n정부24 > My GOV > 회원정보 > 회원정보 관리 > 휴대폰 본인확인\n※ 본인확인 후 [수정] 버튼을 꼭 눌러주세요");
+			// input name, code 초기화
+			return false;
+		}
+
+		if("03" == elecWalletCd) {
+			//법인번호 없음
+			alert("법인번호가 없습니다.");
+			// input name, code 초기화
+			return false;
+		}
+
+		if(elecWalletCd.search("04") > -1) {
+			//지갑없음
+			//법인
+			if((walletHdUsrDtlSectCd == "301" || walletHdUsrDtlSectCd == "302")) {
+				if(appYn == "Y") {
+					alert("전자문서지갑을 이용하지 않는 사용자입니다. 전자문서지갑을 먼저 발급 받으신 후 증명서를 신청 바랍니다.\n ※ 법인회원의 경우 전자문서지갑은 PC에서만 발급 가능합니다.");
+					return false;
+				}
+				if(appYn == "N") {
+					fnHdElecWalletCreateCorpAjax(userId);
+				}				
+			}
+			//개인
+			if((walletHdUsrDtlSectCd == "101" || walletHdUsrDtlSectCd == "102")) {
+				// iOS confirm 버그로 인한 분기 추가
+				if(iosYn == "Y"){
+					// confirmIOS 호출
+					iOsConfirmGbn = "M4";
+					tmpUserId = userId;
+					confirm(msgCont+"native2");
+				} else {
+					if(mobileYn == "Y" && appYn == "Y") {
+						if(confirm(msgCont)) {
+							// PC/모바일 분기해서 모바일일때 링크 PC면 alert
+							var deviceID;
+							if(androidYn == "Y") {
+						    	deviceID = window.BrowserActivity.getADID();
+						    }
+							fnHdElecWalletCreateAjax(deviceID, userId);
+						} else {
+							// input name, code 초기화
+							return false;
+						}
+					} else {
+						alert("전자문서지갑을 이용하지 않는 사용자입니다. 전자문서지갑을 먼저 발급 받으신 후 증명서를 신청 바랍니다.\n ※ 전자문서지갑은 PC가 아닌 모바일(정부24앱)에서만 발급 가능합니다.");
+						// input name, code 초기화
+						return false;
+					}
+				}
+			}
+		}
+
+		if("91" == elecWalletCd){
+			//전자지갑 점검 실패
+			alert("전자문서지갑 점검 중 입니다. 사용에 불편을 드려 죄송합니다.");
+			return false;
+		}
+		
+		if("99" == elecWalletCd) {
+			//정부24 동의 실패
+			alert("휴대폰 본인확인이 되지 않은 (개인)회원은 전자문서지갑이 발급되지 않습니다.\n\n본인확인 경로\n정부24 > My GOV > 회원정보 > 회원정보 관리 > 휴대폰 본인확인\n※ 본인확인 후 [수정] 버튼을 꼭 눌러주세요");
+			// input name, code 초기화
+			return false;
+		}
+	}
+
+	// 아이폰 confirm 버그로 인한 function 추가2
+	function confirmIOS2(result){
+	    if(result){
+	    	
+	    	if(iOsConfirmGbn == "M1") {
+		    	// 동의 테이블 저장 후 다음으로
+		    	fnHdElecTransAgreeAjax(tmpUserId);
+	    	} else if(iOsConfirmGbn == "M4") {
+	    		location.href = 'ios://getADID';
+	    	}
+		} else {
+			return false;
+		}
+	}
+
+	// 행공 전자지갑 동의확인하기
+	function fnHdElecTransAgreeAjax(user_id) {
+		$.ajax({
+			type : 'post',
+			url : '/main?a=AA040ElecWalletAjaxApp',
+			data : "type_code=Ist&user_id=" + user_id,
+			cache : false,
+			async : false,
+			dataType : 'json',
+			success : function(result) {
+				var elecWalletCd = result.elecWalletCd;
+				var userId = result.userId;
+				var msgCont = result.msgCont;
+				if(!fnHdElecWalletCheck(elecWalletCd, userId, msgCont)) {
+					return false;
+				};
+			},
+			complete: function() {
+			},
+			error: function(request,status,error) {
+				// 에러코드
+				alert("전자문서지갑 동의 여부 확인 중 에러가 발생하였습니다.");
+				// input name, code 초기화
+				return false;
+			}
+		});
+	}
+
+	// 행공 전자지갑 생성
+	function fnHdElecWalletCreateAjax(deviceID, user_id) {
+		$.ajax({
+			type : 'post',
+			url : '/main?a=AA040ElecWalletGetLnkAjaxApp',
+			data : 'type_code=Lnk&gubun=Agre&user_id=' + user_id + '&device_id=' + deviceID,
+			cache : false,
+			async : false,
+			dataType : 'json',
+			success : function(result) {
+				var returnUrl = result.returnUrl;
+	            setTimeout('location.href="' + returnUrl + '"', 500);
+// 				window.open(returnUrl);
+			},
+			complete: function() {
+			},
+			error: function(request,status,error) {
+				// 에러코드
+				alert("전자문서지갑 생성 중 에러가 발생하였습니다.");
+				// input name, code 초기화
+				return false;
+			}
+		});
+	}
+
+	// 행공 전자지갑 생성(법인)
+	function fnHdElecWalletCreateCorpAjax(user_id) {
+		$.ajax({
+			type : 'post',
+			url : '/main?a=AA040ElecWalletGetLnkAjaxApp',
+			data : 'type_code=Lnk&gubun=Agre&user_id=' + user_id + '&device_id=',
+			cache : false,
+			async : false,
+			dataType : 'json',
+			success : function(result) {
+				var returnUrl = result.returnUrl;
+				setTimeout('window.open("' + returnUrl + '")', 500);
+			},
+			complete: function() {
+			},
+			error: function(request,status,error) {
+				// 에러코드
+				alert("전자문서지갑 생성 중 에러가 발생하였습니다.");
+				// input name, code 초기화
+				return false;
+			}
+		});
+	}
+
+	var tmpDeviceID;
+	// iOS 모바일식별자 얻기
+	function idfaInfo(param) {
+		tmpDeviceID = param;
+		if(iOsConfirmGbn == "D1") {
+			eWalletLnkExec(iOsConfirmLnkGbn, tmpDeviceID);
+		}
+		if(iOsConfirmGbn == "M4") {
+			fnHdElecWalletCreateAjax(tmpDeviceID, tmpUserId);
+		}
+		if(iOsConfirmGbn == "My") {
+			getADIDMydataIOS(tmpDeviceID);
+		}
+		if(iOsConfirmGbn == "Idmcs") {
+			getADIDIdmcsIOS(tmpDeviceID);
+		}
+	}
+
+    //xss 관련 문자 치환 검색엔진 등 페이지에서 사용중 제거시 영향도 파악 필요
+    function specCharChk(strVal){
+    	strVal = strVal.replace(/[\<\>\'\\\"\/%\(\)\{\}\;\=]/g,"");
+    	return strVal;
+    }
+
+    //ㅡmydata 관련 추가
+	// 2021.12.09.
+	function fnHdMyDataLnk() {
+		var notSession = 'true';
+		if (notSession == 'true') {
+			alert("공공마이데이터 서비스는 정부24 로그인 후에 사용할 수 있습니다.");
+
+			return false;
+		}
+	
+		var param = {
+			userId: ""
+		};
+
+		$.ajax({
+			url : '/nlogin/usr/getUserCi.json',
+			type : 'post',
+			dataType : 'json',
+			data : param,
+			cache : false,
+			async:false,
+			success : function(result) {
+			    if(result.USER_CI == ""){
+				    alert("공공마이데이터 서비스를 사용하기 위해서는 본인인증이 필요합니다.\n정부24메뉴 > MyGov > 회원정보 > 회원정보관리 > 수정 > 휴대폰본인확인을 실행하여 본인인증을 받으시기 바랍니다.");
+			    } else if (result.USER_CI != "") {
+					//mydataMove();
+				    getADIDMydata();
+			    }
+			},
+			error : function(req,ststus,err) {
+				alert("정부24 사용자 정보 조회에 실패하였습니다.다시 시도해 주세요.");
+			}
+		}); 
+	}
+
+	function getADIDMydata() {
+		var myDataDeviceId = "";
+		if(androidYn == "Y") {
+			myDataDeviceId = window.BrowserActivity.getADID();
+			//console.log("getADIDMydata : " + myDataDeviceId);
+		}
+
+		if(iosYn == "Y"){
+			iOsConfirmGbn = "My";
+			location.href = 'ios://getADID'; 
+			return false;
+		}
+
+		mydataMove(myDataDeviceId);
+	}
+
+	// iOS 모바일식별자 얻기
+	function getADIDMydataIOS(myDataDeviceId) {
+		//console.log("idfaInfo : " + myDataDeviceId);
+		mydataMove(myDataDeviceId);
+	}
+
+	function mydataMove(myDataDeviceId) {
+		$.ajax({
+			url : '/portal/mydata/getUserInfo.json',
+			type : "post",
+			dataType : "json",
+			async : false,
+			success: function(data) { 
+				mcodeCall_v1('30025');
+				var rsCode = data.resultCd;
+				if(rsCode == 'success'){
+					var params = {'jsonParam' : data.maDataUserInfo};
+
+					var myDataInput;
+					for(var i in params){
+						if(params.hasOwnProperty(i)){
+							//console.log(i);
+							//console.log(params[i]);
+							myDataInput = $("<input>").attr("type", "hidden").attr("id", i).attr("name", i).val(params[i]);
+						}
+					}
+
+					//getADIDMydata();
+					var adId = $("<input>").attr("type", "hidden").attr("id", "deviceId").attr("name", "deviceId").val(myDataDeviceId);
+					
+					$("body").append($("<form>").attr("action", "http://mydata.go.kr/GoMydata.do").attr("method","POST").attr("id","myDataFrm").append(myDataInput).append(adId));
+					$("#myDataFrm").submit();
+				} else if(rsCode == 'noLogin') {
+					alert("공공마이데이터 서비스는 정부24 로그인 후에 사용할 수 있습니다.");						
+				}
+			},
+			error : function(error){
+				alert("공공마이데이터 접속 중 오류가 발생했습니다.\n시스템 관리자에게 문의 바랍니다.");
+			}
+		});
+	}    
+	
+// 내주민등록증
+	/* 2022-04-19 주민등록증 확인 서비스 */
+	// 주민등록증
+	var idmcsDeviceId = "";
+
+	function fnJuminServiceLnk() {
+		console.log("androidYn : " + androidYn);
+		console.log("iosYn : " + iosYn);
+		console.log("fnJuminServiceLnk");
+		var notSession = 'true';
+		if (notSession == 'true') {
+			alert("내 주민등록증 확인 서비스는 정부24 로그인 후에 사용할 수 있습니다.");
+
+			return false;
+		}
+	
+		var param = {
+			userId: ""
+		};
+
+		$.ajax({
+			url : '/nlogin/usr/getUserCi.json',
+			type : 'post',
+			dataType : 'json',
+			data : param,
+			cache : false,
+			async:false,
+			success : function(result) {
+				if(result.USER_CI == ""){
+					alert("내 주민등록증 확인서비스를 이용하기 위해서는 정부24의 본인인증이 필요합니다. \n정부24메뉴 > MyGov > 회원정보 > 회원정보관리 > 수정 > 휴대폰본인확인을 실행하여 본인인증을 받으시기 바랍니다.");
+					return false;
+				} else if (result.USER_CI != "") {
+					console.log("1.내 주민등록증 확인서비스");
+				     getADIDIdmcs();
+				}
+			},
+			error : function(req,ststus,err) {
+				alert("정부24 사용자 정보 조회에 실패하였습니다.다시 시도해 주세요.");
+			}
+		}); 
+	}
+
+	function getADIDIdmcs() {
+              var idmcsDeviceIdtmp = "";
+		if(androidYn == "Y") {
+			idmcsDeviceIdtmp = window.BrowserActivity.getADID();
+		}
+
+		if(iosYn == "Y"){
+			iOsConfirmGbn = "Idmcs";
+			location.href = 'ios://getADID'; 
+
+			return false;
+		}
+
+		openJuminService(idmcsDeviceIdtmp);
+	}
+
+	// iOS 모바일식별자 얻기
+	function getADIDIdmcsIOS(idmcsDeviceIdtmp) {
+		console.log("getADIDIdmcsIOS : " + idmcsDeviceIdtmp);
+		openJuminService(idmcsDeviceIdtmp);
+	}
+
+	/* 2022-04-19 주민등록증 확인 서비스 */
+	function openJuminService(idmcsDeviceIdtmp) {
+		console.log("2.idmcsDeviceId : " + idmcsDeviceId);	
+		if(navigator.userAgent.indexOf('Android') > -1) {
+			if(typeof window.BrowserActivity.startJuminService != "undefined") {
+				window.BrowserActivity.startJuminService();
+			} else {
+				alert("내 주민등록증 확인서비스를 이용하기 위해서는 앱을 업데이트 해 주시기 바랍니다.");
+			}
+		} else if (
+			navigator.userAgent.indexOf('iOS') > -1 ||
+			navigator.userAgent.indexOf('iPhone') > -1 ||
+			navigator.userAgent.indexOf('iPod') > -1 ||
+			navigator.userAgent.indexOf('iPad') > -1
+		){
+			if(typeof IOSJsBridge == "undefined" && typeof window.webkit != "undefined") {
+				window.webkit.messageHandlers.startJuminService.postMessage("");
+		   } else {
+				alert("해당 기능은 앱을 업데이트 해야 이용 하실 수 있습니다.");
+		   }                   
+		} else {
+			alert("해당 기능은 모바일에서만 이용이 가능합니다.");
+		}
+	}
+	
+	function startIdmcsService(simStat, uniqueId, simOperator, networkOperator) {
+		console.log("3.idmcsDeviceId=" + idmcsDeviceId);
+		console.log("simStat=" + simStat);
+		console.log("uniqueId=" + uniqueId);
+		console.log("simOperator=" + simOperator);
+		console.log("networkOperator=" + networkOperator);
+				
+		if(idmcsDeviceId != undefined) {
+			$.ajax({
+				type : 'post',
+				url : '/nlogin/idmcs/encIdmcsQXML',
+				dataType : 'text',
+				cache : false,
+				data : {"adid" : idmcsDeviceId, "simStat" : simStat, "uniqueId" : uniqueId, "simOperator" : simOperator, "networkOperator" : networkOperator},
+				async : false,
+				success : function(result) {
+					console.log(result);
+					if(navigator.userAgent.indexOf('Android') > -1) {
+						console.log("ANDROID");
+						window.BrowserActivity.callJuminService(result, '');
+					} else if (
+							navigator.userAgent.indexOf('iOS') > -1 ||
+							navigator.userAgent.indexOf('iPhone') > -1 ||
+							navigator.userAgent.indexOf('iPod') > -1 ||
+							navigator.userAgent.indexOf('iPad') > -1
+					){
+						if(typeof IOSJsBridge == "undefined" && typeof window.webkit != "undefined") {
+							console.log("IOS");
+							window.webkit.messageHandlers.callJuminService.postMessage(result, '');
+					   } else {
+							alert("해당 기능은 앱을 업데이트 해야 이용 하실 수 있습니다.");
+					   }                   
+					} else {
+						alert("해당 기능은 모바일에서만 이용이 가능합니다.");
+					}	
+				},
+				complete : function() {
+				},
+				error : function(request,status,error) {
+					console.log(request);
+					console.log(status);
+					console.log(error);
+					alert("서비스 호출 중 오류가 발생하였습니다.");
+					return false;
+				}
+			});
+		} else {
+			alert("광고식별자 조회 오류입니다 ios인 경우에는 정부24앱의 추적허용을 설정해 주시기 바랍니다.");
+		}
+	}
+// 내주민등록증
+
+	// 비대면 주민등록 사실조사 S
+	function fnNonFaceJuminServiceLnk() {
+		console.log("androidYn : " + androidYn);
+		console.log("iosYn : " + iosYn);
+		console.log("fnNonFaceJuminServiceLnk");
+		var notSession = 'true';
+		if (notSession == 'true') {
+			alert("비대면 주민등록 사실조사 서비스는 정부24 로그인 후에 사용할 수 있습니다.");
+			return false;
+		}
+	
+		var param = {
+			userId: ""
+		};
+
+		$.ajax({
+			url : '/nlogin/idmcs/encIdmcsNFXML.json',
+			type : 'post',
+			dataType : 'json',
+			data : param,
+			cache : false,
+			async:false,
+			success : function(result) {
+				console.log(result.encryptXml);
+				popupJumin(result.encryptXml);
+			},
+			error : function(req,ststus,err) {
+				console.log(req);
+				console.log(ststus);
+				console.log(err);
+				alert("비대면 주민등록 사실조사 서비스 호출 중 오류가 발생하였습니다.");
+				return false;
+			}
+		});
+		
+	}
+	
+	function popupJumin(result){
+		if(result && result!=''){
+			var url = "https://nf.jumin.go.kr/index.do";
+			$('#idmcsQ').val(result);
+			$('#jumin_frm').attr("action", url);
+			$('#jumin_frm').attr("method", "post");
+			$('#jumin_frm').submit();
+			
+		}else{
+			alert('비대면 주민등록 사실조사 서비스 호출 중 오류가 발생하였습니다.');
+		}
+	}
+	// 비대면 주민등록 사실조사 E
+//]]>
+
+ // 20210430 퍼블
+    $(document).ready(function() {
+        $(".tbl-toggle tr.tr-visible").click(function(){
+            $(this).next("tr").toggle();
+            return false;
+        });
+    });
+    // //20210430 퍼블
+    
+    var tracerClsPETDIR = ''; //접근제어 민원/정부 서비스 구분
+</script>
+<script src="/common/js/mcodeCall.js?time=2022081200" type="text/javascript"></script>
+<script src="/gov_beusable/js/gov_beusable.js?time=2022081200" type="text/javascript"></script>
+<script src="/webPlugins/portal/tracer/tracerapi.js" type="text/javascript"></script>
+<!-- 접속제한 202112 -->
+<div id="waitPage" style="display:none">
+<link href="/renewMain/css/wait_default.css" rel="stylesheet" type="text/css"/>
+<style>
+/* 20220511 접근제어 소스추가 */
+.wait_data[data-value]:after{
+	right:-25px;
+	top:50px;
+	margin:0;
+}
+/* //20220511 접근제어 소스추가 */
+</style>
+<script type="text/javascript">
+
+playAlert = setInterval(function() {
+    if ( this_isWait == "T" ) {
+	 checkCntData();
+    } 
+}, 1000);
+
+function getWaitTime(session_time_out, limitCnt, waitCnt) {
+
+   if ( limitCnt == 0 ) return '알수없음';
+   var aa = session_time_out/limitCnt * waitCnt;
+   aa = Math.round(aa);
+
+   var hour='00';
+   var min='00'
+   var sec='00';
+
+   if ( aa >=3600 ) {
+      hour=Math.floor(aa/3600); 
+      if ( hour < 10 ) hour = '0'+hour;
+      aa=aa-hour*3600;
+   } 
+   
+   if ( aa >=60 ) {
+      min=Math.floor(aa/60);
+      if ( min < 10 ) min = '0'+min;
+      aa=aa-min*60;
+   } 
+    
+   if ( aa < 10 ) sec = '0'+aa;
+   else  sec = aa;
+  
+   var result = hour + ":" + min + ":" + sec;
+   return result;
+}
+
+function getWaitPer(limitCnt, waitCnt) {
+   var result = 100-( waitCnt/limitCnt*100 );
+   result = Math.floor(result);
+   return result;
+}
+
+function getWaitPerNew(limitCnt, waitCnt, waitMyCnt) {
+   var result = 100-( waitCnt/waitMyCnt*100 );
+   result = Math.floor(result);
+   return result;
+}
+
+
+function checkCntData() {
+    var host = this_host;
+    var ip =  this_ip;
+    var loginId = this_loginId;
+    var port = this_port;
+    var pageUrl = this_pageUrl;
+    var sendThis = this_sendThis
+
+    callTracerApiInputData(host, ip, loginId, port, pageUrl, sendThis);
+
+    var waitCnt = this_waitCnt;
+
+    if ( waitCnt == "0" || waitCnt == "E") {
+      showRealPage();
+      callBackTracer();
+    } else {
+        var $el = $("#waitCnt");
+	var $el1 = $("#wait_time_value");
+        var $el2 = $("#progressbarData");
+ 	var $el3 = $("#progressbar"); 
+	
+	var waitCnt = this_waitCnt;
+    	var limitCnt = this_limitCnt;
+    	var session_time_out = this_session_time_out;
+    	var waitQueueSize = this_waitQueueSize;
+	var waitMyCnt = this_waitMyCnt;
+
+    	//var wait_per = getWaitPer(waitQueueSize, waitCnt);
+    	var wait_per = getWaitPerNew(waitQueueSize, waitCnt, waitMyCnt);
+	var wait_time = getWaitTime(session_time_out, limitCnt, waitCnt);
+ 
+	if ( $.isNumeric(waitCnt) ) {
+	     $el.html(comma(Math.floor(waitCnt)));
+	     $el1.html(wait_time);
+
+	     $el2.width(wait_per+'%');	
+	     $el2.attr("data-value", wait_per);
+
+	     $el3.val(wait_per);
+
+
+	} else {
+	  // alert("AAA"+opener.this_waitCnt+"AAA");
+
+	}
+    }
+
+}
+
+
+
+function createCookie() {
+	var now = new Date();
+	  var time = now.getTime();
+	  var expireTime = time + 1000*36000;
+	  now.setTime(expireTime);
+	  var tempExp = 'Wed, 31 Oct 2020 08:50:17 GMT';
+	  document.cookie = 'SESSIONID=hjpark123;expires='+now.toGMTString()+';path=/';
+	  //console.log(document.cookie);
+}
+
+
+/* setInterval(function() {
+	window.location.href='login.do';
+		}, 20000); */
+
+function comma(num){
+    var len, point, str; 
+       
+    num = num + ""; 
+    point = num.length % 3 ;
+    len = num.length; 
+   
+    str = num.substring(0, point); 
+    while (point < len) { 
+        if (str != "") str += ","; 
+        str += num.substring(point, point + 3); 
+        point += 3; 
+    } 
+     
+    return str;
+}
+
+</script>
+<form class="mt-repeater form-horizontal" id="listForm" method="POST">
+</form>
+<div class="login-containerT" style="z-index: 10000;">
+<div class="row" id="isWaitPage" style="display:block">
+<div class="mobile-size" style="width:100%;height:auto;overflow:hidden;">
+<div class="col-md-12" style="height:auto;background:#fff; padding:15px 24px;">
+<div class="main_logo" style="position:absolute;left:5%;top:12px; height: 50px;">
+<img src="/rcvfvrSvc/js/tracer/logo.png" style="width:110px;height:auto;margin-top: 5px;"/></div>
+<div class="text-center" style="padding-top:20px; border-bottom: 0px;"></div>
+<div class="text-center m-b-md" style="border-bottom: 0px;">
+<h3 style="font-weight:bold;font-size:19px;color:#1245AB;letter-spacing: -0.04em;text-align: center;margin-top:50px"><span style="color:#000;"></span> 코로나19 생활지원비 <span style="color:#000;">신청자 증가로<br/> 접속 지연이 발생하고 있습니다.</span> </h3>
+</div>
+<h5 style=" font-size:15px;color:#767676;margin: 15px 0;letter-spacing: -0.04em;text-align: center;">
+					잠시만 기다리시면 해당 페이지로 자동 접속됩니다.<br/>
+</h5>
+<div style="padding:20px 0; border-radius: 5px; text-align: center; background:#f1f1f1;">
+<p style="color:#333333; font-size:15px; font-weight: bold;">코로나19 생활지원비 온라인 신청은 <br/> <span style="color:#b13f01;">5월 13일 이후 격리 해제 확인자</span>만 가능합니다.</p>
+<p style="padding:5px 0; color:#666; font-size:13px;">코로나19 생활비원비 신청을 원하시는<br/> <span style="color:#333; font-weight: bold;">5월 12일 이전 격리 해제 확진자</span>는 브라우저를 종료해 주시고,<br/>주민센터에 방문하여 신청하시기 바랍니다.</p>
+</div>
+<div style="width: 100%; margin:0 auto;margin-top:20px;">
+<p class="wait_data" data-value="0" id="progressbarData" style=" width:0%"><span style=""> </span></p>
+<progress class="html5" id="progressbar" max="100" value="0">
+</progress>
+</div>
+<div class="hpanel" style="margin-top:45px;">
+<div class="panel-bodyT" style="border:none; display: flex; padding:0 !important">
+<div id="wait_value" style="border:1px solid gray; width: 60%; height: 80px; color:#0156b1; font-size:13px; padding:0 10px; text-align:right;">
+<div style="margin: 12px 0 0 0;">
+<img src="/rcvfvrSvc/js/tracer/wait_people.png" style="float: left;width:23px;height:18px;margin-right: 3px;"/>
+<p style="float: left; margin-top:0px; font-size:13px; color:#333;">대기자 수</p> <br/></div>
+<span id="waitCnt" style="font-size:23px;color:#0156b1;font-weight:bold; line-height: 45px;">-</span> 명</div>
+<div id="wait_time" style="border:1px solid gray; width: 60%; height: 80px;  padding:0 10px;"><div style="margin: 12px 0 0 0;">
+<img src="/rcvfvrSvc/js/tracer/wait_watch.png" style="margin-right: 3px;width:19px;height:18px;float: left;"/>
+<p style="float: left;  margin-top:0px; font-size:13px; color:#333;">예상대기시간</p><br/></div>
+<span id="wait_time_value" style="font-size:23px;color:#0156b1;font-weight:bold;line-height: 45px;float: right;">--:--:--</span></div>
+</div>
+</div>
+<div class="sub_text" style="height: 30px; letter-spacing: -0.04em;font-size:13px;color:#767676;padding-top:10px;">※ 재접속하시면 대기 시간이 길어질 수 있습니다.</div>
+</div>
+</div>
+</div>
+<div class="row" id="isRejectPage" style="display:none">
+<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+<div class="col-md-12" style="width:100%;background:#fff;">
+<div class="main_logo" style="position:absolute;right:2%;top:12px;">
+<img alt="정부24" src="/webPlugins/portal/tracer/logo2.png" style="width:90px;height:auto;margin-top: 10px;"/>
+</div>
+<div class="text-center" style="padding-top:20px;"></div>
+<div class="text-center m-b-md">
+<h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접속이 차단 되었습니다. </h3>
+</div>
+<div class="hpanel" style="width:88%;margin: 0 auto;padding: 16px 0 16px 0;margin-top:0px;">
+<div class="panel-bodyT" style="border:none;">
+<div></div>
+<div class="sub_text" style="letter-spacing: -0.04em;font-weight:600;font-size:1.0em;color:#1e1e1e;">현재 접속하신 아이피에서는<br/> 접속이 불가능합니다.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row" id="isNotUse" style="display:none">
+<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+<div class="col-md-12" style="width:100%;background:#fff;">
+<div class="main_logo" style="position:absolute;right:2%;top:12px;">
+<img alt="정부24" src="/webPlugins/portal/tracer/logo2.png" style="width:90px;height:auto;margin-top: 10px;"/>
+</div>
+<div class="text-center" style="padding-top:20px;"></div>
+<div class="text-center m-b-md">
+<h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접속이 불가합니다. </h3>
+</div>
+<div class="hpanel" style="width:88%;margin: 0 auto;padding: 16px 0 16px 0;margin-top:0px;">
+<div class="panel-bodyT" style="border:none;">
+<div></div>
+<div class="sub_text" style="letter-spacing: -0.04em;font-weight:600;font-size:1.0em;color:#1e1e1e;">접속량이 많아 접속이 불가능합니다.<br/> 잠시 후 다시 접속해주세요</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="waitBackground"></div>
+</div>
+<input id="lvinfo" type="hidden" value=""/>
+<!-- 접속제한 202004 -->
+<link href="/renewLogin/css/renew_login.css?time=2022081200" rel="stylesheet" type="text/css"/>
+<!-- s: 회원/비회원 로그인 팝업 -->
+<div class="pop-login-nonmember" id="memberLoginPopup">
+<div class="renewLogin-pop">
+<div class="pop-inner">
+<h1 class="pop-tit">확인하세요!</h1>
+<div class="pop-content">
+<!-- 비회원신청 가능 시 노출 -->
+<div class="type01">
+<p class="slogan">회원/비회원 신청가능 서비스입니다.</p>
+<p class="pop-btns">
+<span>
+<a class="btn_bg01" href="/" id="memberApplyBtn" tabindex="1">회원 신청하기</a>
+</span>
+<span>
+<a href="/" id="nonMemberApplyBtn" tabindex="1">비회원 신청하기</a>
+</span>
+</p>
+<div class="list">
+<p>비회원으로 신청하시더라도, 일부 서비스는 간편인증 또는 인증서(공동, 금융)가 별도로 필요합니다.
+							</p>
+</div>
+</div>
+<!--  //비회원신청 가능 시 노출 -->
+<!-- 회원전용 일 때 노출 -->
+<div class="type02">
+<p class="slogan type-2">회원 전용 서비스 입니다.</p>
+<p class="pop-btns">
+<span>
+<a class="btn_bg01" href="/" id="onlyMemberApplyBtn" tabindex="1">회원 신청하기</a>
+</span>
+</p>
+<div class="list">
+<dl>
+<dt>회원가입 후 이용하세요.</dt>
+<dd>
+<span>정부24에 회원가입 하시면, 각 기관 민원과</span>
+<span>주요 서비스를 신청 · 발급할 수 있습니다.</span>
+<a class="btn-join" href="/nlogin/usr" tabindex="1">회원가입</a>
+</dd>
+</dl>
+</div>
+</div>
+<!-- //회원전용 일 때 노출 -->
+</div>
+<button class="btn-layer-close" onclick="closeMLPopup();" tabindex="1" type="button">
+<span class="sr-only">간편인증 또는 인증서(공동, 금융) 등록 레이어 닫기</span>
+</button>
+</div>
+</div>
+</div>
+<!--  e: 회원/비회원 로그인 팝업 -->
+<script type="text/javascript">
+	//팝업 닫기
+	function closeMLPopup(){
+		 $('#memberLoginPopup').hide();
+	}
+	</script>
+<script src="/webPlugins/portal/tracer/tracerapi.js" type="text/javascript"></script>
+<script>
+/* GOV2-2 START */
+//아이폰 confirm 버그로 인한 function에서 사용하는 전역변수 
+var iosYn = "N";
+var chkIOSUrl = "";
+var confirm_msg = "";
+var confirmResult = false;
+var bizCdLimit = ""; 
+var ctgCdLimit = "";
+var seqLimit = "";
+
+
+    function openLinkSelectWin2(url) {
+        popSelcWin = window.open(url,"popSelcWin","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,left=0,top=0,width=503,height=315,copyhistory=no");
+        popSelcWin.focus();
+        return;
+    }
+
+    function openLinkSelectWin(current_ctg_cd, capp_biz_cd) {
+        url = "/main?a=AA020InfoCappViewApp&HighCtgCD=" + current_ctg_cd + "&CappBizCD=" + capp_biz_cd + "&ui_mode=s";
+        popSelcWin = window.open(url,"popSelcWin","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,left=0,top=0,width=400,height=200,copyhistory=no");
+        popSelcWin.focus();
+        return;
+    }
+    
+    function selectLink(url) {
+        window.open(url, "popSelectLink" ,"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,left=0,top=0,width=400,height=200,copyhistory=no")
+    }
+    
+    function winOpenCappInfoPost2(doc_id,linkUrl){
+        var frm = document.frm_openlink2;
+        frm.capp_biz_cd.value = doc_id;
+        frm.gourl.value = linkUrl;
+        popSelcWin2 = window.open("","popSelcWin2","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,left=0,top=0,width=500,height=460,copyhistory=no");
+        popSelcWin2.focus();
+        frm.target="popSelcWin2";
+        frm.action="/main?a=AA020PopupInfoCappApp";
+        frm.method="post";
+        frm.submit();
+    
+        return;
+    }
+    
+    function goHtml5Url(capp_biz_cd, tp_seq) {
+        
+        
+        goUrl(capp_biz_cd, '', tp_seq);
+    }
+    
+    function goAppUrl(capp_biz_cd, tp_seq){
+        
+        goUrl(capp_biz_cd, '', tp_seq);
+    }
+    
+    //값 체크
+    function goUrl(capp_biz_cd, high_ctg_cd, tp_seq){
+    	chkIOSUrl = '/main?a=AA040OfferMainFrmApp&capp_biz_cd=' + capp_biz_cd + '&HighCtgCD=' + high_ctg_cd + '&FAX_TYPE=y&img=02&selectedSeq=' + tp_seq;
+    	if(capp_biz_cd == '17210000001'){
+        	chkIOSUrl ='/mw/EpostCheck.do?Mcode=30008'
+    	}
+		if(capp_biz_cd == '13710000023'){
+	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM271A'
+	    	}
+		if(capp_biz_cd == '14900000402'){
+	        	chkIOSUrl ='/mw/AA040OfferMainFrm.do?capp_biz_cd=PG4CADM0100&amp;HighCtgCD=&amp;FAX_TYPE=&amp;img=02&amp;Mcode=30019'
+	    	}
+		if(capp_biz_cd == '14920000052'){
+	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM256A'
+	    	}
+		if(capp_biz_cd == '14920000003'){
+	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM253F'
+	    	}
+		if(capp_biz_cd == '14600000313'){
+	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM223A'
+	    	}
+		if(capp_biz_cd == '13404000041'){
+        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM249A'
+    	}
+    	if(capp_biz_cd == '15300000050'){
+        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM287A'
+    	}
+		if(capp_biz_cd == '15300000051'){
+        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM289A'
+    	}
+		
+			oneClickSvcConfirmPopup_PET(capp_biz_cd, tp_seq, chkIOSUrl)
+	    	return;
+		
+		
+    }  
+    //2018-07-13 start
+    function goUrlNew(capp_biz_cd, high_ctg_cd, tp_seq){
+    	//개별공시지가 이의 신청 민원 신청가능기간 설정
+    	var mwDate = '0812';
+        if(capp_biz_cd == '15000000011'){
+	        	if((mwDate >= '0429' && mwDate <= '0530') || (mwDate >= '1031' && mwDate <= '1130')  ){
+
+	        	}else if((mwDate < '0429' && mwDate >= '0101')|| (mwDate > '0530' && mwDate < '1031') || (mwDate > '1130' && mwDate <= '1231') ){
+					alert("개별공시지가 이의신청은 부동산 가격공시에 관한 법률\n\n제11조 제1항에 의거하여 4월29일~5월30일까지,10월31일~11월30일\n\n까지만 민원 신청이 가능합니다.");        		
+	        		return;
+	        	}
+        	}
+    	chkIOSUrl = '/mw/AA040OfferMainFrm.do?capp_biz_cd=' + capp_biz_cd + '&HighCtgCD=' + high_ctg_cd + '&FAX_TYPE=y&img=02&selectedSeq=' + tp_seq;
+    	if(capp_biz_cd == '17210000001'){
+        	chkIOSUrl ='/mw/EpostCheck.do?Mcode=30008'
+    	}
+		if(capp_biz_cd == '13710000023'){
+	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM271A'
+	    	}
+		if(capp_biz_cd == '14900000402'){
+	        	chkIOSUrl ='/mw/AA040OfferMainFrm.do?capp_biz_cd=PG4CADM0100&amp;HighCtgCD=&amp;FAX_TYPE=&amp;img=02&amp;Mcode=30019'
+	    	}
+		if(capp_biz_cd == '14920000052'){
+	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM256A'
+	    	}
+		if(capp_biz_cd == '14920000003'){
+	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM253F'
+	    	}
+		if(capp_biz_cd == '14600000313'){
+	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM223A'
+	    	}
+		if(capp_biz_cd == '13404000041'){
+        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM249A'
+    	}
+    	if(capp_biz_cd == '15300000050'){
+        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM287A'
+    	}
+		if(capp_biz_cd == '15300000051'){
+        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM289A'
+    	}
+        
+        		oneClickSvcConfirmPopup_PET(capp_biz_cd, tp_seq, chkIOSUrl)
+    	    	return;
+        
+        
+    }
+    //2018-07-13 end
+    
+    function mwSelectLink(url){
+        window.open(url, "popSelectLink" ,"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,left=0,top=0,width=400,height=200,copyhistory=no")
+    }
+    
+    //민원성 사무
+    function sgMinwonUrl(cappBizCd){
+        var mobileYn = 'N';
+        if( mobileYn == 'Y' ){
+            alert('해당 민원는 PC에서 확인 바랍니다.');
+        }else{
+            var url = '';
+            if('SG4CADM2017' == cappBizCd){
+                url = '/main?a=AA040OfferMainFrmApp&capp_biz_cd=SG4CADM2017&HighCtgCD=A06001&FAX_TYPE=N&img=02';
+            }else{
+                url = '/main?a=AA040OfferMainFrmApp&capp_biz_cd=' + cappBizCd + '&lifePayDc=Y';
+            }
+            window.location.href = url;         
+        }
+    }
+    
+    // 모바일앱 신청가능일 경우 /mobileService... 처리를 위한 함수
+    function goMobUrl(mobileUrl, chkNewMw, capp_biz_cd, high_ctg_cd, tp_seq){
+    	//개별공시지가 이의 신청 민원 신청가능기간 설정
+    	var mwDate = '0812';
+        if(capp_biz_cd == '15000000011'){
+	        	if((mwDate >= '0429' && mwDate <= '0530') || (mwDate >= '1031' && mwDate <= '1130')  ){
+	
+	        	}else if((mwDate < '0429' && mwDate >= '0101')|| (mwDate > '0530' && mwDate < '1031') || (mwDate > '1130' && mwDate <= '1231') ){
+					alert("개별공시지가 이의신청은 부동산 가격공시에 관한 법률\n\n제11조 제1항에 의거하여 4월29일~5월30일까지,10월31일~11월30일\n\n까지만 민원 신청이 가능합니다.");        		
+	        		return;
+	        	}
+        	}
+        
+    	if(chkNewMw == 2) {
+    		chkIOSUrl = mobileUrl;
+    	}
+    	else {
+    		chkIOSUrl = '/mw/AA040OfferMainFrm.do?capp_biz_cd=' + capp_biz_cd + '&HighCtgCD=' + high_ctg_cd + '&FAX_TYPE=y&img=02&selectedSeq=' + tp_seq;
+    		if(capp_biz_cd == '17210000001'){
+            	chkIOSUrl ='/mw/EpostCheck.do?Mcode=30008'
+        	}
+    		if(capp_biz_cd == '13710000023'){
+    	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM271A'
+    	    	}
+    		if(capp_biz_cd == '14900000402'){
+    	        	chkIOSUrl ='/mw/AA040OfferMainFrm.do?capp_biz_cd=PG4CADM0100&amp;HighCtgCD=&amp;FAX_TYPE=&amp;img=02&amp;Mcode=30019'
+    	    	}
+    		if(capp_biz_cd == '14920000052'){
+    	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM256A'
+    	    	}
+    		if(capp_biz_cd == '14920000003'){
+    	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM253F'
+    	    	}
+    		if(capp_biz_cd == '14600000313'){
+    	        	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM223A'
+    	    	}
+    		if(capp_biz_cd == '13404000041'){
+            	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM249A'
+        	}
+        	if(capp_biz_cd == '15300000050'){
+            	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM287A'
+        	}
+    		if(capp_biz_cd == '15300000051'){
+            	chkIOSUrl ='/mw/NewServiceLogin.do?capp_biz_cd=PG4CADM289A'
+        	}
+    	}
+        
+		
+			oneClickSvcConfirmPopup_PET(capp_biz_cd, tp_seq, chkIOSUrl)
+			return;
+		
+		    	
+    	
+   }
+
+	// 아이폰 confirm 버그로 인한 function 추가
+	function confirmIOS(result){
+	    if(result){
+	        location.href = chkIOSUrl;
+	      } else {
+	          return;
+	      }
+	}    
+    /* GOV2-2 END */
+    
+    
+    //전입신고 HTML5 지원 여부에 따른 버튼 동작
+  	function junipBtn(){
+  	    var html5Yn = '';
+  	    var mobileYn = 'N';
+  	    var url = '';
+			//모바일인 경우
+  		if(mobileYn=='Y'){
+  			url="/mw/AA040NewJunipNotice.do?capp_biz_cd=13100000016&NEW_JUNIP=Y";
+  		}
+			//모바일아닌 경우
+  		if(mobileYn=='N'){
+      	    if(Modernizr.canvas){
+      	    	 html5Yn='Y'
+      	    }if(!Modernizr.canvas){
+      	    	 html5Yn='N'
+      	    }
+      	    if(html5Yn=='Y'){
+      	    	url="/mw/AA040NewJunipNotice.do?capp_biz_cd=13100000016&NEW_JUNIP=Y";
+      	    }
+      	    if(html5Yn=='N'){
+      	    	alert("더 쉽고 편리한 전입신고는 'Internet Explorer 9 이상, Chrome'에서 사용하실 수 있습니다.\n이점 양해하여 주시기 바랍니다.");
+      	    	url="/minwon/inc/AA040_form_notice_13100000016_2.jsp";
+      	    }    			
+  		}
+		
+			oneClickSvcConfirmPopup_PET('13100000016', '', url);
+		  	return;
+		
+		
+			
+  	}    
+    
+  //로그인 후 회원전용 서비스 구분 (공통)
+  	function commonSvcConfirmProcess_PET(applyId, tp_seq){
+  			var memberCls = memberSvcConfirm_PET(applyId, tp_seq);
+  	   		var memberSvcFlag =false;
+  	    	var memberSvc_msg = "회원전용 서비스입니다.\n비회원 접속을 종료 후 회원으로 로그인하시겠습니까?";
+  	    	
+  	    	if(memberCls == "101"){
+  		        //비회원 접속 && 회원전용 서비스인 경우
+  	    		if(iosYn == "Y"){
+  		            // confirmIOS 호출
+  		            memberSvcFlag = confirm(memberSvc_msg+"native");
+  		        }else{
+  		        	memberSvcFlag = confirm(memberSvc_msg);
+  		        }
+  	            if(memberSvcFlag){
+  	                window.location.href = "/nlogin/logout";
+  	                return false;
+  	            } else {
+  	            	return false;
+  	            }				        
+  	    	}
+  	    	return true;
+  	}
+  
+    //신청서비스 아이디로 로그인 유형 조회
+    function memberSvcConfirm_PET(capp_biz_cd, tp_seq){
+
+    	var memberCls = "";
+    	var jsonData = {
+    			applySvcId : capp_biz_cd,
+    			tpSeq : tp_seq,
+    			svcSectCd : "PET"
+    	};
+    	
+    	$.ajax({
+    		type: "POST",
+    		url: "/portal/usepossapplysvc/result",
+    		data: jsonData,
+    		async: false,
+    		dataType: 'json',
+    		success: function(data) {
+    			memberCls = data.usePossTpCd;
+    		},
+    		error : function(e){
+    			alert('서비스 조회 중 오류가 발생하였습니다.');
+    		 	return false;
+    		}
+    	})
+    	
+    	return memberCls;    	
+    	
+    }
+    
+    //로그인 유형 분기에 따른 로그인 팝업 표출
+    function renderingMemberPopup_PET(memberCls, url, capp_biz_cd){
+    	$('#memberLoginPopup').hide();  //팝업 초기화
+    	
+    	
+    	var nonMemberApplyUrl = '/nlogin/loginNonMember?cappBizCd='+capp_biz_cd;
+    	var nonLoginUrl = '';
+		nonLoginUrl = url;
+		
+		nonLoginUrl= nonLoginUrl.replace(/[/]/gi,"%2F");
+		nonLoginUrl= nonLoginUrl.replace(/[?]/gi,"%3F");
+		nonLoginUrl= nonLoginUrl.replace(/[=]/gi,"%3D");
+		nonLoginUrl= nonLoginUrl.replace(/[&]/gi,"%26amp%3B");
+		
+    	if(capp_biz_cd == '13100000016'){
+    		nonMemberApplyUrl += '&NEW_JUNIP=Y'
+    	}
+    	nonMemberApplyUrl += '&nonLoginUrl='+nonLoginUrl;
+    	
+    	if(memberCls == "101"){
+    		//회원전용 서비스인 경우
+    		$('#onlyMemberApplyBtn').attr("href",url); //회원신청하기 버튼(회원전용)
+    		$('.renewLogin-pop .pop-content .type01').hide();
+    		$('.renewLogin-pop .pop-content .type02').show();
+    	}
+    	if(memberCls == "102"){
+    		//즉시조회 및 본인인증 서비스인 경우
+    		//팝업 구분 없이 호출된 url로 동작 진행 
+    		location.href = url;   	
+    		return;
+    	}
+    	if(memberCls == ""){
+	    	//회원 및 비회원 신청이 가능한 서비스인 경우
+	    	$('#memberApplyBtn').attr("href",url); //회원신청하기 버튼 (회원/비회원)
+			$('#nonMemberApplyBtn').attr("href",nonMemberApplyUrl); //비회원신청하기 버튼
+    		$('.renewLogin-pop .pop-content .type01').show();
+    		$('.renewLogin-pop .pop-content .type02').hide();
+    	}
+    	if(memberCls =="err"){
+    		alert("서비스 조회 중 오류가 발생하였습니다.");
+    		return;
+    	}
+    	showPopup();
+    }
+    
+  	//팝업 최종 표출
+    function showPopup(){
+    	//팝업 표출 위치 설정
+    	var scrollVar = $(document).scrollTop();
+    	var popLayer = $("#memberLoginPopup");
+    	var windowWidth = $(window).width();
+    	var windowHeight = $(window).height();
+    	var popWidth = popLayer.outerWidth();
+    	var popHeight = popLayer.outerHeight();
+    	popLayer.css({
+    		'left':Math.max(0,(windowWidth/2)-(popWidth/2)),
+    		'top':Math.max(0,(windowHeight/2)-(popHeight/2))
+    	});
+    	popLayer.show();  //팝업 표출
+    	popLayer.attr('tabindex', -1).focus(); //웹접근성
+    }
+  
+  //원클릭 유형조회, 팝업표출
+    function oneClickSvcConfirmPopup_PET(capp_biz_cd, tp_seq, url){
+    	var memberClsCd = memberSvcConfirm_PET(capp_biz_cd, tp_seq);
+    	renderingMemberPopup_PET(memberClsCd, url, capp_biz_cd);
+    }    
+    
+  	//접속인원제한 202004
+    function goUrlNewChk(capp_biz_cd, high_ctg_cd, tp_seq){   
+    	
+    	//checkAPI('test.gov.kr?capp_biz_cd=13100000026',사용자 ip,'80','토지대장발급신청',사용자 ip); 
+    	var ip = '121.147.130.110';
+    	var hstNm = window.location.hostname;      
+    	if(capp_biz_cd =='13100000026'){ 
+    		$('#title_id').html('\"토지(임야)대장등본교부\"');  
+    	}else if(capp_biz_cd =='13100000015'){ 
+    		$('#title_id').html('\"주민등록표등본(초본)교부\"');  
+    		//document.getElementById("title").innerHTML = "\"주민등록표등본(초본)교부\"";
+    	}else if(capp_biz_cd =='15000000098'){ 
+    		$('#title_id').html('\"건축물대장 등·초본 발급(열람)\"');   
+    	}   
+  		bizCdLimit = ""; 
+  		ctgCdLimit = "";
+  		seqLimit = "";
+  		bizCdLimit = capp_biz_cd; 
+  		ctgCdLimit = high_ctg_cd;
+  		seqLimit = tp_seq;    
+  		if(hstNm == 'gov.kr' || hstNm == 'www.gov.kr'){
+  			tracerClsPETDIR = 'PET';
+  			checkAPI('gov.kr?capp_biz_cd='+capp_biz_cd,ip,'80',capp_biz_cd,ip);  
+  		}else{ 
+  			goUrlNew(capp_biz_cd, high_ctg_cd, tp_seq);
+  		}
+         
+    }
+  	
+  	//접속인원제한 202004
+/*     function callBackTracer() { 
+    	//접속제한 체크 후 처리되어야할 프로세스   
+    	if(bizCdLimit != '' ){    
+    		chkIOSUrl = '/mw/AA040OfferMainFrm.do?capp_biz_cd=' + bizCdLimit + '&HighCtgCD=' + ctgCdLimit + '&FAX_TYPE=y&img=02&selectedSeq=' + seqLimit;
+            
+            		oneClickSvcConfirmPopup_PET(bizCdLimit, seqLimit, chkIOSUrl)
+        	    	return;
+            
+             
+    	} 
+   	} */
+   	
+   	
+  //접근제어 대기 후 동작
+  function callBackTracer() {
+  	if(tracerClsPETDIR == 'DIR'){ //정부서비스  
+  		 document.newForm.action=tracer_url;
+  	     document.newForm.target="_self";
+  	   	
+  	   	if(tracer_busiFlag){
+  	       
+  		       oneClickSvcConfirmPopup_DIR(tracer_applyId,tracer_url);
+  	       
+  	       
+  		}
+  	}
+  	if(tracerClsPETDIR == 'PET'){ //민원서비스
+  	   	if(bizCdLimit != '' ){    
+  	   		chkIOSUrl = '/mw/AA040OfferMainFrm.do?capp_biz_cd=' + bizCdLimit + '&HighCtgCD=' + ctgCdLimit + '&FAX_TYPE=y&img=02&selectedSeq=' + seqLimit;
+  	           
+  	           		oneClickSvcConfirmPopup_PET(bizCdLimit, seqLimit, chkIOSUrl)
+  	       	    	return;
+  	           
+  	            
+  	   	} 
+  	}
+  }
+    	
+</script>
+<form id="newForm" method="post" name="newForm">
+<input id="a" name="a" type="hidden" value=""/>
+<input id="TP_SEQ" name="TP_SEQ" type="hidden" value=""/>
+<input id="RCV_MTHD_CD" name="RCV_MTHD_CD" type="hidden" value=""/>
+<input id="RCV_MAN" name="RCV_MAN" type="hidden" value=""/>
+<input id="UNIVERSITY" name="UNIVERSITY" type="hidden" value=""/>
+<input id="newFormMcode" name="Mcode" type="hidden" value=""/>
+</form>
+<script>
+
+//화면 사이즈에 따라서 팝업 좌표 조정 
+$(document).ready(function(){
+	$(window).on('load resize', function() {
+		if ($("#memberLoginPopup").is(":visible")) {
+			showPopup();
+		}
+	});	
+});
+
+//
+
+function fn_Mess(){
+  alert("서비스 준비중 입니다.");
+};
+
+function formSubmit(){
+	$("#newForm").submit();
+}
+
+
+//해당 신청서비스 이용가능유형 조회
+function memberSvcConfirm_DIR(applyId){
+	var memberCls = "";
+	var jsonData = {
+			applySvcId : applyId,
+			svcSectCd : "DIR"
+	};
+	
+	$.ajax({
+		type: "POST",
+		url: "/portal/usepossapplysvc/result",
+		data: jsonData,
+		async: false,
+		dataType: 'json',
+		success: function(data) {
+			memberCls = data.usePossTpCd;
+		},
+		error : function(e){
+			alert('서비스 조회 중 오류가 발생하였습니다.');
+		 	return false;
+		}
+	})
+	
+	return memberCls;
+}
+
+//이용가능 유형 분기에 따른 로그인 팝업 표출
+function renderingMemberPopup_DIR(memberCls, url){
+	$('#memberLoginPopup').hide();  //팝업 초기화
+	var sumbitUrl = 'javascript:formSubmit()';
+	
+	var nonMmberApplyCd =''; 
+	var cappbizcdOfUrlIndex = url.indexOf('capp_biz_cd=')+12;
+	
+	//url에서 cappBizCd 추출
+	if(url.indexOf('capp_biz_cd=') > -1){
+		if(url.indexOf('&',cappbizcdOfUrlIndex)>-1){
+			nonMmberApplyCd =url.slice(cappbizcdOfUrlIndex,url.indexOf('&',cappbizcdOfUrlIndex))
+		} else {
+			nonMmberApplyCd = url.slice(cappbizcdOfUrlIndex)
+		}
+	}	
+	
+	//비회원 로그인시 이동할 URL
+	var nonMemberApplyUrl = '/nlogin/loginNonMember?cappBizCd='+nonMmberApplyCd;
+	var nonLoginUrl = '';
+		nonLoginUrl = url;
+		
+		nonLoginUrl= nonLoginUrl.replace(/[/]/gi,"%2F");
+		nonLoginUrl= nonLoginUrl.replace(/[?]/gi,"%3F");
+		nonLoginUrl= nonLoginUrl.replace(/[=]/gi,"%3D");
+		nonLoginUrl= nonLoginUrl.replace(/[&]/gi,"%26amp%3B");
+		
+		nonMemberApplyUrl += '&nonLoginUrl='+nonLoginUrl;
+	
+	if(memberCls == "101"){
+		//회원전용 서비스인 경우
+		$('#onlyMemberApplyBtn').attr("href",sumbitUrl); //회원신청하기 버튼(회원전용)
+		$('.renewLogin-pop .pop-content .type01').hide();
+		$('.renewLogin-pop .pop-content .type02').show();
+	}
+	if(memberCls =="102"){
+		//즉시조회 및 본인인증 서비스인 경우
+		location.href = url;
+		return;
+	}
+	if(memberCls ==""){
+    	//회원 및 비회원 신청이 가능한 서비스인 경우
+    	$('#memberApplyBtn').attr("href",sumbitUrl); //회원신청하기 버튼 (회원/비회원)
+		$('#nonMemberApplyBtn').attr("href",nonMemberApplyUrl); //비회원신청하기 버튼
+		$('.renewLogin-pop .pop-content .type01').show();
+		$('.renewLogin-pop .pop-content .type02').hide();
+	}
+	if(memberCls =="err"){
+		alert("서비스 조회 중 오류가 발생하였습니다.");
+		return;
+	}
+	showPopup();
+}
+
+//팝업 최종 표출
+function showPopup(){
+	//팝업 표출 위치 설정
+	var popLayer = $("#memberLoginPopup");
+	var windowWidth = $(window).width();
+	var windowHeight = $(window).height();
+	var popWidth = popLayer.outerWidth();
+	var popHeight = popLayer.outerHeight();
+	popLayer.css({
+		'left':Math.max(0,(windowWidth/2)-(popWidth/2)),
+		'top':Math.max(0,(windowHeight/2)-(popHeight/2))
+	});
+	popLayer.show();  //팝업 표출
+	popLayer.attr('tabindex', -1).focus(); //웹접근성
+}
+
+//원클릭 유형조회, 팝업표출
+function oneClickSvcConfirmPopup_DIR(applyId, url){
+	var memberClsCd = memberSvcConfirm_DIR(applyId);
+	renderingMemberPopup_DIR(memberClsCd, url);
+}
+
+//로그인 후 회원전용 서비스 구분 (공통)
+function commonSvcConfirmProcess_DIR(applyId){
+		var memberCls = memberSvcConfirm_DIR(applyId);
+   		var memberSvcFlag =false;
+    	var memberSvc_msg = "회원전용 서비스입니다.\n비회원 접속을 종료 후 회원으로 로그인하시겠습니까?";
+		
+    	
+    	if(memberCls == "101"){
+	        //비회원 접속 && 회원전용 서비스인 경우
+    		if(iosYn == "Y"){
+	            // confirmIOS 호출
+	            memberSvcFlag = confirm(memberSvc_msg+"native");
+	        }else{
+	        	memberSvcFlag = confirm(memberSvc_msg);
+	        }
+            if(memberSvcFlag){
+                window.location.href = "/nlogin/logout";
+                return false;
+            } else {
+            	return false;
+            }				        
+    	}
+    	return true;
+}
+
+
+
+var tracer_applyId = '';
+var tracer_pgubun = '';
+var tracer_url = '';
+var tracer_busiFlag = false;
+ 
+ function fn_move(url,pgubun){
+   	
+	//신청서비스(정부서비스) 아이디 추출
+   	var applyId = event.target.attributes.getNamedItem('data-applyid').value;
+   	
+   	var busiFlag = true; //사업장 서비스 구분
+   	var busi_msg = "본 서비스는 사업장에서만 사용가능한 서비스 입니다.\n 계속 진행 하시겠습니까?";
+   	
+   	//사업장 서비스 구분
+   	if(pgubun == '1'){
+   		if(iosYn == "Y"){
+   			busiFlag = confirm(busi_msg+"native");
+   		} else{
+   			busiFlag = confirm(busi_msg);
+   		}
+   	}
+   	
+   	//접근제어
+   	if(applyId == '174100000020'){
+   		document.getElementById("title_id").innerHTML = "\"취학통지서 발급\"";
+   		tracer_applyId = applyId;
+   		tracer_pgubun = pgubun;
+   		tracer_url = url;
+   		tracer_busiFlag = busiFlag;
+   		if(document.location.host == 'gov.kr' || document.location.host == 'www.gov.kr'){
+			tracerClsPETDIR = 'DIR';
+   			checkAPI('PG4CADM0601','121.147.130.110','80','PG4CADM0601','121.147.130.110');
+   			return false;
+		}
+   		
+   	}   	
+ 	   document.newForm.action=url;
+       document.newForm.target="_self";
+   	
+   	if(busiFlag){
+       
+	       oneClickSvcConfirmPopup_DIR(applyId,url);
+       
+       
+	   return;   		
+   	}
+ };
+  
+ function callFunction(gubun, action, bizno, tqseq, mtdhcd, university) {
+	 var applyId = event.target.attributes.getNamedItem('data-applyid').value;
+	 
+	 var mobileNonMemberUrl = "/mobileService?"+"CAPP_BIZ_CD="+bizno+"&TP_SEQ="+tqseq+"&RCV_MTHD_CD="+mtdhcd+"&UNIVERSITY="+university+"&a="+action;  
+		 
+	 if ( gubun == '1' ) {
+		document.newForm.a.value=action;
+	    document.newForm.CAPP_BIZ_CD.value=bizno;
+	    document.newForm.TP_SEQ.value=tqseq;
+	    document.newForm.RCV_MTHD_CD.value=mtdhcd;
+	    document.newForm.UNIVERSITY.value=university;
+	    document.newForm.method="get";
+	    document.newForm.action="/mobileService";
+	  
+	   
+	       oneClickSvcConfirmPopup_DIR(applyId, mobileNonMemberUrl);
+       
+       	 	    
+	} else {
+	   
+	       oneClickSvcConfirmPopup_DIR(applyId, mobileNonMemberUrl);
+         
+       		
+	   location.href = action;
+	}
+ };
+
+
+
+</script>
+<script type="text/javascript">
+//접근제어 대기 후 동작
+function callBackTracer() {
+	if(tracerClsPETDIR == 'DIR'){ //정부서비스  
+		 document.newForm.action=tracer_url;
+	     document.newForm.target="_self";
+	   	
+	   	if(tracer_busiFlag){
+	       
+		       oneClickSvcConfirmPopup_DIR(tracer_applyId,tracer_url);
+	       
+	       
+		}
+	}
+	if(tracerClsPETDIR == 'PET'){ //민원서비스
+	   	if(bizCdLimit != '' ){    
+	   		chkIOSUrl = '/mw/AA040OfferMainFrm.do?capp_biz_cd=' + bizCdLimit + '&HighCtgCD=' + ctgCdLimit + '&FAX_TYPE=y&img=02&selectedSeq=' + seqLimit;
+	           
+	           		oneClickSvcConfirmPopup_PET(bizCdLimit, seqLimit, chkIOSUrl)
+	       	    	return;
+	           
+	            
+	   	} 
+	}
+}
+</script>
+<!-- container -->
+<div class="container-element" id="container">
+<!-- renew-main -->
+<div class="renew-main modify-v2022 active">
+<section class="keyword-group mo-only">
+<div class="inner">
+<h2 class="sr-only">검색 &amp; 추천검색어</h2>
+<div class="keyword-cont clearfix">
+<div class="keyword-search">
+<div class="form">
+<!-- 비대면 사실확인조사 -->
+<form id="jumin_frm" style="display:none;">
+<input id="idmcsQ" name="idmcsQ" type="hidden"/>
+</form>
+<form id="headerSearchForm2" method="get" name="headerSearchForm2">
+<input name="Mcode" type="hidden" value="11191"/>
+<fieldset>
+<legend>검색</legend>
+<!-- search -->
+<div class="search">
+<input autocomplete="off" id="srhQuery2" name="srhQuery" placeholder="검색어를 입력해주세요." title="검색어" type="text"/>
+<button class="btn-text-search" onclick="moreViewSearch2('N'); return false;" type="submit">
+<span class="sr-only-text">검색</span>
+</button>
+</div>
+<!-- //search -->
+</fieldset>
+</form>
+<!-- keyword-layer -->
+<div class="keyword-layer">
+<div class="keyword-layer-inner">
+<div class="direct-service">
+<p>서비스 바로가기</p>
+<ul id="ark_apply3">
+<!--											<li><a href="/"><mark class="marker-text">주민</mark>등록등복(초본)교부</a></li> -->
+</ul>
+</div>
+<ul class="keyword-auto" id="ark_main3">
+<!-- <li><a href="/"><mark class="marker-text">주민</mark>등록등본</a></li> -->
+</ul>
+</div>
+</div>
+<!-- //keyword-layer -->
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="anchor-group" style="display:none;">
+<div class="inner">
+<h2 class="sr-only">서비스 바로가기</h2>
+<ul>
+<!-- 210406 class 및 텍스트 수정 -->
+<li><a class="linkAnchor1" href="/" id="subsidy24" name="보조금24" onclick="setTitle4(name,id);" title="보조금24 선택됨"><span>보조금24</span></a></li>
+<li><a class="linkAnchor2" href="/" id="onstop" name="원스톱서비스" onclick="setTitle4(name,id);"><span>원스톱서비스</span></a></li>
+<li><a class="linkAnchor3" href="/" id="package" name="꾸러미서비스" onclick="setTitle4(name,id);"><span>꾸러미서비스</span></a></li>
+<li><a class="linkAnchor4" href="/" id="Foreigners" name="외국인서비스" onclick="setTitle4(name,id);"><span>Foreigners</span></a></li>
+</ul>
+</div>
+</section>
+<section class="visual-group">
+<h2 class="sr-only">메인배너</h2>
+<div class="visual-banner swiper-container swiper-container-horizontal swiper-container-fade">
+<ul class="visual-banner-list swiper-wrapper">
+<li class="item swiper-slide swiper-slide-active" style="width: 1883px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+<a href="https://blog.naver.com/korea_gov/222840113136" target="_blank">
+<img alt="2022년 알뜰한 전력소비!" class="pc-img" src="/images/userUploads/int/2022/08/sobi_PC.jpg"/> <!-- pc 이미지 -->
+<img alt="2022년 알뜰한 전력소비!" class="tb-img" src="/images/userUploads/int/2022/08/sobi_TB.jpg"/>
+<img alt="2022년 알뜰한 전력소비!" class="mo-img" src="/images/userUploads/int/2022/08/sobi_MO.jpg"/> <!-- mobile 이미지 -->
+</a>
+</li>
+<li class="item swiper-slide swiper-slide-next" style="width: 1883px; opacity: 0; transform: translate3d(-1883px, 0px, 0px);">
+<a href="https://blog.naver.com/korea_gov/222804265141" target="_blank">
+<img alt="정부24 100배 활용방법 필요한 서비스를 쉽고 편리하게! 건강보험 자격득실 확인서 발급" class="pc-img" src="/images/userUploads/int/2022/07/health_PC.jpg"/> <!-- pc 이미지 -->
+<img alt="정부24 100배 활용방법 필요한 서비스를 쉽고 편리하게! 건강보험 자격득실 확인서 발급" class="tb-img" src="/images/userUploads/int/2022/07/health_TB.jpg"/>
+<img alt="정부24 100배 활용방법 필요한 서비스를 쉽고 편리하게! 건강보험 자격득실 확인서 발급" class="mo-img" src="/images/userUploads/int/2022/07/health_MO.jpg"/> <!-- mobile 이미지 -->
+</a>
+</li>
+</ul>
+</div>
+<div class="inner">
+<div class="swiper-console">
+<div class="swiper-number">
+<span class="swiper-current-number">1</span> / <span class="swiper-total-number">2</span>
+</div>
+<div class="swiper-pagination swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span></div>
+<button class="swiper-button-prev sr-only-text swiper-button-disabled" type="button">이전 슬라이드</button>
+<div class="swiper-button-autoplay">
+<button class="btn-start sr-only-text disabled" onclick="autoplayFocus();return false;" type="button">시작</button>
+<button class="btn-stop sr-only-text" onclick="autoplayFocus();return false;" type="button">정지</button>
+</div>
+<button class="swiper-button-next sr-only-text" type="button">다음 슬라이드</button>
+</div>
+<div class="login-info">
+<h2 class="sr-only">로그인</h2>
+<p>나에게 꼭 필요한 <br/><strong>생활/혜택정보</strong>를 확인 하세요.</p>
+<a class="button-login nologin" href="/nlogin?regType=ctab">로그인</a>
+<ul class="login-box">
+<li><a href="/nlogin/findUsrId">아이디 찾기</a></li>
+<li><a href="/nlogin/findUsrPwd">비밀번호 찾기</a></li>
+<li><a href="/nlogin/usr?Mcode=10004">회원가입</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="keyword-group pc-only">
+<!-- <section class="keyword-group"> -->
+<div class="inner">
+<h2 class="sr-only">검색 &amp; 추천검색어</h2>
+<div class="keyword-cont clearfix">
+<div class="keyword-search">
+<div class="form">
+<form id="headerSearchForm" method="get" name="headerSearchForm">
+<input id="policyType" name="policyType" type="hidden" value=""/>
+<input name="Mcode" type="hidden" value="11191"/>
+<fieldset>
+<legend>검색</legend>
+<!-- search -->
+<div class="search">
+<input autocomplete="off" id="srhQuery" name="srhQuery" placeholder="검색어를 입력해주세요." title="검색어" type="text"/>
+<button class="btn-text-search" onclick="moreViewSearch('N'); return false;" type="submit">
+<span class="sr-only-text">검색</span>
+</button>
+</div>
+<!-- //search -->
+</fieldset>
+</form>
+<!-- keyword-layer -->
+<div class="keyword-layer">
+<div class="keyword-layer-inner">
+<div class="direct-service">
+<p>서비스 바로가기</p>
+<ul id="ark_apply">
+<!--											<li><a href="/"><mark class="marker-text">주민</mark>등록등복(초본)교부</a></li> -->
+</ul>
+</div>
+<ul class="keyword-auto" id="ark_main">
+<!-- 										<li><a href="/"><mark class="marker-text">주민</mark>등록등본</a></li> -->
+</ul>
+</div>
+</div>
+<!-- //keyword-layer -->
+</div>
+</div>
+<div class="keyword-recom">
+<p class="title">추천검색어</p>
+<div class="keyword-roll swiper-container swiper-container-vertical">
+<ul class="sl-wrapper keyword-list swiper-wrapper" id="popword" style="transform: translate3d(0px, -56px, 0px); transition-duration: 0ms;"><li class="item swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="4" style="height: 56px;"><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('코로나'); moreViewSearch('N');"><strong>5</strong>코로나</a></li><li class="item swiper-slide swiper-slide-active" data-swiper-slide-index="0" style="height: 56px;"><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('주민등록등본'); moreViewSearch('N');"><strong>1</strong>주민등록등본</a></li><li class="item swiper-slide swiper-slide-next" data-swiper-slide-index="1" style="height: 56px;"><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('전입신고'); moreViewSearch('N');"><strong>2</strong>전입신고</a></li><li class="item swiper-slide" data-swiper-slide-index="2" style="height: 56px;"><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('졸업증명서'); moreViewSearch('N');"><strong>3</strong>졸업증명서</a></li><li class="item swiper-slide" data-swiper-slide-index="3" style="height: 56px;"><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('주민등록초본'); moreViewSearch('N');"><strong>4</strong>주민등록초본</a></li><li class="item swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="4" style="height: 56px;"><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('코로나'); moreViewSearch('N');"><strong>5</strong>코로나</a></li><li class="item swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" style="height: 56px;"><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('주민등록등본'); moreViewSearch('N');"><strong>1</strong>주민등록등본</a></li></ul>
+</div>
+<div class="keyword-roll-ctr">
+<button class="expand-roll sr-only-text" type="button">추천검색어 열기</button>
+<button class="shrink-roll sr-only-text disabled" type="button">추천검색어 닫기</button>
+</div>
+<div class="keyword-roll-cont">
+<ul id="popword2"><li><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('주민등록등본'); moreViewSearch('N');"><strong>1</strong>주민등록등본</a></li><li><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('전입신고'); moreViewSearch('N');"><strong>2</strong>전입신고</a></li><li><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('졸업증명서'); moreViewSearch('N');"><strong>3</strong>졸업증명서</a></li><li><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('주민등록초본'); moreViewSearch('N');"><strong>4</strong>주민등록초본</a></li><li><a href="javascript:;" onclick="javascript:$('#headerSearchForm input[name=srhQuery]').val('코로나'); moreViewSearch('N');"><strong>5</strong>코로나</a></li></ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="frequent-service-group">
+<div class="inner">
+<div class="title-txt">
+<h2 class="tit">자주 찾는 <br class="pc-state"/>서비스</h2>
+<p>전자증명서는 <br class="pc-state"/>모바일 앱 전용 <br class="pc-state"/>서비스입니다.</p>
+<a class="allsvc-btn" href="/search/applyMw?Mcode=11166" title="서비스 신청 목록 페이지로 이동">
+<span class="text">전체 서비스
+								<i class="more"></i>
+</span>
+</a>
+<!-- 20210304 일괄 신청 삭제 -->
+<!-- <div class="mark-box">
+							<div class="tooltip-wrap">
+								<button type="button" class="tooltip-tit" onclick="toolBoxOpen('toolBox03'); return false;">일괄 신청이란?</button>
+								<div class="tooltip-box" id="toolBox03">
+									<span>일괄 신청이란?</span>
+									<p>자주 이용하는 서비스 중 유사분야<br> 민원서비스(제증명)를 하나의 화면에서<br> 용도에 따라 필요대로 선택하고<br> 동시 신청할 수 있는 서비스로<br>최소 정보 입력만으로 빠르고 간편하게<br> 이용할 수 있습니다.
+									</p>
+									<button type="button" id="tooltip-btn" class="tooltip-btn btn-close" onclick="toolBoxClose('toolBox03'); return false;"><i class="ico close"><em class="blind">닫기</em></i></button>
+								</div>
+							</div>
+						</div> -->
+</div>
+<div class="frequent-service">
+<div class="box-title-wrap"><h3 class="" style="display: block;">자주 찾는 서비스</h3><a class="button-more" href="/portal/frqfindsvc" title="자주찾는 서비스 목록 페이지로 이동">
+<span class="sr-only-text">더보기</span>
+</a></div><div class="swiper-console mo">
+<div class="swiper-number">
+<span class="swiper-current-number1">1</span> / <span class="swiper-total-number1">6</span>
+</div>
+</div><div class="swiper-console pc">
+<div class="swiper-number">
+<span class="swiper-current-number">1</span> / <span class="swiper-total-number">3</span>
+</div>
+</div>
+<a class="allsvc-btn" href="/search/applyMw?Mcode=11166" title="서비스 신청 목록 페이지로 이동">
+<img alt="전체 서비스 바로가기" src="/renewMain/img/btn_more02_mo01.png"/>
+</a>
+<p class="service-desc"><span class="color-type01">자주 찾는 서비스</span>를 안내합니다.</p>
+<div class="frequent-service-slide pc swiper-container swiper-container-horizontal frq-slide">
+<ul class="sl-wrapper frequent-service-list frq-slide-list swiper-wrapper">
+<li class="item swiper-slide swiper-slide-active" style="width: 821px;">
+<div class="item-row">
+<a href="/mw/AA020InfoCappView.do?CappBizCD=13100000015&amp;HighCtgCD=A01010001&amp;tp_seq=01&amp;Mcode=10200">
+<!-- <a href="#" id="juminMain" onclick="certPopup(); return false;"> -->
+<i class="item-icon-type01"><span class="auth-tag sr-only-text">전자증명서</span></i><!-- <span class="certi-tag sr-only-text">간편인증</span></i> -->
+											주민등록등본<br/>(초본)
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=15000000098&amp;HighCtgCD=A02004002&amp;tp_seq=01&amp;Mcode=10205">
+<i class="item-icon-type03"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											건축물대장
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=13100000026&amp;HighCtgCD=A02001001&amp;tp_seq=01&amp;Mcode=10207">
+<i class="item-icon-type02"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											토지(임야)<br/>대장
+										</a>
+<a href="/portal/service/serviceInfo/179038700001">
+<i class="item-icon-type37"><span class="auth-tag sr-only-text">전자증명서</span></i>
+												
+																						
+											격리통지서
+										</a>
+<a href="/portal/service/serviceInfo/179038700002">
+<i class="item-icon-type38"><span class="auth-tag sr-only-text">전자증명서</span></i>
+												
+																						
+											격리 해제<br/>사실 확인서
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A05004&amp;CappBizCD=14600000398&amp;tp_seq=99">
+<i class="item-icon-type17"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											코로나19<br/>예방접종 증명
+										</a>
+</div>
+<div class="item-row">
+<a href="/mw/AA020InfoCappView.do?CappBizCD=13100000027&amp;HighCtgCD=-&amp;FAX_TYPE=B&amp;tp_seq=01&amp;Mcode=10208">
+<i class="item-icon-type09"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											지적도<br/>(임야도)
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09005&amp;CappBizCD=15000000013&amp;tp_seq=01">
+<i class="item-icon-type13"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											토지이용<br/>계획확인
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=13100000056&amp;HighCtgCD=A03019002&amp;FAX_TYPE=y&amp;img=02&amp;tp_seq=01&amp;Mcode=10209/">
+<i class="item-icon-type07"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											지방세<br/>납세증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09002&amp;CappBizCD=13100000084&amp;tp_seq=01">
+<i class="item-icon-type14"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											지방세 세목별<br/>과세증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09002&amp;CappBizCD=12100000011&amp;tp_seq=01">
+<i class="item-icon-type27"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											납세증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=12100000021&amp;HighCtgCD=A-09002&amp;FAX_TYPE=N&amp;img=02&amp;tp_seq=01&amp;Mcode=10211">
+<i class="item-icon-type04"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											소득금액<br/>증명
+										</a>
+</div>
+</li>
+<li class="item swiper-slide swiper-slide-next" style="width: 821px;">
+<div class="item-row">
+<a href="/portal/service/serviceInfo/PTR000050333">
+<i class="item-icon-type19"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											건강보험<br/>자격득실확인
+										</a>
+<a href="javascript:goUrlNew('SG4CADM2017', 'A06001', '01');">
+<i class="item-icon-type20"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											건강보험료<br/>납부확인
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=12700000024&amp;HighCtgCD=A10023009&amp;FAX_TYPE=y&amp;img=02&amp;tp_seq=01&amp;Mcode=10203">
+<i class="item-icon-type10"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											출입국<br/>사실증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A01002&amp;CappBizCD=13000000016&amp;tp_seq=02">
+<i class="item-icon-type15"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											병적증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=15000000334&amp;HighCtgCD=A03007&amp;tp_seq=02&amp;Mcode=10204">
+<i class="item-icon-type08"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											자동차<br/>등록원부
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A08004&amp;CappBizCD=13200000049&amp;tp_seq=01">
+<i class="item-icon-type16"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											운전경력<br/>증명
+										</a>
+</div>
+<div class="item-row">
+<a href="/portal/service/serviceInfo/132000000035?Mcode=11268">
+<i class="item-icon-type06"></i>
+											운전면허<br/>정보
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09002&amp;CappBizCD=12100000331&amp;tp_seq=01">
+<i class="item-icon-type28"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											부가가치세<br/>과세표준증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09002&amp;CappBizCD=12100000016&amp;tp_seq=01">
+<i class="item-icon-type29"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											사업자등록<br/>증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09006&amp;CappBizCD=11300000006&amp;tp_seq=01">
+<i class="item-icon-type18"></i>
+											통신판매업<br/>신고
+                                        </a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A05007&amp;CappBizCD=10601000016&amp;tp_seq=01">
+<i class="item-icon-type30"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											보육교직원<br/>경력(재직)증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A04001&amp;CappBizCD=13410000020&amp;tp_seq=01">
+<i class="item-icon-type31"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											초중등학교<br/>졸업(예정)증명
+										</a>
+</div>
+</li>
+<li class="item swiper-slide" style="width: 821px;">
+<div class="item-row">
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09008&amp;CappBizCD=13800000014&amp;tp_seq=03">
+<i class="item-icon-type32"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											농지원부
+										</a>
+<a href="/portal/service/serviceInfo/PTR000050235?Mcode=11267">
+<i class="item-icon-type05"></i>
+											국민연금<br/>가입내역
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A03005&amp;CappBizCD=SG4CADM3002&amp;tp_seq=01">
+<i class="item-icon-type25"></i>
+											토지 제증명<br/>일괄 신청
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A04002&amp;CappBizCD=SG4CADM3001&amp;tp_seq=01">
+<i class="item-icon-type11"></i>
+											대학 제증명<br/>일괄 신청 
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A05007&amp;CappBizCD=SG4CADM3003&amp;tp_seq=01">
+<i class="item-icon-type26"></i>
+											국세 제증명<br/>일괄 신청 
+										</a>
+<a href="/portal/service/serviceInfo/174100000017">
+<i class="item-icon-type33"></i>
+											요금감면<br/>일괄신청
+                                        </a>
+</div>
+</li>
+<div class="item-row">
+<a href="/portal/service/serviceInfo/PTR000050443">
+<i class="item-icon-type34"></i>
+											지방세<br/>환급계좌
+										</a>
+</div>
+</ul>
+<!-- 자주찾는 서비스 재선정 및 위치 변경 -->
+<button class="swiper-button-prev sr-only-text frqfindsvc_swiper swiper-button-disabled" type="button">이전 슬라이드</button>
+<button class="swiper-button-next sr-only-text frqfindsvc_swiper" type="button">다음 슬라이드</button>
+</div>
+<div class="frequent-service-slide mo frq-slide1 swiper-container swiper-container-horizontal">
+<ul class="sl-wrapper frequent-service-list swiper-wrapper" style="height: auto; transition-duration: 0ms;">
+<li class="item swiper-slide1 swiper-slide swiper-slide-active">
+<div class="item-row">
+<a href="/mw/AA020InfoCappView.do?CappBizCD=13100000015&amp;HighCtgCD=A01010001&amp;tp_seq=01&amp;Mcode=10200" role="button">
+<i class="item-icon-type01"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											주민등록등본<br/>(초본)
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=15000000098&amp;HighCtgCD=A02004002&amp;tp_seq=01&amp;Mcode=10205">
+<i class="item-icon-type03"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											건축물대장
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=13100000026&amp;HighCtgCD=A02001001&amp;tp_seq=01&amp;Mcode=10207">
+<i class="item-icon-type02"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											토지(임야)<br/>대장
+										</a>
+<a href="/portal/service/serviceInfo/179038700001">
+<i class="item-icon-type37"><span class="auth-tag sr-only-text">전자증명서</span></i><!--class new 추가시 새로운 스타일 적용-->
+												
+											
+											격리통지서
+										</a>
+<a href="/portal/service/serviceInfo/179038700002">
+<i class="item-icon-type38"><span class="auth-tag sr-only-text">전자증명서</span></i>
+												
+											
+											격리 해제<br/>사실 확인서
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A05004&amp;CappBizCD=14600000398&amp;tp_seq=99">
+<i class="item-icon-type17"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											코로나19<br/>예방접종 증명
+										</a>
+</div>
+</li>
+<li class="item swiper-slide1 swiper-slide swiper-slide-next">
+<div class="item-row">
+<a href="/mw/AA020InfoCappView.do?CappBizCD=13100000027&amp;HighCtgCD=-&amp;FAX_TYPE=B&amp;tp_seq=01&amp;Mcode=10208">
+<i class="item-icon-type09"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											지적도<br/>(임야도)
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09005&amp;CappBizCD=15000000013&amp;tp_seq=01">
+<i class="item-icon-type13"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											토지이용<br/>계획확인
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=13100000056&amp;HighCtgCD=A03019002&amp;FAX_TYPE=y&amp;img=02&amp;tp_seq=01&amp;Mcode=10209/">
+<i class="item-icon-type07"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											지방세<br/>납세증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09002&amp;CappBizCD=13100000084&amp;tp_seq=01">
+<i class="item-icon-type14"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											지방세 세목별<br/>과세증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09002&amp;CappBizCD=12100000011&amp;tp_seq=01">
+<i class="item-icon-type27"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											납세증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=12100000021&amp;HighCtgCD=A-09002&amp;FAX_TYPE=N&amp;img=02&amp;tp_seq=01&amp;Mcode=10211">
+<i class="item-icon-type04"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											소득금액<br/>증명
+										</a>
+</div>
+</li>
+<li class="item swiper-slide1 swiper-slide">
+<div class="item-row">
+<a href="/portal/service/serviceInfo/PTR000050333">
+<i class="item-icon-type19"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											건강보험<br/>자격득실확인
+										</a>
+<a href="javascript:goUrlNew('SG4CADM2017', 'A06001', '01');">
+<i class="item-icon-type20"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											건강보험료<br/>납부확인
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=12700000024&amp;HighCtgCD=A10023009&amp;FAX_TYPE=y&amp;img=02&amp;tp_seq=01&amp;Mcode=10203">
+<i class="item-icon-type10"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											출입국<br/>사실증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A01002&amp;CappBizCD=13000000016&amp;tp_seq=02">
+<i class="item-icon-type15"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											병적증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?CappBizCD=15000000334&amp;HighCtgCD=A03007&amp;tp_seq=02&amp;Mcode=10204">
+<i class="item-icon-type08"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											자동차<br/>등록원부
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A08004&amp;CappBizCD=13200000049&amp;tp_seq=01">
+<i class="item-icon-type16"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											운전경력<br/>증명
+										</a>
+</div>
+</li>
+<li class="item swiper-slide1 swiper-slide">
+<div class="item-row">
+<a href="/portal/service/serviceInfo/132000000035?Mcode=11268">
+<i class="item-icon-type06"></i>
+											운전면허<br/>정보
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09002&amp;CappBizCD=12100000331&amp;tp_seq=01">
+<i class="item-icon-type28"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											부가가치세<br/>과세표준증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09002&amp;CappBizCD=12100000016&amp;tp_seq=01">
+<i class="item-icon-type29"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											사업자등록<br/>증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09006&amp;CappBizCD=11300000006&amp;tp_seq=01">
+<i class="item-icon-type18"></i>
+                                            	통신판매업<br/>신고
+                                        </a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A05007&amp;CappBizCD=10601000016&amp;tp_seq=01">
+<i class="item-icon-type30"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											보육교직원<br/>경력(재직)증명
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A04001&amp;CappBizCD=13410000020&amp;tp_seq=01">
+<i class="item-icon-type31"><span class="auth-tag sr-only-text">전자증명서</span></i>
+											초중등학교<br/>졸업(예정)증명
+										</a>
+</div>
+</li>
+<li class="item swiper-slide1 swiper-slide">
+<div class="item-row">
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A09008&amp;CappBizCD=13800000014&amp;tp_seq=03">
+<i class="item-icon-type32"><span class="auth-tag sr-only-text">전자증명서</span></i>
+                                            	농지원부
+                                        </a>
+<a href="/portal/service/serviceInfo/PTR000050235?Mcode=11267">
+<i class="item-icon-type05"></i>
+											국민연금<br/>가입내역
+										</a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A03005&amp;CappBizCD=SG4CADM3002&amp;tp_seq=01">
+<i class="item-icon-type25"></i>
+                                            	토지 제증명<br/>일괄 신청
+                                        </a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=&amp;CappBizCD=SG4CADM3001&amp;tp_seq=01">
+<i class="item-icon-type11"></i>
+                                           		대학 제증명<br/>일괄 신청 
+                                        </a>
+<a href="/mw/AA020InfoCappView.do?HighCtgCD=A05007&amp;CappBizCD=SG4CADM3003&amp;tp_seq=01">
+<i class="item-icon-type35"></i>
+                                         		국세 제증명<br/>일괄 신청 
+                                        </a>
+<a href="/portal/service/serviceInfo/174100000017">
+<i class="item-icon-type33"></i>
+											요금감면<br/>일괄신청
+                                        </a>
+</div>
+</li>
+<li class="item swiper-slide1 swiper-slide">
+<div class="item-row">
+<a href="/portal/service/serviceInfo/PTR000050443">
+<i class="item-icon-type34"></i>
+											지방세<br/>환급계좌
+										</a>
+</div>
+</li>
+</ul>
+<button class="swiper-button-prev sr-only-text frqfindsvc_swiper" type="button">이전 슬라이드</button>
+<button class="swiper-button-next sr-only-text frqfindsvc_swiper" type="button">다음 슬라이드</button>
+</div>
+<a class="btn-plus-type" href="/portal/frqfindsvc" title="자주찾는 서비스 목록 페이지로 이동">
+<img alt="더보기" src="/renewMain/img/btn_more_mo01.png"/>
+</a>
+</div><div class="customer-center">
+<div class="notice-board">
+<div class="box-title-wrap"><h3>공지사항</h3><a class="button-more" href="/portal/ntcItm?Mcode=11226" role="button"><span class="sr-only-text">공지사항 전체보기</span></a></div>
+<ul class="notice-list">
+<li><a class="ellipsis" href="/portal/ntcItm/88085?Mcode=11226">[경찰청] 운전면허경력증명 등 민원신청서비스 일시 중단 안내</a></li>
+<li><a class="ellipsis" href="/portal/ntcItm/85484?Mcode=11226">중등학교(중, 고등학교) 성적증명서 발급 일시중단 안내</a></li>
+<li><a class="ellipsis" href="/portal/ntcItm/88065?Mcode=11226">[경상북도 영주시] 영주2동 무인민원발급기 사용 일시중단 안내</a></li>
+</ul>
+</div>
+<ul class="etc-list">
+<li class="item-type01 my-data"><a href="/portal/mydata/myDataIntroduction?Mcode=11258">내가 관리하는 마이데이터</a></li>
+<li class="item-type03"><a href="/portal/mapGis" onclick="mcodeCall_v1('13100');" target="_blank" title="새창열림">돌봄시설 등 위치 찾기</a></li>
+<li class="item-type02">
+<a class="pc-state" href="#none" onclick="fnHdElecAgreeAjax('dpaper');return false;" target="_blank" title="새창열림"><span>전자증명서</span>전자문서지갑</a>
+<a class="mo-state" href="#none" onclick="fnHdElecAgreeAjax('main');return false;">전자문서지갑</a>
+</li>
+<li class="item-type04-nologin"><a href="#" onclick="fn_ipsLogin_ips(); return false;">국민비서 구삐</a></li>
+</ul>
+</div>
+</div>
+</section>
+<!-- match-service-group-modify(modify-v2022) -->
+<section class="match-service-group-modify">
+<div class="inner">
+<div class="match-onestop">
+<div class="box-title-wrap"><h3>원스톱 서비스</h3><a class="button-more" href="/portal/fertility.do?Mcode=11169">
+<span class="sr-only-text">원스톱 서비스 더보기</span>
+</a></div>
+<div class="swiper match-onestop-slide swiper-container-horizontal">
+<ul class="swiper-wrapper">
+<li class="swiper-slide swiper-slide-active" style="width: 93px; margin-right: 30px;"><a href="/portal/fertility.do"><i class="ico-type01"></i>맘편한 임신</a></li>
+<li class="swiper-slide swiper-slide-next" style="width: 93px; margin-right: 30px;"><a href="/portal/onestopSvc/happyBirth"><i class="ico-type02"></i>행복출산</a></li>
+<li class="swiper-slide" style="width: 93px; margin-right: 30px;"><a href="/portal/onestopSvc"><i class="ico-type03"></i>온종일 돌봄</a></li>
+<li class="swiper-slide" style="width: 93px; margin-right: 30px;"><a href="/portal/dreamYngbgsSvcGuidance.do"><i class="ico-type04"></i>꿈청소년</a></li>
+<li class="swiper-slide" style="width: 93px; margin-right: 30px;"><a href="/portal/onestopSvc/transferReport"><i class="ico-type05"></i>전입신고+</a></li>
+<li class="swiper-slide" style="width: 93px; margin-right: 30px;"><a href="/portal/onestopSvc/safeInheritance"><i class="ico-type06"></i>안심상속</a></li>
+<!-- 								<li class="swiper-slide pc-only"><a href="/portal/onestopsvc/multiculturalFamilies.do"><i class="ico-type07"></i>다문화가족<br>지원</a></li>
+								<li class="swiper-slide pc-only"><a href="/portal/onestopsvc/agedLifeSupport.do"><i class="ico-type08"></i>노후생활<br>지원</a></li>
+								<li class="swiper-slide pc-only"><a href="/portal/onestopsvc/disabledPersonSupport.do"><i class="ico-type09"></i>장애인</a></li> -->
+<li class="swiper-slide pc-only" style="width: 93px; margin-right: 30px;"><a href="/portal/onestopsvc/employmentDoc.do"><i class="ico-type10"></i>취업서류</a></li>
+</ul>
+</div>
+<button class="swiper-button-prev sr-only-text swiper-button-disabled" type="button">이전 슬라이드</button>
+<button class="swiper-button-next sr-only-text" type="button">다음 슬라이드</button>
+<ul class="link">
+<li><a href="https://www.workplus.go.kr/index.do" target="_blank">고용노동부 고용복지플러스</a></li>
+<li><a href="https://www.smes.go.kr/lifeCyclePolicy" target="_blank">중소벤처24 기업생애주기서비스</a></li>
+</ul>
+</div>
+<div class="match-subsidy type-1">
+<div class="box-title-wrap"><h3>보조금24</h3><a class="button-more" href="/portal/rcvfvrSvc/main">
+<span class="sr-only-text">보조금 24 더보기</span>
+</a></div>
+<div class="txt">
+<p><strong>내게 맞는 정부혜택은 <span>보조금24</span>에서 <br class="pc-only"/><span>쉽고 편리하게</span></strong></p>
+<p>내가 받을 수 있는 정부혜택을 쉽게 확인하고 <br class="pc-only"/>신청할 수 있는 맞춤형 서비스입니다.</p>
+</div>
+</div>
+<div class="pc-only mq-observer"></div>
+<div class="pd-only mq-observer"></div>
+<div class="mo-only mq-observer"></div>
+</div>
+</section>
+<!-- //match-service-group-modify(modify-v2022) -->
+<section class="news-group">
+<div class="inner">
+<div class="title-txt">
+<h2 class="tit">정책정보·<br class="pc-state"/>지자체 소식</h2>
+<p>정부·지자체의 <br class="pc-state"/>다양한 정보와 <br class="pc-state"/>소식을 확인하세요.</p>
+</div>
+<div class="news-type01">
+<div class="news-tab01">
+<ul class="tab-menu" role="tablist">
+<li class="active">
+<a aria-selected="true" class="titlejob2" data-tg="news01" href="/" id="정책뉴스" onclick="setTitle2(this.id);" role="tab" title="정책뉴스 선택됨">정책뉴스</a>
+<div aria-hidden="false" class="tab-cont" data-tg="news01" role="tabpanel" style="display: block;">
+<h3 class="sr-only">정책뉴스</h3>
+<div class="news-article left">
+<a href="/portal/gvrnPolicy/view/H2208000000918549?policyType=G00301&amp;Mcode=11218">
+<strong class="news-box text-type">
+<span>대전환기 혁신적 정신건강 연구개발사업 공청회 개최</span>
+</strong>
+<em class="news-info ellipsis">
+<span>보건복지부</span>
+<span>2022.08.11</span>
+</em>
+</a>
+</div>
+<div class="news-article right">
+<a href="/portal/gvrnPolicy/view/H2208000000918569?policyType=G00301&amp;Mcode=11218">
+<strong class="news-box text-type">
+<span>(참고자료) 산업부, 美 전기차 보조금 법안에 대한 대응 방안 논의</span>
+</strong>
+<em class="news-info ellipsis">
+<span>산업통상자원부</span>
+<span>2022.08.11</span>
+</em>
+</a>
+</div>
+<div class="news-article left">
+<a href="/portal/gvrnPolicy/view/H2208000000918544?policyType=G00301&amp;Mcode=11218">
+<strong class="news-box text-type">
+<span>윤 대통령 “국민이 피부로 느낄 수 있게 명절 장바구니 물가 잡아야”</span>
+</strong>
+<em class="news-info ellipsis">
+<span>정책브리핑 이병하</span>
+<span>2022.08.11</span>
+</em>
+</a>
+</div>
+<a class="button-more" href="/portal/gvrnPolicy?srchOrder=&amp;pageIndex=1&amp;policyType=G00301&amp;blgCd=&amp;slgCd=&amp;srchBlgCd=&amp;srchSlgCd=&amp;srchOriginOrg=&amp;publishOrgNm=&amp;srchStDtFmt=&amp;srchEdDtFmt=&amp;srchTxt=&amp;srchTxt2=&amp;Mcode=11143" role="button"><span class="sr-only-text">정책뉴스 전체보기</span></a>
+</div>
+</li>
+<li>
+<a aria-selected="false" class="titlejob2" data-tg="news02" href="/" id="연구보고서" onclick="setTitle2(this.id);" role="tab">연구보고서</a>
+<div aria-hidden="true" class="tab-cont" data-tg="news02" role="tabpanel" style="display: none;">
+<h3 class="sr-only">연구보고서</h3>
+<div class="news-article left">
+<a href="/portal/gvrnReport/view/H2208000000918516?policyType=G00302&amp;Mcode=11219">
+<strong class="news-box text-type">
+<span>외국소재 초중고 학력인정학교(학적서류 간소화 학교)목록 안내(2022.8.11.기준)</span>
+</strong>
+<em class="news-info ellipsis">
+<span>교육부</span>
+<span>2022.08.11</span>
+</em>
+</a>
+</div>
+<div class="news-article right">
+<a href="/portal/gvrnReport/view/H2208000000918323?policyType=G00302&amp;Mcode=11219">
+<strong class="news-box text-type">
+<span>유럽연합, 신소재식품으로서 갈락토올리고당의 사용 조건 개정 고시</span>
+</strong>
+<em class="news-info ellipsis">
+<span>식품안전정보원</span>
+<span>2022.08.10</span>
+</em>
+</a>
+</div>
+<div class="news-article left">
+<a href="/portal/gvrnReport/view/H2208000000918324?policyType=G00302&amp;Mcode=11219">
+<strong class="news-box text-type">
+<span>대만 식약서, 'Eucalyptus globulus 및 그 추출물의 사용제한' 제정 초안 예고</span>
+</strong>
+<em class="news-info ellipsis">
+<span>식품안전정보원</span>
+<span>2022.08.10</span>
+</em>
+</a>
+</div>
+<a class="button-more" href="/portal/gvrnPolicy?srchOrder=&amp;pageIndex=1&amp;policyType=G00302&amp;blgCd=&amp;slgCd=&amp;srchBlgCd=&amp;srchSlgCd=&amp;srchOriginOrg=&amp;publishOrgNm=&amp;srchStDtFmt=&amp;srchEdDtFmt=&amp;srchTxt=&amp;srchTxt2=Mcode=11147" role="button"><span class="sr-only-text">연구보고서 전체보기</span></a>
+</div>
+</li>
+<li>
+<a aria-selected="false" class="titlejob2" data-tg="news03" href="/" id="간행물" onclick="setTitle2(this.id);" role="tab">간행물</a>
+<div aria-hidden="true" class="tab-cont" data-tg="news03" role="tabpanel" style="display: none;">
+<h3 class="sr-only">간행물</h3>
+<div class="news-article left">
+<a href="/portal/gvrnPublish/view/H2208000000918735?policyType=G00303&amp;Mcode=11220">
+<strong class="news-box text-type">
+<span>2021 노인학대 현황보고서</span>
+</strong>
+<em class="news-info ellipsis">
+<span>보건복지부</span>
+<span>2022.08.11</span>
+</em>
+</a>
+</div>
+<div class="news-article right">
+<a href="/portal/gvrnPublish/view/H2208000000918555?policyType=G00303&amp;Mcode=11220">
+<strong class="news-box text-type">
+<span>편제장비보강사업 설명회</span>
+</strong>
+<em class="news-info ellipsis">
+<span>방위사업청</span>
+<span>2022.08.11</span>
+</em>
+</a>
+</div>
+<div class="news-article left">
+<a href="/portal/gvrnPublish/view/H2208000000918427?policyType=G00303&amp;Mcode=11220">
+<strong class="news-box text-type">
+<span>신속연구개발사업 협약 최초 계결</span>
+</strong>
+<em class="news-info ellipsis">
+<span>방위사업청</span>
+<span>2022.08.11</span>
+</em>
+</a>
+</div>
+<a class="button-more" href="/portal/gvrnPolicy?srchOrder=&amp;pageIndex=1&amp;policyType=G00303&amp;blgCd=&amp;slgCd=&amp;srchBlgCd=&amp;srchSlgCd=&amp;srchOriginOrg=&amp;publishOrgNm=&amp;srchStDtFmt=&amp;srchEdDtFmt=&amp;srchTxt=&amp;srchTxt2=&amp;Mcode=11145" role="button"><span class="sr-only-text">간행물 전체보기</span></a>
+</div>
+</li>
+<li>
+<a aria-selected="false" class="titlejob2" data-tg="news04" href="/" id="정책자료" onclick="setTitle2(this.id);" role="tab">정책자료</a>
+<div aria-hidden="true" class="tab-cont" data-tg="news04" role="tabpanel" style="display: none;">
+<h3 class="sr-only">정책자료</h3>
+<div class="news-article left">
+<a href="/portal/gvrnReport/view/H2003000000494403?policyType=G00304&amp;Mcode=11221">
+<strong class="news-box text-type">
+<span>(2022년 7월 기준) 문화체육관광부 소관 행정위원회 설치 현황 및 활동내역서</span>
+</strong>
+<em class="news-info ellipsis">
+<span>문화체육관광부</span>
+<span>2022.08.11</span>
+</em>
+</a>
+</div>
+<div class="news-article right">
+<a href="/portal/gvrnReport/view/H2208000000918378?policyType=G00304&amp;Mcode=11221">
+<strong class="news-box text-type">
+<span>일일 금융시장 동향[8.10일]</span>
+</strong>
+<em class="news-info ellipsis">
+<span>금융감독원</span>
+<span>2022.08.10</span>
+</em>
+</a>
+</div>
+<div class="news-article left">
+<a href="/portal/gvrnReport/view/H2003000000494402?policyType=G00304&amp;Mcode=11221">
+<strong class="news-box text-type">
+<span>2020 스포츠산업백서</span>
+</strong>
+<em class="news-info ellipsis">
+<span>문화체육관광부</span>
+<span>2022.08.10</span>
+</em>
+</a>
+</div>
+<a class="button-more" href="/portal/gvrnPolicy?srchOrder=&amp;pageIndex=1&amp;policyType=G00304&amp;blgCd=&amp;slgCd=&amp;srchBlgCd=&amp;srchSlgCd=&amp;srchOriginOrg=&amp;&amp;searchField=3&amp;srchTxt=&amp;srchTxt2=&amp;Mcode=11159" role="button"><span class="sr-only-text">정책자료 전체보기</span></a>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="news-type02">
+<div class="news-tab02">
+<ul class="tab-menu" role="tablist">
+<li class="active">
+<a aria-selected="true" class="titlejob3" data-tg="news05" href="/" id="이달의영상뉴스" onclick="setTitle3(this.id);" role="tab">이 달의 영상뉴스</a>
+<div aria-hidden="false" class="tab-cont" data-tg="news05" role="tabpanel" style="display: block;">
+<h3 class="sr-only">이 달의 영상뉴스</h3>
+<div class="event-slide swiper-container swiper-container-horizontal">
+<ul class="event-slide-list sl-wrapper swiper-wrapper">
+<li class="item swiper-slide swiper-slide-active" style="width: 348px;">
+<a href="https://www.youtube.com/playlist?list=PLdOSK2KNoKSD9WEOUcd4kdTILtoNbEwyT" target="_blank" title="새창열림">
+<img alt="주민등록증 모바일 확인서비스-드디어 주민등록증이 내 스마트폰에!" src="/renewMain/img/img_news_202207.png"/>
+<strong>[2022년] 7월의 영상뉴스</strong>
+</a>
+</li>
+<li class="item swiper-slide swiper-slide-next" style="width: 348px;">
+<a href="https://youtube.com/playlist?list=PLdOSK2KNoKSBluY1p3LslHDKGlvgucdEn" target="_blank" title="새창열림">
+<img alt="역대 최대 규모 소상공인 손실보전금" src="/renewMain/img/img_news_202206.png"/>
+<strong>[2022년] 6월의 영상뉴스</strong>
+</a>
+</li>
+<li class="item swiper-slide" style="width: 348px;">
+<a href="https://youtube.com/playlist?list=PLdOSK2KNoKSDwDRMTpfOZmxdWZGh5gxV1" target="_blank" title="새창열림">
+<img alt="사회적 거리두기 해제에 따른 개인 생활방역수칙 이렇게 달라집니다." src="/renewMain/img/img_news_202205.png"/>
+<strong>[2022년] 5월의 영상뉴스</strong>
+</a>
+</li>
+</ul>
+<button class="swiper-button-prev sr-only-text swiper-button-disabled" type="button">이전 슬라이드</button>
+<button class="swiper-button-next sr-only-text" type="button">다음 슬라이드</button>
+</div>
+</div>
+</li>
+<li>
+<a aria-selected="false" class="titlejob3" data-tg="news06" href="/" id="공모전" onclick="setTitle3(this.id);" role="tab" title="공모전 선택됨">공모전</a>
+<div aria-hidden="true" class="tab-cont" data-tg="news06" role="tabpanel" style="display: none;">
+<h3 class="sr-only">공모전</h3>
+<div class="contest-slide swiper-container swiper-container-horizontal">
+<ul class="contest-slide-list sl-wrapper swiper-wrapper">
+<li class="item swiper-slide swiper-slide-active" style="width: 348px;"><a href="/portal/cnstexhb/18488?Mcode=11225">
+<img alt="" onerror="this.src='/renewMain/img/img_no_contest.jpg'" src="/images/userUploads/int/2022/08/file389196695995151479571ad412108d94e76982f2a5b949047e8.jpg"/> <strong>2022년도 공공데이터 서비스...</strong>
+<span>2022.07.12
+																~ 2022.09.16</span>
+</a></li>
+<li class="item swiper-slide swiper-slide-next" style="width: 348px;"><a href="/portal/cnstexhb/18188?Mcode=11225">
+<img alt="" onerror="this.src='/renewMain/img/img_no_contest.jpg'" src="/images/userUploads/int/2022/07/file42177414704856922036d3248821e3a44209e9452e7c63950f0.jpg"/> <strong>&lt;생활환경 전자파 바로알기&gt; ...</strong>
+<span>2022.06.23
+																~ 2022.09.30</span>
+</a></li>
+</ul>
+<button class="swiper-button-prev sr-only-text swiper-button-disabled" type="button">이전 슬라이드</button>
+<button class="swiper-button-next sr-only-text" type="button">다음 슬라이드</button>
+</div>
+<a class="button-more" href="/portal/cnstexhb?Mcode=11225" role="button"><span class="sr-only-text">공모전 전체보기</span></a>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="news-type03">
+<h3 class="sr-only">홍보배너</h3>
+<div class="pr-slide swiper-container swiper-container-horizontal">
+<ul class="pr-slide-list swiper-wrapper">
+<li class="item swiper-slide swiper-slide-active" style="width: 267px;">
+<a href="https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_17" target="_blank">
+<img alt="대학생을위한정부장학금지원_대학생또는학부모라면신청_국가장학금알리미" class="pc-img" src="/images/userUploads/int/2022/07/scholar_alert_PC.jpg"/> <!-- pc 이미지 -->
+<img alt="대학생을위한정부장학금지원_대학생또는학부모라면신청_국가장학금알리미" class="mo-img" src="/images/userUploads/int/2022/07/scholar_alert_MO.jpg"/> <!-- mobile 이미지 -->
+</a>
+</li>
+</ul>
+<div class="swiper-console">
+<div class="swiper-number">
+<span class="swiper-current-number">1</span> / <span class="swiper-total-number">1</span>
+</div>
+<div class="swiper-pagination swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span></div>
+<button class="swiper-button-prev sr-only-text swiper-button-disabled disabled" type="button">이전 슬라이드</button>
+<div class="swiper-button-autoplay disabled">
+<button class="btn-start sr-only-text" onclick="autoplayFocus2();return false;" type="button">시작</button>
+<button class="btn-stop sr-only-text disabled" onclick="autoplayFocus2();return false;" type="button">정지</button>
+</div>
+<button class="swiper-button-next sr-only-text swiper-button-disabled disabled" type="button">다음 슬라이드</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="channel-group">
+<div class="inner">
+<div class="title-txt">
+<h2 class="tit">국민소통채널</h2>
+</div>
+<div class="channel-slide-wrap">
+<div class="channel-slide swiper-container swiper-container-horizontal">
+<ul class="sl-wrapper swiper-wrapper">
+<!-- 20210709 국민소통채널 리스트 변경 및 스크롤 개선 -->
+<li class="item swiper-slide swiper-slide-active" style="width: 200px; margin-right: 12px;"><a href="https://efamily.scourt.go.kr/index.jsp" onclick="mcodeCall_v1('40019');" target="_blank" title="새창열림"><img alt="대한민국 법원-전자가족관계등록시스템" src="/renewMain/img/img_channel20.png"/></a></li>
+<li class="item swiper-slide swiper-slide-next" style="width: 200px; margin-right: 12px;"><a href="https://open.gdoc.go.kr/index.do" onclick="mcodeCall_v1('40003');" target="_blank" title="새창열림"><img alt="문서24" src="/renewMain/img/img_channel3.jpg"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="https://www.gwanghwamoon1st.go.kr/" onclick="mcodeCall_v1('40001');" target="_blank" title="새창열림"><img alt="열린소통포럼" src="/renewMain/img/img_channel.jpg"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="https://www.easylaw.go.kr/CSP/Main.laf" onclick="mcodeCall_v1('40002');" target="_blank" title="새창열림"><img alt="찾기쉬운 생활법령정보" src="/renewMain/img/img_channel13.png"/></a>
+</li><li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="http://www.safe182.go.kr" onclick="mcodeCall_v1('40004');" target="_blank" title="새창열림"><img alt="안전 Dream 아동·여성·장애인 경찰지원센터" src="/renewMain/img/img_channel4.jpg"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="https://www.open.go.kr/" onclick="mcodeCall_v1('40006');" target="_blank" title="새창열림"><img alt="open.go.kr 정보공개" src="/renewMain/img/img_channel5.jpg"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="http://www.mpm.go.kr/proactivePublicService/" onclick="mcodeCall_v1('40005');" target="_blank" title="새창열림"><img alt="적극행정" src="/renewMain/img/img_channel12.png"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="https://www.epeople.go.kr/" onclick="mcodeCall_v1('40012');" target="_blank" title="새창열림"><img alt="국민신문고" src="/renewMain/img/img_channel2.jpg"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="https://www.safetyreport.go.kr/" onclick="mcodeCall_v1('40007');" target="_blank" title="새창열림"><img alt="안전신문고" src="/renewMain/img/img_channel6.jpg"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="http://kosis.kr/" onclick="mcodeCall_v1('40011');" target="_blank" title="새창열림"><img alt="KOSIS" src="/renewMain/img/img_channel10.jpg"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="https://www.eshare.go.kr/" onclick="mcodeCall_v1('40013');" target="_blank" title="새창열림"><img alt="공공개방자원 다 가치나눔터 공유누리" src="/renewMain/img/img_channel14.png"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="https://www.consumer.go.kr/" onclick="mcodeCall_v1('40014');" target="_blank" title="새창열림"><img alt="소비자24 24시간 열린 소비자포털" src="/renewMain/img/img_channel15.png"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="https://www.korea.kr/" onclick="mcodeCall_v1('40016');" target="_blank" title="새창열림"><img alt="대한민국 정책브리핑" src="/renewMain/img/img_channel17.png"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="https://www.bokjiro.go.kr/" onclick="mcodeCall_v1('40017');" target="_blank" title="새창열림"><img alt="복지ro" src="/renewMain/img/img_channel18.png"/></a></li>
+<li class="item swiper-slide" style="width: 200px; margin-right: 12px;"><a href="https://www.129.go.kr/" onclick="mcodeCall_v1('40018');" target="_blank" title="새창열림"><img alt="위험할 땐 119 힘겨울 땐 129" src="/renewMain/img/img_channel19.png"/></a></li>
+<!-- 20210709 국민소통채널 리스트 변경 및 스크롤 개선 -->
+</ul>
+</div>
+<button class="swiper-button-prev sr-only-text swiper-button-disabled" type="button">이전 슬라이드</button>
+<button class="swiper-button-next sr-only-text" type="button">다음 슬라이드</button>
+</div>
+</div>
+</section>
+<!--section class="customer-center mo-only">
+				<div class="notice-board">
+					<h3>공지사항</h3>
+					<ul class="notice-list">
+						
+							
+							
+						     	
+									
+						                     			<li><a href="/portal/ntcItm/88085?Mcode=11226" class="ellipsis">[경찰청] 운전면허경력증명 등 민원신청서비스 일시 중단 안내</a></li>
+								
+									
+						                     			<li><a href="/portal/ntcItm/85484?Mcode=11226" class="ellipsis">중등학교(중, 고등학교) 성적증명서 발급 일시중단 안내</a></li>
+								
+									
+						                     			<li><a href="/portal/ntcItm/88065?Mcode=11226" class="ellipsis">[경상북도 영주시] 영주2동 무인민원발급기 사용 일시중단 안내</a></li>
+								
+									
+						                     			<li><a href="/portal/ntcItm/88045?Mcode=11226" class="ellipsis">[어디서나대학민원] 군산간호대학교 민원발급 업무 일시중단 안내</a></li>
+								
+									
+						                     			<li><a href="/portal/ntcItm/87988?Mcode=11226" class="ellipsis">[서울특별시 강북구]강북문화예술회관 무인민원발급기 일시중단 안내</a></li>
+								
+							
+						
+					</ul>
+					<a href="/portal/ntcItm?Mcode=11226" class="button-more" role="button"><span class="sr-only-text">공지사항 전체보기</span></a>
+				</div>
+				<ul class="etc-list">
+					<li class="item-type01 my-data"><a href="/portal/mydata/myDataIntroduction?Mcode=11258">내가 관리하는 마이데이터</a></li>
+					
+					
+					<li class="item-type03"><a onclick="mcodeCall_v1('13100');" href="/portal/mapGis" target="_blank" title="새창열림">돌봄시설 등 위치 찾기</a></li>
+					<li class="item-type02">
+						<a href="#none" onclick="fnHdElecAgreeAjax('dpaper');return false;" class="pc-state" target="_blank" title="새창열림"><span>전자증명서</span>전자문서지갑</a>
+						<a href="#none" onclick="fnHdElecAgreeAjax('main');return false;" class="mo-state">전자문서지갑</a>
+					</li>
+				</ul>
+			</section-->
+</div>
+<!-- //renew-main -->
+</div>
+<!--// container -->
+<script language="javascript">
+/* GOV-2단계-2 START */
+function chatBotCall(loginYn,userId) {
+	
+	//alert(window.location.hostname);
+    var hName = window.location.hostname;    
+    var url = "http://10.47.68.52:8180/sgva/chat.do?";
+    
+    if(hName == "dev.gov.kr" || hName == "dev2.gov.kr") {
+        
+        url = "http://dev.gov.kr/sgva/chat.do?";
+    
+    } else if(hName == "test.gov.kr") {
+        
+        url = "http://test.gov.kr/sgva/chat.do?";
+        
+    } else {
+        
+        url = "http://www.gov.kr/sgva/chat.do?";
+    }
+    
+    if(userId == "") loginYn = "N";
+	
+	url += "loginYn=" + loginYn;
+	url += "&userId=" + userId;
+	url += "&deviceType=DV20000";
+	
+	var popupW = 520; 									// 팝업창 가로 길이
+	var popupH = 670; 									// 팝업창 세로 길이
+	var Horigental = Math.floor(screen.width/2); 		// 해상도 가로 길이의 반
+	var Vertical = Math.floor(screen.height/2); 		// 해상도 세로 길이의 반
+	var Hpoint = 0;
+	var Vpoint = 20;		
+	
+	var option = "fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=" + popupW + ",height=" + popupH + ",left=" + Hpoint + ",top=" + Vpoint;
+	
+<!-- 202004 상단메뉴영역변경작업(검색포함) -->
+
+    	
+		window.open(url + "&Mcode=11263", "chatbot", option); 	//newMain
+	
+	
+
+<!--// 202004 상단메뉴영역변경작업(검색포함) -->	
+}
+/* GOV-2단계-2 END */
+
+//개선의견수렴 메뉴 클릭 시, 로그인하지 않았거나 비회원일 경우 로그인 페이지로 이동
+function checkUserImp() {
+    var loginType = '';
+    var userImsi = "false";
+    
+    if(loginType == "generalLogin" || loginType == "multipleAuthLogin" || loginType == "certiLogin") {
+    	location.href ="/portal/mrfnOpinionClct/imprvm?Mcode=11190";
+    } else if(userImsi == "true"){
+    	if(confirm("개선의견수렴은 회원로그인을 해야 이용하실 수 있습니다.\n로그인 페이지로 이동하시겠습니까?")){
+           	location.href = "/nlogin?curr_url=/portal/mrfnOpinionClct/imprvm";
+    	}
+	} else{
+		if(confirm("개선의견수렴은 회원로그인을 해야 이용하실 수 있습니다.\n로그인 페이지로 이동하시겠습니까?")){
+			location.href = "/nlogin?curr_url=/portal/mrfnOpinionClct/imprvm";
+		}
+	}
+}
+
+</script>
+<!-- 202004 상단메뉴영역변경작업(검색포함) -->
+<footer class="footer-element">
+<div class="top-element">
+<div class="top-inner">
+<ul class="footer-menu">
+<li><a href="/portal/useStplat?Mcode=11229">이용약관</a></li>
+<li><a href="/portal/privacy?Mcode=11230"><strong>개인정보처리방침</strong></a></li>
+<li><a href="/portal/ntcItm?Mcode=11006">고객센터</a></li>
+<li><a href="#" onclick="checkUserImp(); return false;">개선의견수렴</a></li>
+<li><a href="/openapi?Mcode=11232" target="_blank" title="새창열림">open API</a></li>
+</ul>
+<ul class="footer-sns">
+<li class="blog"><a class="blog" href="http://blog.naver.com/korea_gov" role="button" target="_blank" title="정부24 네이버 블로그-새창"><span class="hd-element">블로그</span></a></li>
+<li class="tw"><a class="twitter" href="https://twitter.com/govkorea" role="button" target="_blank" title="정부24 트위터-새창"><span class="hd-element">트위터</span></a></li>
+<li class="fb"><a class="facebook" href="https://www.facebook.com/govkorea" role="button" target="_blank" title="정부24 페이스북-새창"><span class="hd-element">페이스북</span></a></li>
+<li class="ks"><a href="https://story.kakao.com/ch/governmentkorea" role="button" target="_blank" title="정부24 카카오스토리-새창"><span class="hd-element">카카오스토리</span></a></li>
+<li class="yt"><a href="https://www.youtube.com/channel/UCZZRA8-V4ugw4lnECStrswQ?view_as=subscriber" role="button" target="_blank" title="정부24 유투브-새창"><span class="hd-element">유투브</span></a></li>
+</ul>
+</div>
+</div>
+<div class="body-element">
+<div class="body-inner">
+<p class="footer-logo"><a href="/portal/main"><img alt="정부24" src="/2019/lib/image/img-footer-logo.png"/></a></p>
+<p class="footer-infor">
+					정부24 콜센터 1588-2188 (09:00 ~ 18:00 평일) 정부민원안내콜센터 국번없이 110 (365일 24시간)<br/> 
+					Copyright © Ministry of the Interior and Safety. All Rights Reserved.
+				</p>
+<p class="logo_wa">
+<a href="http://www.wa.or.kr/board/list.asp?BoardID=0006" target="_blank" title="한국웹접근성평가센터 인증사이트 현황 새창열림">
+<img alt="(사)한국장애인단체총연합회 한국웹접근성인증평가원 웹 접근성 우수사이트 인증마크(WA인증마크)" src="/2019/lib/image/main/logo_wa.png"/>
+</a>
+</p>
+</div>
+</div>
+</footer>
+<!--// 202004 상단메뉴영역변경작업(검색포함) -->
+<!-- s: 20210125 -->
+<div class="pop-login-nonmember pop_main_layer" style="display:none">
+<div class="renewLogin-pop">
+<div class="pop-inner">
+<h1 class="pop-tit">발급 방식 선택</h1>
+<div class="pop-content">
+<p class="pop-btns">
+<span><a href="/mw/EgovPageLink.do?link=simplification_e2e/AA010YearYndExcClsLogin_e2e" id="simpleCert" tabindex="1">간편인증<br/>주민등록등본 발급</a></span>
+<span><a href="/mw/AA020InfoCappView.do?CappBizCD=13100000015&amp;HighCtgCD=A01010001&amp;Mcode=10200" tabindex="1">공동인증서(구 공인인증서)<br/>주민등록등본(초본) 발급</a></span>
+</p>
+<ul class="pop_list">
+<li>간편인증을 선택하시면 민간 전자서명 (카카오, 페이코, 통신사PASS, KB국민은행,<br/> 삼성패스)을 통한 주민등록등본 발급이 가능합니다.</li>
+<li>간편인증을 이용하시는 경우, 정부24에 로그인이 되어 있다면 자동으로<br/> 로그아웃 처리됩니다.</li>
+</ul>
+</div>
+<button class="btn-layer-close" onclick="closePopup();" tabindex="1" type="button">
+<span class="sr-only">레이어 닫기</span>
+</button>
+</div>
+</div>
+</div>
+<!-- e: 20210125 -->
+<div class="gov-subsidy subsidy-layer" id="mainPop01" style="display:none">
+<div class="layer-wrap">
+<div class="layer-head">
+<strong class="layer-title">국가보조금맞춤형서비스(보조금24) 이용동의</strong>
+</div>
+<div class="layer-body">
+<div class="layer-inner-wrap">
+<div class="layer-inner">
+<p class="layer-benefit-desc">보조금24 맞춤안내 서비스 제공 목적으로 개인의 자격정보, 서비스 수급 정보의 실시간 확인을 위한 정보연계 동의가 필요합니다.</p>
+<div class="layer-agree-wrap">
+<div class="layer-agree-head">
+<div class="check-wrap">
+<div class="check-box">
+<input data-element="chk-all" id="allchk" name="chk-all" type="checkbox"/>
+<label for="allchk"><span>전체동의</span></label>
+</div>
+</div>
+</div>
+<div class="layer-agree-body">
+<div class="layer-agree-box">
+<div class="layer-agree-title active">
+<div class="check-wrap">
+<div class="check-box">
+<input data-element="chk-1" id="chkFixessvcAgre" name="agree1" type="checkbox"/>
+<label for="chkFixessvcAgre"><span>개인정보 수집·이용·조회에 동의합니다.</span></label>
+</div>
+</div>
+<i class="ico-accordion"><span class="ico-label">열기</span></i>
+</div>
+<div class="layer-agree-cont">
+<ul class="statute-depth1">
+<li class="statute-list">
+<span class="statute-number">1.</span>개인정보 수집·이용 목적
+	                                            <ul class="statute-depth2">
+<li class="statute-list">회원의 주민등록번호로 행정기관에서 관리하고 있는 자격정보를 연계하여 받을 수 있는 혜택, 수급정보를 연계하여 이미 받고 있는 혜택 안내</li>
+</ul>
+</li>
+</ul>
+<ul class="statute-depth1">
+<li class="statute-list">
+<span class="statute-number">2.</span>수집·이용하려는 개인정보의 항목
+	                                            <ul class="statute-depth2">
+<li class="statute-list">개인의 자격정보 : 기초수급자 차상위, 한부모, 장애인, 농업인, 어업인, 보훈대상자, 임산부, 고용보험 가입, 초중고생 여부, 북한이탈주민 등</li>
+<li class="statute-list">서비스 수급정보 : 정부24에서 제공하는 맞춤안내서비스별 수급여부</li>
+<li class="statute-list">주민등록정보 : 14세 미만 자녀정보, 거주지정보, 가족관계정보</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="layer-agree--box chkChildren14Agre">
+<div class="layer-agree-title">
+<div class="check-wrap">
+<div class="check-box">
+<input data-element="chk-1" id="chkChildrenAgre" name="agree2" type="checkbox"/>
+<label for="chkChildrenAgre"><span>14세 미만 자녀정보 활용에 동의합니다.</span></label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="layer-btn">
+<a class="btn btn-layer-background-blue" href="javascript://" onclick="javascript:setFixessvcAgre();"><span>확인</span></a>
+</div>
+</div>
+<a class="btn btn-layer-close" href="javascript://" onclick="javascript:closeLoginPop();"><span class="ico-label">닫기</span></a>
+</div>
+</div>
+<!-- 중소벤처24 기업생애주기 제3자 정보제공동의 팝업 -->
+<div class="pop-login-nonmember pop_main_layer" id="smesPopup" style="display:none">
+<div class="renewLogin-pop">
+<div class="pop-inner">
+<h1 class="pop-tit">제3자 정보제공 동의 안내</h1>
+<div class="pop-content" style="padding: 0px 30px 30px;">
+<ul class="pop_list">
+<li>정부24는 정보주체의 동의, 법률의 특별한 규정 등 개인정보 보호법 제17조 및 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.</li>
+<li>가. 용어정의</li>
+<li>1. CI(연계정보) : 특정 개인의 식별을 위한 고유한 범용값</li>
+<li>나. 제3자 제공에 관한 사항</li>
+<li>1. CI를 제공받는자 : 중소벤처기업부</li>
+<li>2. 제공받는자의 이용목적 : 중소벤처24 서비스 이용을 위한 자동 로그인</li>
+<li>3. 제공하는 개인정보 항목 : CI</li>
+<li>4. 제공받는자의 보유/이용기간 : 자동 로그인 후 즉시 파기</li>
+<li>위 개인정보의 제3자 제공 동의를 거부할 수 있습니다. 다만, 관련 정부24 이용 목적에 따른 서비스의 제한이 있을 수 있습니다.</li>
+</ul>
+<p class="pop-btns" style="padding: 30px 0px 0px;">
+<span><a href="#" onclick="smesLoginPopupCallback('Y');return false;" tabindex="1">동의</a></span>
+<span><a href="#" onclick="smesLoginPopupCallback('N');return false;" tabindex="2">미동의</a></span>
+</p>
+</div>
+<button class="btn-layer-close" onclick="closeSmesPopup();" tabindex="1" type="button">
+<span class="sr-only">레이어 닫기</span>
+</button>
+</div>
+</div>
+</div>
+<!-- //중소벤처24 기업생애주기 제3자 정보제공동의 팝업 -->
+<!-- 202004 메인변경작업 -->
+<script src="/renewMain/js/renewMainUi.js?time=2022081200" type="text/javascript"></script>
+<!--// 202004 메인변경작업 -->
+<script>
+	
+		function checkOutAPI() {
+			var host="rcvfurSvc";
+			var port="80";
+			var pageUrl="myRcvfvrsvc.do";
+	        var ip = "121.147.130.110";
+	
+	        callTracerApiOutput(host, ip, ip, port, pageUrl, this);
+		}
+		
+		$(document).ready(function(){
+			checkOutAPI();
+		});
+	</script>
+</body></html>>

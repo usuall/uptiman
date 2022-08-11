@@ -1,0 +1,1035 @@
+<bound method Tag.prettify of <html lang="ko" xml:lang="ko" xmlns="http://www.w3.org/1999/xhtml"><!-- Header S --><head>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="/webportal/css/main/mainDefault.css" rel="stylesheet" type="text/css"/> <!-- 2017.09.26 / 기존 new_default.css 수정 -->
+<link href="/webportal/css/main/web.css" rel="stylesheet" type="text/css"/>
+<link href="/webportal/css/main/board.css" rel="stylesheet" type="text/css"/>
+<link href="/webportal/css/main/etc.css" rel="stylesheet" type="text/css"/>
+<!--link rel="stylesheet" type="text/css" href="/webportal/css/main/rolling.css" media="all" /--> <!-- 2017.09.26 / 기존 nonpoint_style.css 명칭 수정-->
+<script src="/webportal/js/main/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="/webportal/js/main/jquery-latest.js" type="text/javascript"></script>
+<script src="/webportal/js/main/select_tap.js" type="text/javascript"></script>
+<script src="/webportal/js/main/gnb_navi_ma.min.js" type="text/javascript"></script>
+<script src="/webportal/js/main/web.js" type="text/javascript"></script>
+<script src="/webportal/js/main/title.js" type="text/javascript"></script><title>농림사업정보시스템에 오신 것을 환영합니다.</title> <!-- 2017.09.26 / 기존 cur_title.jsp 수정 -->
+<script src="/webportal/js/main/jquery.slides.min.js" type="text/javascript"></script> <!-- 2017.09.26 / 기존 main.js 명칭 수정 -->
+<title>농림사업정보시스템에 오신 것을 환영합니다.</title>
+<script type="text/javascript">
+	
+		// 오른쪽 키 막음
+		document.oncontextmenu = function(e){
+			return false;
+		} 
+		
+		function gfn_goMenu(strUrl,strRootMenuId,strRootMenuNm,strMenuId){
+			gfn_setMenuInfo(strRootMenuId,strRootMenuNm,strMenuId);
+			gfn_menuLog(strMenuId);
+			
+			document.location.href = strUrl;
+		}
+	
+		
+		function gfn_setMenuInfo(strRootMenuId,strRootMenuNm,strMenuId){
+			var url = '/webportal/com/sys/setMenuInfoJson.do';
+			var params = { "rootMenuId": strRootMenuId
+					  ,"rootMenuNm": strRootMenuNm
+					  ,"menuId": strMenuId
+					 }; 
+			$.ajax({
+				 type:'POST'
+				,url:url
+				,data:params
+				,success : function(data){
+
+				}
+				,error:function(request,status,error){
+					alert("gfn_setMenuInfo : " + error);
+				}
+			});	
+		}
+	
+		function gfn_menuLog(strMenuId){
+			var url = '/webportal/com/logs/saveConnectLogJson.do';
+			var params = { "saupCd": ''
+						  ,"upmuCd": ''
+						  ,"menuId": strMenuId
+						 }; 
+			$.ajax({
+				 type:'POST'
+				,url:url
+				,data:params
+				,success : function(data){
+
+				}
+				,error:function(request,status,error){
+					alert("gfn_menuLog : " + error);
+				}
+			});
+		}
+	</script>
+<script type="text/javascript">
+$(function (){
+	$('#skipnavi').attr('href','#content');
+
+});
+</script><style type="text/css">
+	.DB_prevBtn{background-color: #e9eff4; border: 0px; max-height: 22px;}
+</style></head>
+<!-- Header E -->
+<body>
+<!-- Top S -->
+<div id="header">
+<!-- 회원정보 -->
+<div class="top">
+<a href="#content" id="skipnavi">본문 바로가기</a>
+<h1><a href="/webportal/main/portalIndex.do" title="메인페이지로 이동"> <img alt="AGRIX농림사업정보시스템" src="/webportal/images/main/top/logo.png"/> </a></h1>
+<ul>
+<li><a class="first" href="/webportal/main/portalSitemap.do">사이트맵  </a></li>
+<li><a href="/webportal/main/portalViewNoticeList.do">AgriX 새소식</a></li>
+<li><a class="btn" href="/webportal/html/popup/clientSwInstall.html" onclick="portal_popup_windowOpen_scroll(this.href,'845','500');return false;" title="새창">시스템 최적화 방법</a></li>
+</ul>
+</div>
+<div class="menu">
+<div id="fullMenu">
+<ul id="gnb_navi">
+<li class="gnb_main"><a href="#">농림사업도우미</a>
+<ul class="gnb_sub s1">
+<li><a href="/webportal/main/portalBizGuideList.do" onclick="javascript:gfn_menuLog('CS01010000')" title="">농식품사업 시행지침서
+												</a></li>
+<li><a href="/webportal/main/portalRiceincomeInfo.do" onclick="javascript:gfn_menuLog('CS01020000')">정보열람
+												</a></li>
+<li><a href="/webportal/consulting/viewConSulting.do" onclick="javascript:gfn_menuLog('CS01030000');
+													            window.open(this.href, '컨설팅업체조회', 'fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=840,height=810'); return false;" title="새창열림">컨설팅업체 조회
+												</a></li>
+<li><a href="/webportal/main/portalBizPriceCal.do" onclick="javascript:gfn_menuLog('CS01040000')">직불금 미리 계산해보기
+												</a></li>
+</ul>
+</li>
+<li class="gnb_main"><a href="#">농림축산식품 관련정보</a>
+<ul class="gnb_sub s6">
+<li><a href="http://www.mafra.go.kr/mafra/292/subview.do" onclick="gfn_menuLog('CS02010000'); 
+													   		    window.open(this.href); return false;" title="새창열림">농림축산식품 새소식
+												</a></li>
+<li><a href="http://www.mafra.go.kr/mafra/353/subview.do" onclick="gfn_menuLog('CS02020000'); 
+													   		    window.open(this.href); return false;" title="새창열림">농림축산식품 법령정보
+												</a></li>
+<li><a href="http://www.mafra.go.kr/mafra/357/subview.do" onclick="gfn_menuLog('CS02030000'); 
+													   		    window.open(this.href); return false;" title="새창열림">농림축산식품 통계정보
+												</a></li>
+<li><a href="http://lib.mafra.go.kr/" onclick="gfn_menuLog('CS02040000'); 
+													   		    window.open(this.href); return false;" title="새창열림">농림축산식품 관련정보
+												</a></li>
+</ul>
+</li>
+<li class="gnb_main"><a href="#">AgriX 소개</a>
+<ul class="gnb_sub s11">
+<li><a href="/webportal/main/portalAgrixInfo.do" onclick="javascript:gfn_menuLog('CS03010000')">AgriX란?
+												</a></li>
+<li><a href="/webportal/main/portalAgrixHistory.do" onclick="javascript:gfn_menuLog('CS03020000')">연혁
+												</a></li>
+<li><a href="/webportal/main/portalRegulations.do" onclick="javascript:gfn_menuLog('CS03030000')">관련 법규
+												</a></li>
+<li><a href="/webportal/main/portalBizContentList.do" onclick="javascript:gfn_menuLog('CS03040000')">AgriX 소개자료
+												</a></li>
+<li><a href="/webportal/main/portalSysChargeInfo.do" onclick="javascript:gfn_menuLog('CS03050000')">운영지원센터 소개
+												</a></li>
+<li><a href="/webportal/main/portalBannerDown.do" onclick="javascript:gfn_menuLog('CS03060000')">배너다운로드
+												</a></li>
+</ul>
+</li>
+<li class="gnb_main"><a href="#">이용안내</a>
+<ul class="gnb_sub s18">
+<li><a href="/webportal/community/portalViewNoticeList.do" onclick="javascript:gfn_menuLog('CS04010000')">AgriX새소식
+												</a></li>
+<li><a href="/webportal/main/portalSitemap.do" onclick="javascript:gfn_menuLog('CS04020000')">사이트맵
+												</a></li>
+<li><a href="/webportal/main/portalProtection.do" onclick="javascript:gfn_menuLog('CS04030000')">개인정보처리방침
+												</a></li>
+<li><a href="/webportal/main/portalEmailRefuse.do" onclick="javascript:gfn_menuLog('CS04040000')">이메일수집거부
+												</a></li>
+<li><a href="/webportal/main/portalCopyright.do" onclick="javascript:gfn_menuLog('CS04050000')">저작권보호정책
+												</a></li>
+<li><a href="/webportal/main/portalAgreement.do" onclick="javascript:gfn_menuLog('CS04060000')">이용약관
+												</a></li>
+<li><a href="/webportal/openapi/portalAgrixOpenApi.do" onclick="javascript:gfn_menuLog('CS04070000')">Agrix Open Api 이용안내
+												</a></li>
+</ul>
+</li>
+</ul>
+<!-- <div id="full">
+				<span><a href="#"><img src="/webportal/images/main/top/top_full.png" alt="전체메뉴"/> 전체메뉴</a></span>
+				<ul class='popup'>
+					<li class="close"><a href="#"><img src="/webportal/images/main/top/btn_close.png" alt="전체메뉴 닫기" /></a></li>
+					
+						
+							<li class="list">
+								<ul>
+									
+										
+									
+										
+											
+												
+													<li><a href="/webportal/main/portalBizGuideList.do" 
+														   onclick="javascript:gfn_menuLog('CS01010000')" title="">농식품사업 시행지침서
+													</a></li>
+												
+												
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalRiceincomeInfo.do" 
+														   onclick="javascript:gfn_menuLog('CS01020000')">정보열람
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+													<li><a href="/webportal/consulting/viewConSulting.do" 
+														   onclick="gfn_menuLog('CS01030000'); 
+														   		    window.open(this.href, '컨설팅업체조회', 'fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=840,height=810'); return false;" title="새창">컨설팅업체 조회
+													</a></li>
+												
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalBizPriceCal.do" 
+														   onclick="javascript:gfn_menuLog('CS01040000')">직불금 미리 계산해보기
+													</a></li>
+												
+												
+											
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+								</ul>
+							</li>																											
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+							<li class="list">
+								<ul>
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+											
+												
+												
+												
+												
+													<li><a href="http://www.mafra.go.kr/mafra/292/subview.do" 
+													  	   onclick="gfn_menuLog('CS02010000'); 
+													  	   			window.open(this.href); return false;" title="">농림축산식품 새소식
+													</a></li>
+												
+											
+										
+									
+										
+											
+												
+												
+												
+												
+													<li><a href="http://www.mafra.go.kr/mafra/353/subview.do" 
+													  	   onclick="gfn_menuLog('CS02020000'); 
+													  	   			window.open(this.href); return false;" title="">농림축산식품 법령정보
+													</a></li>
+												
+											
+										
+									
+										
+											
+												
+												
+												
+												
+													<li><a href="http://www.mafra.go.kr/mafra/357/subview.do" 
+													  	   onclick="gfn_menuLog('CS02030000'); 
+													  	   			window.open(this.href); return false;" title="">농림축산식품 통계정보
+													</a></li>
+												
+											
+										
+									
+										
+											
+												
+												
+												
+												
+													<li><a href="http://lib.mafra.go.kr/" 
+													  	   onclick="gfn_menuLog('CS02040000'); 
+													  	   			window.open(this.href); return false;" title="">농림축산식품 관련정보
+													</a></li>
+												
+											
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+								</ul>
+							</li>																											
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+							<li class="list">
+								<ul>
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalAgrixInfo.do" 
+														   onclick="javascript:gfn_menuLog('CS03010000')">AgriX란?
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalAgrixHistory.do" 
+														   onclick="javascript:gfn_menuLog('CS03020000')">연혁
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalRegulations.do" 
+														   onclick="javascript:gfn_menuLog('CS03030000')">관련 법규
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalBizContentList.do" 
+														   onclick="javascript:gfn_menuLog('CS03040000')">AgriX 소개자료
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalSysChargeInfo.do" 
+														   onclick="javascript:gfn_menuLog('CS03050000')">운영지원센터 소개
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalBannerDown.do" 
+														   onclick="javascript:gfn_menuLog('CS03060000')">배너다운로드
+													</a></li>
+												
+												
+											
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+								</ul>
+							</li>																											
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+							<li class="list">
+								<ul>
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/community/portalViewNoticeList.do" 
+														   onclick="javascript:gfn_menuLog('CS04010000')">AgriX새소식
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalSitemap.do" 
+														   onclick="javascript:gfn_menuLog('CS04020000')">사이트맵
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalProtection.do" 
+														   onclick="javascript:gfn_menuLog('CS04030000')">개인정보처리방침
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalEmailRefuse.do" 
+														   onclick="javascript:gfn_menuLog('CS04040000')">이메일수집거부
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalCopyright.do" 
+														   onclick="javascript:gfn_menuLog('CS04050000')">저작권보호정책
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/main/portalAgreement.do" 
+														   onclick="javascript:gfn_menuLog('CS04060000')">이용약관
+													</a></li>
+												
+												
+											
+										
+									
+										
+											
+												
+												
+												
+													<li><a href="/webportal/openapi/portalAgrixOpenApi.do" 
+														   onclick="javascript:gfn_menuLog('CS04070000')">Agrix Open Api 이용안내
+													</a></li>
+												
+												
+											
+										
+									
+								</ul>
+							</li>																											
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+				</ul>
+			</div> -->
+</div>
+</div>
+<script type="text/javascript">
+    	$('#gnb_navi').gnb_navi_ma({
+        	motionType:'fade',      	//모션타입(none,fade,slide)
+        	motionSpeed:200,         	//모션속도(밀리초)
+        	delayTime:0,             	//메뉴아웃시 되돌아가는 딜레이시간(밀리초)
+        	full:$('#full')
+       	});
+    </script>
+</div>
+<!-- Top E -->
+<!-- 콘텐츠 영역 S -->
+<div id="g_body">
+<div id="content">
+<div class="cont">
+<!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
+<script>
+			
+			
+				let auto = true;
+			
+			$(function() {
+				$('#slides').slidesjs({
+					width: 678,
+					height: 328,
+					play: {
+						active: true,
+						auto: auto,
+						interval: 3000,
+						swap: true
+					}		 		
+				});
+			});
+		</script>
+<!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
+<!-- 롤링비주얼 영역 S-->
+<div class="mainVisualDiv">
+<div class="slide_imgs" id="slides" style="overflow: hidden; display: block;">
+<div class="slidesjs-container" style="overflow: hidden; position: relative; width: 678px; height: 328px;"><div class="slidesjs-control" style="position: relative; left: 0px; width: 678px; height: 328px;"><div class="slide6 slidesjs-slide" slidesjs-index="0" style="position: absolute; top: 0px; left: 0px; width: 2000px; z-index: 10; backface-visibility: hidden;">
+<p class="txt">
+                    	팝맴으로 우리지역 농경지 지도를 한눈에
+                    </p>
+<p class="btn_1">
+<a href="#" onclick="javascript:window.open('https://agis.epis.or.kr', '_blank');">
+<img alt="팝맴으로 우리지역 농경지 지도를 한눈에 바로가기 새창열림" src="/webportal/images/main/visual_text_02_6.png"/>
+</a>
+</p>
+</div><div class="slide2 slidesjs-slide" slidesjs-index="1" style="position: absolute; top: 0px; left: 678px; width: 2000px; z-index: 0; display: block; backface-visibility: hidden;">
+<p class="txt">
+                    	쌀소득, 밭농업, 조건불리지역 직접지불제 정보열람 - 농림사업에 대한 모든 것 AgriX가 도와드립니다.
+                    </p>
+<p class="btn_1">
+<a href="/webportal/apply/riceIncomeInfoLoginRB.do" onclick="javascript:portal_popup_windowOpen_scroll(this.href,'800','600');return false;">
+<img alt="쌀소득, 밭농업, 조건불리지역 직접지불제 정보열람 자세히보기 새창열림" src="/webportal/images/main/visual_text_02_4.png"/>
+</a>
+</p>
+</div><div class="slide1 slidesjs-slide" slidesjs-index="2" style="position: absolute; top: 0px; left: 0px; width: 2000px; z-index: 0; display: none; backface-visibility: hidden;">
+<p class="txt"> 
+                    	농림사업정보화를 통해 투명하고 효율적인 농림축산식품행정을 만들어갑니다. 농림사업에 대한 모든것 AgriX가 도와드립니다.
+                    </p>
+</div><div class="slide12 slidesjs-slide" slidesjs-index="3" style="position: absolute; top: 0px; left: -678px; width: 2000px; z-index: 0; display: block; backface-visibility: hidden;">
+<p class="txt">
+                    	2022년 농림축산식품 지원사업 맞춤형정보안내
+                    </p>
+<p class="btn_1">
+<a href="#" onclick="javascript:window.open('https://uni.agrix.go.kr/docs7/customizedNew/introduce/IntroduceMain.do', '_blank');">
+<img alt="2022년 농림축산식품 지원사업 맞춤형정보안내 자세히보기 새창열림" src="/webportal/images/main/visual_text_02_12.png"/>
+</a>
+</p>
+</div></div></div>
+<a class="slidesjs-previous slidesjs-navigation" href="#" title="Previous">Previous</a><a class="slidesjs-next slidesjs-navigation" href="#" title="Next">Next</a><a class="slidesjs-play slidesjs-navigation slidesjs-playing" href="#" style="display: none;" title="Play">Play</a><a class="slidesjs-stop slidesjs-navigation" href="#" style="" title="Stop">Stop</a><ul class="slidesjs-pagination"><li class="slidesjs-pagination-item"><a class="active" data-slidesjs-item="0" href="#">1</a></li><li class="slidesjs-pagination-item"><a data-slidesjs-item="1" href="#">2</a></li><li class="slidesjs-pagination-item"><a data-slidesjs-item="2" href="#">3</a></li><li class="slidesjs-pagination-item"><a data-slidesjs-item="3" href="#">4</a></li></ul></div>
+</div>
+<!-- 롤링비주얼 영역 E -->
+<!-- 농림사업 업무처리창구 S -->
+<div class="right_side01">
+<a href="javascript:ogcrLogin()">농림사업 업무처리창구 1588-6830</a>
+</div>
+<!-- 농림사업 업무처리창구 E -->
+<!-- 농업경영체 등록 온라인 서비스 S -->
+<div class="right_side02">
+<a href="https://uni.agrix.go.kr/docs2/potal/main.html" target="_blank" title="새창">농업경영체 등록 온라인서비스 1644-8778</a>
+</div>
+<!-- 농업경영체 등록 온라인 서비스E -->
+<!-- 청년창업농 신청 S -->
+<div class="right_side03">
+<!-- 
+        	<a href="https://edu.agrix.go.kr/uni_docs2/agrix_NC/index_ECA_LOGIN.html" target="_blank" title="새창">청년창업농(영농정착지원금) 신청 - 청년창업농 신청서 작성 팝업으로 이동합니다.(1670-0255)</a>
+			 -->
+<a href="javascript:fn_openLink('openFarmBiz');" title="새창">농업법인(영농정착지원금) 신청 1670-0255</a>
+</div>
+<!-- 청년창업농 신청 E -->
+<!-- 농업법인 취업지원 신청  S -->
+<div class="right_side04">
+<!-- 
+        	<a href="https://edu.agrix.go.kr/uni_docs2/agrix_NC/index_ECA_LOGIN.html" target="_blank" title="새창">청년창업농(영농정착지원금) 신청 - 청년창업농 신청서 작성 팝업으로 이동합니다.(1670-0255)</a>
+			 -->
+<a href="javascript:fn_openLink('openSelfAuth');" title="새창">농업법인 취업지원 신청 1670-9744</a>
+</div>
+<!--<div class="right_side05">
+			
+        	<a href="https://edu.agrix.go.kr/uni_docs2/agrix_NC/index_ECA_LOGIN.html" target="_blank" title="새창">청년창업농(영농정착지원금) 신청 - 청년창업농 신청서 작성 팝업으로 이동합니다.(1670-0255)</a>
+			
+			<a href="http://농가지원바우처.kr/support">농업인 경영영농 바우처 업무창구 1670-2830</a>
+        </div>-->
+<!-- 농업법인 취업지원 신청 E -->
+<!-- 경영체 등록 정보 조회 S -->
+<div class="right_small01">
+<a href="javascript:fn_Z0010102_Login();" title="경영체 등록정보 조회">경영체 등록정보 조회</a>
+</div>
+<!-- 경영체 등록 정보 조회 E -->
+<!-- 맞춤형 사업안내 S -->
+<div class="right_small02">
+<a href="https://uni.agrix.go.kr/docs7/customizedNew/introduce/IntroduceMain.do" target="_blank">맞춤형 사업안내</a>
+</div>
+<!-- 맞춤형 사업안내 E -->
+<div class="lower00"></div>
+<!-- 시행지침서, 직불금 미리계산/정보열람 S -->
+<div class="lower01">
+<ul>
+<li class="j01">
+<a href="https://uni.agrix.go.kr/docs7/customizedNew/introduce/IntroduceMain.do" target="_blank">
+<span class="mTxt" style="padding: 5px 0 0 0 !important; font-size: 15px;">농식품사업 시행지침서</span>
+<span class="mTxt">농식품사업 시행지침 <br/>전자메뉴얼을 제공합니다.</span><span class="btn">자세히 보기</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="lower02">
+<ul>
+<li class="j01">
+<a href="https://uni.agrix.go.kr/docs2/potal/main.html" target="_blank" title="새창">농업경영체등록 온라인 서비스
+            		<span class="mTxt">경영체등록 변경/신청을 <br/>하실 수 있습니다.</span><span class="btn">자세히 보기</span></a>
+</li>
+</ul>
+</div>
+<div class="lower03">
+<ul>
+<li class="j01">
+<a href="/webportal/main/portalRiceincomeInfo.do">직불제 정보열람
+            		<span class="mTxt">직불제 정보의<br/>맞춤검색서비스를 제공합니다.</span><span class="btn">자세히 보기</span></a>
+</li>
+</ul>
+</div>
+<!-- 시행지침서, 직불금 미리계산/정보열람 E -->
+<!-- 알림판 S -->
+<div class="roll">
+<h2>알림판</h2>
+<div class="spin">
+<div class="DB_banner9" id="DB_banner9">
+<p class="DB_pageSet">
+<button class="DB_prevBtn"><img alt="이전" src="/webportal/images/main/btn_prev.png"/></button>
+<button class="DB_PauseBtn"><img alt="알림판 정지/재생버튼" src="/webportal/images/main/btn_pause.png" style="cursor:pointer"/></button>
+<button class="DB_nextBtn"><img alt="다음" src="/webportal/images/main/btn_next.png"/></button>
+</p>
+<div class="DB_mask">
+<ul class="DB_moveSet" style="left: 0px; position: absolute;">
+<!--<li>
+                                <ul> 
+                                    <li><a href="https://blog.naver.com/mifaffgov/221173749407" target="_blank" title="농업분야일자리안정자금"><img src="/webportal/images/main/banner06.png" alt="농업분야일자리안정자금" title="새창"/></a></li>
+                                </ul>
+                            </li>-->
+<li style="position: absolute; left: 0px;">
+<ul>
+<li><a href="/webportal/consulting/viewConSulting.do" onclick="window.open(this.href, '컨설팅업체조회', 'fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=840,height=810'); return false;"><img alt="컨설팅 업체조회-농림사업정보시스템 관련 컨설팅 업체를 조회하실 수 있습니다. 새창 " src="/webportal/images/main/banner01.gif"/></a></li>
+</ul>
+</li>
+<li style="position: absolute; left: 298px;">
+<ul>
+<li><a href="/webportal/main/portalBizPriceCal.do"><img alt="직불금 미리계산-농림사업정보시스템에서 사업에 대한 금액을 미리 계산하실 수 있습니다." src="/webportal/images/main/banner03.gif"/></a></li>
+</ul>
+</li>
+<li style="position: absolute; left: 596px;">
+<ul>
+<li><a href="/webportal/file/main/download.zip"><img alt="농업경영체 등록정보 분석자료집 및 연감 다운로드" height="167" src="/webportal/images/main/banner10.jpg" width="298"/></a></li>
+</ul>
+</li>
+<!--<li>     
+                                <ul>
+                                    <li><a href="/webportal/file/main/2020_manual.zip"><img src="/webportal/images/main/banner11.jpg" alt="2020년 정부보조금 부정수급 집중신고기간" width="298" height="167"/></a></li>
+                                </ul>
+                            </li>
+							<li>     
+                                <ul>
+                                    <li><a href="https://www.acrc.go.kr/acrc/index.do"><img src="/webportal/images/main/banner12.jpg" alt="복지보조금부정신고센터_홍보배너" width="298" height="167"/></a></li>
+                                </ul>
+                            </li>-->
+<li style="position: absolute; left: 894px;">
+<ul>
+<li><a href="/webportal/file/main/2022_manual.zip"><img alt="2020 농식품 보조금 관리 업무매뉴얼 다운로드" height="167" src="/webportal/images/main/banner13.png" width="298"/></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="/webportal/js/main/jquery.DB_slideStepMove.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+                        $('#DB_banner9').DB_slideStepMove({
+                            motionDirection:'none',     	//모션방향('none','x','y')			
+                            moveDistance:298,             	//이동거리(li기준)
+                            moveSpeed:300,                	//이동속도
+                            autoRollingTime:3000          	//자동롤링시간(밀리초)
+                        }); 
+                </script>
+</div>
+</div>
+<!-- 알림판 E -->
+<p class="gap"></p>
+</div>
+</div>
+</div>
+<!-- 콘텐츠 영역 E -->
+<!-- footer S -->
+<!-- 카피영역 S -->
+<div id="footer">
+<!-- 하단 메뉴 링크 S -->
+<div class="copy_content_wrap">
+<div class="copy_content">
+<h2><img alt="농림축산식품부 EPIS 농림수산식품교육문화정보원" height="34" src="/webportal/images/main/footer/logo.png" width="360"/></h2>
+<!-- 하단 링크 S -->
+<div class="copy_menu">
+<ul>
+<li class="first"><a href="/webportal/main/portalProtection.do"><b>개인정보처리방침</b></a></li>
+<li><a href="/webportal/main/portalEmailRefuse.do" style="color:#545454">이메일 수집거부</a></li>
+<li class="last"><a href="/webportal/main/portalCopyright.do" style="color:#545454">저작권보호정책</a></li>
+</ul>
+</div>
+<div class="copy_link">
+<ul>
+<!-- 패밀리 사이트 링크 S -->
+<li>
+<div class="select" style="width:200px; height:33px;">
+<span class="ctrl"><span class="arrow"></span></span>
+<button class="myValue" type="button">관련 사이트</button>
+<ul class="aList">
+<li><a href="http://www.mafra.go.kr/" target="_blank" title="행정전자서명 인증관리센터">농림축산식품부</a></li>
+<li><a href="http://www.law.go.kr" onclick="window.open(this.href); return false;" title="새창">국가법령정보센터</a></li>
+<li><a href="http://www.enviagro.go.kr/" target="_blank" title="친환경농산물 정보시스템">친환경농산물 정보시스템</a></li>
+<li><a href="http://www.gpki.go.kr/" target="_blank" title="행정전자서명 인증관리센터">행정전자서명 인증관리센터</a></li>
+<li><a href="http://www.naqs.go.kr/" target="_blank" title="국립농산물품질관리원">국립농산물품질관리원</a></li>
+<li><a href="http://www.epis.or.kr/" target="_blank" title="농림수산식품교육문화정보원">농림수산식품교육문화정보원</a></li>
+</ul>
+</div>
+</li>
+<!-- 패밀리 사이트 링크 E -->
+</ul>
+</div>
+<!-- 하단 링크 E -->
+</div>
+</div>
+<!-- 하단 메뉴 링크 E-->
+<!-- 카피 S -->
+<div class="copyright">
+<div>
+<address>(우) 30110 세종특별자치시 다솜 2로 94 (어진동) 정부세종청사 농림축산식품부   |   
+					 <span>AgriX 시스템 문의 :</span><span class="red"> 1588-6830</span> <br/>
+			         (우) 30148 세종특별자치시 국책연구원5로 19(반곡동 772-3)    농림수산식품교육문화정보원 <br/>
+					   본 홈페이지에 게시된 이메일 주소가 자동 수집되는 것을  거부하며, 이를 위반시 정보통신망법에 의해 처벌됨을 유념하시기 바랍니다. <br/>
+<span>Copyright(c) 2016 by AgriX.  All rights reserved.</span>
+</address>
+</div>
+<div class="WAmark">
+<a href="#" onclick="javascript:fn_img03()">
+<img alt="ISMS-P 새창" src="/webportal/images/main/mark/ISMS-P_logo.png"/></a>
+			    
+			<a href="/webportal/images/main/mark/WA2022.pdf" target="_blank">
+<img alt="(사)한국장애인단체총연합회 한국웹접근성인증평가원 웹 접근성 우수사이트 인증마크(WA인증마크)" height="55" src="/webportal/images/main/mark/WAmark.png" width="78"/>
+</a>
+<!-- 인증마크추가 2016.10.25 S
+			<a href="#" onclick="javascript:fn_img02()" title="새창">
+			<img src="/webportal/images/main/mark/Contents.png" alt="콘텐츠제공서비스 품질인증" /></a>
+			인증마크추가 2016.10.25 E -->
+</div>
+</div>
+<!-- 카피 E -->
+</div>
+<!-- 카피영역 E -->
+<script type="text/javascript">
+	function fn_img01(){
+		window.open('/webportal/html/popup/mark2020.html', '', 'width=650, height=750, scrollbars=yes');
+	}
+	
+	function fn_img02(){
+		window.open('/webportal/html/popup/contents.html', '', 'width=520, height=750, scrollbars=yes');
+		
+	}
+	function fn_img03(){
+		window.open('/webportal/html/popup/ismsp.html', '', 'width=520, height=750, scrollbars=yes');
+	}
+</script>
+<!-- footer E -->
+<script type="text/javascript">
+
+	$(function(){
+		console.log("false");
+		// 산지유통종합평가 가입안내
+		//window.open('/webportal/html/popup/sangiGuide.html','산지유통종합평가','scrollbars=no, width=339,height=220');
+		/*20210720 농정원 농정정보실 박지만주임 요청사항 - 메인화면에 팝업띄우기 start*/
+		//var surveyPop = window.open('/webportal/html/popup/20210720_main_survey.html','설문조사','scrollbars=yes, width=493,height=528');
+
+		//var surveyPop = window.open('about:blank','설문조사','scrollbars=yes, width=480,height=480');
+		//surveyPop.document.write("<style>body{margin:0px}</style><img src='/webportal/images/main/main_atch_20210720.jpg' width=480 height=480 onclick=javascript:location.href='/webportal/file/main/main_atch_20210720.zip';>");
+		if("false" === "true"){
+			var surveyPop = window.open('about:blank','차세대 Agrix 네이밍 공모전 안내','scrollbars=yes, width=480,height=648');
+			surveyPop.document.write("<style>body{margin:0px}</style><img src='/webportal/images/main/main_atch_20211013.jpg' width=480 height=648>");
+		}
+		
+		/*20210720 농정원 농정정보실 박지만주임 요청사항 - 메인화면에 팝업띄우기 end*/
+	});
+
+	// 내부망 : 경영체 등록 정보분석 화면 
+	function fn_Z0010102_Login(){
+		var sIp = '121.147.130.110';
+		
+		var UserAgent = navigator.userAgent;
+		var tUrl = "/biOlap/dashBoard.do";
+		if(UserAgent.match(/iPhone|iPod|iPad|iPad2|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null
+			|| UserAgent.match(/LG|SAMSUNG|Samsung/) != null) {
+			tUrl = "/biOlap/mobile/mobileMain.do";
+		}
+
+		
+		
+		var goUrl = "http://uni.agrix.go.kr/docs7"+tUrl;
+		
+			
+		 //top.location.href = goUrl ;
+		 window.open(goUrl, '_blank');
+	}
+	
+	/* 인증서 로그인 */
+	function ogcrLogin(){
+		location.href="/webportal/login/loginMain.do";
+	}
+	
+	// 청년창업농 신청
+	function fn_openLink(strGb){
+		if(strGb == 'openFarmBiz'){
+			window.open('https://uni.agrix.go.kr/docs6/reqstMinwon/yFarmerSelectLogin.do', '_blank');
+			
+			//var strUrl = "/webportal/html/popup/eca/popup.html";
+			//var popupwidth = 800;
+			//var popupheight = 700;
+			//portal_popup_windowOpen_scroll(strUrl, popupwidth, popupheight);
+			//window.open(strUrl, '청년창업농(영농정착지원금) 신청', 'fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=800,height=700');
+		}
+		
+		if(strGb == 'openSelfAuth'){
+			if('REAL' == 'EDU'){
+				window.open('https://uni.agrix.go.kr/docs6/selfAuthSelect.html', '_blank');
+			}else{
+			window.open('http://uni.agrix.go.kr/docs6/selfAuthSelect.html', '_blank');
+			}
+		}
+		//alert("신청서 접수기간이 마감되었습니다.");
+	}
+	
+</script>
+</body></html>>

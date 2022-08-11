@@ -1,0 +1,1324 @@
+<bound method Tag.prettify of <html class="websize-1" dir="ltr" lang="ko-KR"><!--<![endif]--><head>
+<script type="text/javascript">
+ 	var href = document.location.href;
+ 	if (document.location.protocol == 'http:' && href.indexOf('ipin.do') == -1  && href.indexOf('localhost') == -1 && href.indexOf('127.0.0.1') == -1){
+ 		<!-- 운영서버 반영시 주석해제-->
+		//document.location.href = document.location.href.replace('http:', 'https:');
+	}  
+		var filter = "win16|win32|win64|mac";
+	 
+		if( navigator.platform  ){
+	  //alert(navigator.platform);
+			if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
+				//alert("모바일 기기에서 접속");
+				
+				/*location.href="/mobile/index.do"*/
+				
+			}else{
+				//alert("PC에서 접속");
+			}
+		}
+	</script>
+<link href="/include/main/images/site/favicon.ico" rel="shortcut icon"/>
+<meta content="경기남부경찰청" name="keywords"/>
+<meta content="http://ggpolice.go.kr/" property="og:url"/>
+<meta content="경기남부경찰청" property="og:title"/>
+<meta content="website" property="og:type"/>
+<meta content="http://ggpolice.go.kr/include/main/images/site/kakaotitle.jpg" property="og:image"/>
+<meta content="9076cfe5227eb151908b1c3c0758087b7d34c3b2" name="naver-site-verification"/>
+<meta charset="utf-8"/>
+<!-- <meta name="viewport" content="width=1000, user-scalable=yes, target-densitydpi=medium-dpi" /> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes, target-densitydpi=medium-dpi" />-->
+<meta content="경기남부경찰청" name="keywords"/>
+<link href="/include/main/css/reset.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/include/main/css/board.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/include/main/css/slick.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/include/main/css/global.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/include/main/css/global_plus.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/include/main/css/global_plus2.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/include/main/css/global_plus3.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/include/main/css/print.css" media="print" rel="stylesheet" type="text/css"/>
+<script src="/tinymce/tinymce.min.js" type="text/javascript"></script>
+<script src="/include/main/js/jquery.js"></script>
+<script src="/include/main/js/jquery.cookie.js"></script>
+<script src="/include/main/js/slick.min.js" type="text/javascript"></script>
+<!-- <script src="/include/main/js/jquery-migrate-1.2.1.js"></script> -->
+<script>
+	jQuery.fn.toggle = function( fn, fn2 ) {
+
+		// Don't mess with animation or css toggles
+		if ( !jQuery.isFunction( fn ) || !jQuery.isFunction( fn2 ) ) {
+			return oldToggle.apply( this, arguments );
+		}
+
+		//migrateWarn("jQuery.fn.toggle(handler, handler...) is deprecated");
+
+		// Save reference to arguments for access in closure
+		var args = arguments,
+			guid = fn.guid || jQuery.guid++,
+			i = 0,
+			toggler = function( event ) {
+				// Figure out which function to execute
+				var lastToggle = ( jQuery._data( this, "lastToggle" + fn.guid ) || 0 ) % i;
+				jQuery._data( this, "lastToggle" + fn.guid, lastToggle + 1 );
+
+				// Make sure that clicks stop
+				event.preventDefault();
+
+				// and execute the function
+				return args[ lastToggle ].apply( this, arguments ) || false;
+			};
+
+		// link all the functions, so any of them can unbind this click handler
+		toggler.guid = guid;
+		while ( i < args.length ) {
+			args[ i++ ].guid = guid;
+		}
+
+		return this.click( toggler );
+	};
+
+	jQuery.uaMatch = function( ua ) {
+		ua = ua.toLowerCase();
+
+		var match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
+			/(webkit)[ \/]([\w.]+)/.exec( ua ) ||
+			/(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
+			/(msie) ([\w.]+)/.exec( ua ) ||
+			ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) ||
+			[];
+
+		return {
+			browser: match[ 1 ] || "",
+			version: match[ 2 ] || "0"
+		};
+	};
+
+	// Don't clobber any existing jQuery.browser in case it's different
+	if ( !jQuery.browser ) {
+		matched = jQuery.uaMatch( navigator.userAgent );
+		browser = {};
+
+		if ( matched.browser ) {
+			browser[ matched.browser ] = true;
+			browser.version = matched.version;
+		}
+
+		// Chrome is Webkit, but Webkit is also Safari.
+		if ( browser.chrome ) {
+			browser.webkit = true;
+		} else if ( browser.webkit ) {
+			browser.safari = true;
+		}
+
+		jQuery.browser = browser;
+	}
+
+	var oldLive = jQuery.fn.live,
+
+		oldDie = jQuery.fn.die;
+		jQuery.fn.live = function( types, data, fn ) {
+		   // migrateWarn("jQuery.fn.live() is deprecated");
+		    if ( oldLive ) {
+		        return oldLive.apply( this, arguments );
+		    }
+		    jQuery( this.context ).on( types, this.selector, data, fn );
+		    return this;
+		};
+
+		jQuery.fn.die = function( types, fn ) {
+		 //   migrateWarn("jQuery.fn.die() is deprecated");
+		    if ( oldDie ) {
+		        return oldDie.apply( this, arguments );
+		    }
+		    jQuery( this.context ).off( types, this.selector || "**", fn );
+		    return this;
+		};
+	</script>
+<script src="/include/main/js/site.js"></script>
+<script src="/include/main/js/jquery.cycle.2.js"></script>
+<script src="/include/main/js/jquery.cycle.2.carousel.js"></script>
+<script src="/include/main/js/jquery.cycle.2.swipe.js"></script>
+<script src="/include/main/js/fakeselect.js"></script>
+<script src="/include/main/js/jquery-accessibleMegaMenu.js"></script>
+<!--[if lt IE 9]>
+		<script src="/include/main/js/html5shiv.js"></script>
+	<![endif]-->
+<!--[if IE 9]> 
+    <script type="text/javascript" src="/include/main/js/i9ResoponseVoice.js"></script>
+	<script src="/include/main/js/jquery-latest.js"></script>
+ <![endif]-->
+<!--[if !IE 9]>
+    <script type="text/javascript" src="/include/main/js/responsivevoice.js"></script>
+ <![endif]-->
+<!--[if !IE]>-->
+<script src="https://code.responsivevoice.org/responsivevoice.js" type="text/javascript"></script>
+<!--<![endif]-->
+<!-- <script type="text/javascript" src="https://code.responsivevoice.org/responsivevoice.js"></script> -->
+<title>경기남부경찰청에 오신걸 환영합니다 ▦ 경기남부경찰청</title>
+<script> 
+//<![CDATA[
+/* 
+function OpenWindow() {
+	
+	
+	
+    
+    
+	
+    
+    
+	
+	   f2 = document.getElementById('popupfrm2');
+	   f2.title.value = '안보지킴이 공모전';
+	   f2.fileCd.value = '20220121050146395';
+	   f2.linkUrl.value = 'www.안보지킴이.com';
+	   
+	   
+	   f2.img.value = "/download/main/202206/202201210501461.jpeg";
+	   
+	   
+	   if(getCookie("20220121050146395") != "1"){ 
+		   window.open('', 'popWindow2','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no, resizable=no,width=0,height=20, left=80,top=40');
+		   f2.submit();
+	   }
+	   
+    
+    
+    
+	
+    
+    
+}  */
+
+function getCookie( name ){ 
+    var nameOfCookie = name + "="; 
+    var x = 0; 
+    while ( x <= document.cookie.length ) { 
+        var y = (x+nameOfCookie.length); 
+        if ( document.cookie.substring( x, y ) == nameOfCookie ) { 
+            if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 ) 
+            endOfCookie = document.cookie.length; 
+            return unescape( document.cookie.substring( y, endOfCookie ) ); 
+        } 
+        x = document.cookie.indexOf( " ", x ) + 1; 
+        if ( x == 0 ) 
+        break; 
+    } 
+    return ""; 
+} 
+//]]>
+</script>
+<script>
+
+	function bbsView(id, seq){
+		var f = document.frm;
+		f.bbsId.value=id;
+		f.contentSeq.value=seq;
+		f.action="/main/bbsview.do";
+		f.submit();
+	}
+	
+	function bbsList(id){
+		var f = document.frm;
+		f.bbsId.value=id;
+		f.action="/main/bbslist.do";
+		f.submit();
+	}
+
+</script>
+<script>
+		function getCookie(c_name) {
+
+			var i,x,y,ARRcookies=document.cookie.split(";");
+			for (i=0;i<ARRcookies.length;i++)
+			{
+			  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+			  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+			  x=x.replace(/^\s+|\s+$/g,"");
+			  if (x==c_name)
+				{
+				return unescape(y);
+				}
+			  }
+		}
+
+		function setCookie( name, value, expiredays ) { 
+	
+			var todayDate = new Date(); 
+			todayDate.setDate( todayDate.getDate() + expiredays ); 
+			document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+		} 
+	
+		function closePop() { 
+			if ( document.pop_form.chkbox.checked ){ 
+				setCookie( "maindiv", "done" , 1 ); 
+			} 
+			document.getElementById('pop').style.display = "none";
+		}
+	
+		$(function() {
+			if (getCookie('maindiv') == 'done') {
+				document.getElementById('pop').style.display = "none";
+			}
+		})
+	</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		   $(".popup-pause").off("click").on("click", function() {
+		// 정지버튼을 재생버튼으로 바꿈
+		       if ($(".popup-play").hasClass("dp_none")) { 
+		// 재생버튼에서 숨김 class 제거
+		            $(".popup-play").removeClass("dp_none");
+		       }
+		       else {
+		// 정지버튼에서 숨김 class 추가
+		            $(".popup-pause").addClass("dp_none");
+		       }
+		   });
+		});
+	
+	$(document).ready(function() {
+		   $(".popup-play").off("click").on("click", function() {
+		// 재생버튼을 정지버튼으로 바꿈
+		       if ($(".popup-pause").hasClass("dp_none")) { 
+		// 정지버튼에서 숨김 class 제거
+		            $(".popup-pause").removeClass("dp_none");
+		       }
+		       else {
+		// 재생버튼에서 숨김 class 추가
+		            $(".popup-play").addClass("dp_none");
+		       }
+		   });
+		});
+
+	</script>
+</head>
+<body id="mainpage" onload="OpenWindow();"><!-- mainpage의 아이디는 mainpage -->
+<form action="/popup.jsp" id="popupfrm2" method="post" name="popupfrm2" target="popWindow2">
+<input id="title" name="title" type="hidden"/>
+<input id="img" name="img" type="hidden"/>
+<input id="fileCd" name="fileCd" type="hidden"/>
+<input id="linkUrl" name="linkUrl" type="hidden"/>
+</form>
+<form id="frm" method="post" name="frm">
+<input id="orgId" name="orgId" type="hidden" value="MAIN"/>
+<input id="bbsId" name="bbsId" type="hidden"/>
+<input id="contentSeq" name="contentSeq" type="hidden"/>
+</form>
+<!-- %@ include file="/inc/blank.jsp" %-->
+<div class="wrap">
+<div class="skiptoContent">
+<div>
+<strong>바로가기 메뉴</strong>
+<span class="skip_item01"><a href="#cont_sbj">본문내용 바로가기</a></span>  
+				<span class="skip_item02">
+<a href="#gnb_nav">메뉴 바로가기</a>
+</span>
+</div>
+</div>
+<div class="top_nav">
+<div class="top_nav_in">
+<div class="fsize-control">
+<a href="#" onclick="js_font_minus();">
+<img alt="글자 크기 축소 버튼" src="/include/main/images/site/fsize__small.png"/>
+</a>
+<span>글자크기</span>
+<a href="#" onclick="js_font_plus();">
+<img alt="글자 크기 확대 버튼" src="/include/main/images/site/fsize__big.png"/>
+</a>
+</div>
+<div class="top_item1 float_wrap">
+<a href="/main/index.do">HOME</a>
+<a href="/main/html.do?menu=HG4">ENG</a>
+<a href="/main/html.do?menu=HG7">SITEMAP</a>
+</div>
+</div>
+</div><!--//top_nav -->
+<div class="wrap_in float_wrap">
+<header>
+<div class="ggpol_logo">
+<h1><a href="/main/index.do"><img alt="국민에게 책임을 다하는 희망의 새 경찰 경기남부지방경찰청. 희망의 새 시대" src="/include/main/images/site/title.jpg"/></a></h1>
+<a href="http://www.mois.go.kr/frt/sub/popup/p_taegugki_banner/screen.do" onclick="window.open(this.href,'','width=885,height=730,top=0,left=0,scrollbars=no');return false;" target="_blank">
+<img alt="희망의 새시대" src="/include/main/images/site/spera.jpg" style="vertical-align: middle;"/>
+</a>
+<a href="https://www.innogov.go.kr/ucms/main/main.do" target="blank">
+<img alt="내일을 위한 정부혁신 보다 나은 정부+" src="/include/main/images/site/title_better.jpg" style="vertical-align:middle; width: 80px;"/>
+</a>
+</div>
+<ul class="float_wrap main_three_import">
+<li><a href="/main/index.do"><img alt="메인화면으로 가기" src="/include/main/images/site/b_home2.jpg"/></a></li>
+<!--  <li><a href="/main/index.do"><img src="/include/main/images/site/b_home.jpg" alt="메인화면으로 가기"></a></li>-->
+<li class="sp_search"><a class="js_open_search" href="#"><img alt="검색하기" src="/include/main/images/site/b_search.jpg"/></a></li>
+<li><a href="/main/html.do?menu=HG7" title="사이트맵으로 이동"><img alt="사이트맵으로 이동" src="/include/main/images/site/b_all.jpg"/></a></li>
+</ul>
+<div class="main_search_box">
+<div class="main_search_box_in">
+<label class="hidden_word" for="main_search">검색어 입력</label>
+<input class="m_se_btn" id="main_search" placeholder="검색어 입력" type="text"/>
+<input alt="검색" src="/include/main/images/site/d_search_btn.jpg" type="image"/>
+</div>
+</div>
+<script>js_open_search();</script>
+<div class="mobile_top_nav">
+<a class="m_open_btn" href="#gnb_nav"><img alt="메뉴보기" src="/include/main/images/site/menu_open.jpg"/></a>
+<script>mobile_menu();</script>
+</div>
+<nav class="sticky_item" id="header_nav">
+<h2 class="hidden_word">메뉴</h2>
+<div id="gnb_nav" role="navigation">
+<ul class="nav-menu">
+<li class="nav-item t_depth_01">
+<a aria-controls="accessible-megamenu-1660230010819-2" aria-expanded="false" aria-haspopup="true" aria-owns="accessible-megamenu-1660230010819-2" href="/main/html.do?menu=HA1" id="accessible-megamenu-1660230010819-1">정보공개</a>
+<div aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1660230010819-1" class="sub-nav" id="accessible-megamenu-1660230010819-2" role="group">
+<h2>정보공개</h2>
+<ul class="sub-nav-group">
+<li class="depth_s s_01"><a href="/main/html.do?menu=HA1">정보공개제도 안내</a></li>
+<li class="depth_s s_02"><a href="/main/html.do?menu=HA2">사전공표정보</a></li>
+<li class="depth_s s_03"><a href="/main/bbslist.do?bbsId=FA1">정보목록</a></li>
+<li class="depth_s s_05"><a href="/main/html.do?menu=PR1">비공개 세부기준</a></li>
+<li class="depth_s s_04"><a href="/main/html.do?menu=HA3">정보공개신청</a></li>
+<li class="depth_s s_06"><a href="/main/html.do?menu=HA4">공공데이터 개방</a>
+<ul class="depth_t">
+<li class="t_01">
+<a href="/main/html.do?menu=HA4">공공데이터 개방목록</a>
+</li>
+<li class="t_02"><a href="/main/html.do?menu=HF1">경기남부경찰 통계</a>
+</li>
+<li class="t_03"><a href="https://www.gg.gg.go.kr/gg_special_cop/graphic_crime_typea">경기도 민생범죄 통계</a>
+</li>
+</ul>
+</li>
+<li class="depth_s s_06"><a href="/main/bbslist.do?bbsId=FA21">정보공개 자료실</a></li>
+</ul>
+</div>
+</li>
+<li class="nav-item t_depth_02">
+<!--<a href="/main/html.do?menu=HB10">민원창구</a>-->
+<a aria-controls="accessible-megamenu-1660230010820-4" aria-expanded="false" aria-haspopup="true" aria-owns="accessible-megamenu-1660230010820-4" href="/main/html.do?menu=HB3" id="accessible-megamenu-1660230010820-3">민원창구</a>
+<div aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1660230010820-3" class="sub-nav" id="accessible-megamenu-1660230010820-4" role="group">
+<h2>민원창구</h2>
+<ul class="sub-nav-group">
+<li class="depth_s s_01">
+<a href="https://minwon.police.go.kr/" target="_blank">경찰민원포탈</a>
+</li>
+<li class="depth_s s_02"><a href="/main/bbslist.do?bbsId=FB2">칭찬합시다</a></li>
+<li class="depth_s s_03"><a href="/main/html.do?menu=HB3">민원안내</a>
+<ul class="depth_t">
+<li class="t_01"><a href="/main/html.do?menu=HB3">민원절차/서식</a></li>
+<li class="t_02"><a href="/main/html.do?menu=HB32">민원신청/조회</a></li>
+<li class="t_03"><a href="/main/html.do?menu=HB33">교통정보</a></li>
+</ul>
+</li>
+<li class="depth_s s_04"><a href="/main/html.do?menu=HB4">경찰공무원채용</a></li>
+<!-- <li class="depth_s s_05"><a href="/main/html.do?menu=HB5">의경모집안내</a></li> -->
+<li class="depth_s s_06"><a href="/main/ipin.do?orgId=MAIN&amp;bbsId=FB3&amp;inputChk=1">기업/상공인 상담창구</a></li>
+<!--<li class="depth_s s_06"><a href="/main/html.do?menu=HB6">기업/상공인 상담창구</a></li>-->
+<!-- <li class="depth_s s_07"><a href="/main/html.do?menu=HB7">기업체교통민원</a></li> -->
+<li class="depth_s s_08"><a href="/main/html.do?menu=HB8">학생봉사활동</a></li>
+<!--li class="depth_s s_09"><a href="/main/html.do?menu=HB9">수사민원안내</a></li-->
+</ul>
+</div>
+</li>
+<li class="nav-item t_depth_03">
+<a aria-controls="accessible-megamenu-1660230010822-6" aria-expanded="false" aria-haspopup="true" aria-owns="accessible-megamenu-1660230010822-6" href="/main/html.do?menu=HC1" id="accessible-megamenu-1660230010822-5">경기남부경찰소개</a>
+<div aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1660230010822-5" class="sub-nav" id="accessible-megamenu-1660230010822-6" role="group">
+<h2>경기남부경찰소개</h2>
+<ul class="sub-nav-group">
+<li class="depth_s s_01"><a href="/main/html.do?menu=HC1">열린청장실</a>
+<ul class="depth_t">
+<li class="t_01"><a href="/main/html.do?menu=HC1">청장 인사말</a></li>
+<li class="t_02"><a href="/main/html.do?menu=HC12">역대경찰국장</a></li>
+<li class="t_03"><a href="/main/html.do?menu=HC13">역대경기청장</a></li>
+</ul>
+</li>
+<li class="depth_s s_02"><a href="/main/html.do?menu=HC2">청장과의 만남</a></li>
+<li class="depth_s s_03"><a href="/main/bbslist.do?bbsId=FC2">현장스케치</a>
+<ul class="depth_t">
+<li class="t_01"><a href="/main/bbslist.do?bbsId=FC2">사진</a></li>
+<li class="t_02"><a href="/main/bbslist.do?bbsId=FC3">동영상</a></li>
+<!-- <li class="t_03"><a href="/main/bbslist.do?bbsId=FC5">안매켜소릴레이</a></li> -->
+</ul>
+</li>
+<li class="depth_s s_04"><a href="/main/html.do?menu=HC4">경기남부경찰안내</a>
+<ul class="depth_t">
+<li class="t_01"><a href="/main/html.do?menu=HC4">조직도</a></li>
+<li class="t_06"><a href="/main/html.do?menu=HC46">전화번호안내</a></li>
+<li class="t_02"><a href="/main/html.do?menu=HC42">청사안내도</a></li>
+<li class="t_03"><a href="/main/html.do?menu=HC43">찾아오시는 길</a></li>
+<li class="t_04"><a href="/main/html.do?menu=HC44">경찰관서 소개</a></li>
+<li class="t_05"><a href="/main/html.do?menu=HC45">경기남부경찰 역사</a></li>
+</ul>
+</li>
+<li class="depth_s s_05"><a href="/main/html.do?menu=HC53">협력단체</a>
+<ul class="depth_t">
+<li class="t_01"><a href="/main/html.do?menu=HC53">경찰발전협의회</a></li>
+<li class="t_02"><a href="/main/html.do?menu=HC57">안보자문협의회</a></li>
+<li class="t_03"><a href="/main/html.do?menu=HC58">집회시위자문위원회</a></li>
+<li class="t_04"><a href="/main/html.do?menu=HC59">외사자문협의회</a></li>
+<!--
+										<li class="t_05"><a href="/main/html.do?menu=HC52">인권위원회</a></li> 
+										<li class="t_06"><a href=" http://cafe.daum.net/Gyeonggigreen" target="_blank" title="새창열림">녹색어머니회</a></li>
+										<li class="t_07"><a href="/main/html.do?menu=HC56">모범운전자연합회</a></li>
+										-->
+</ul>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item t_depth_04">
+<a aria-controls="accessible-megamenu-1660230010823-8" aria-expanded="false" aria-haspopup="true" aria-owns="accessible-megamenu-1660230010823-8" href="/main/bbslist.do?bbsId=FD1" id="accessible-megamenu-1660230010823-7">알림마당</a>
+<div aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1660230010823-7" class="sub-nav" id="accessible-megamenu-1660230010823-8" role="group">
+<h2>알림마당</h2>
+<ul class="sub-nav-group">
+<li class="depth_s s_01"><a href="/main/bbslist.do?bbsId=FD1">공지사항</a>
+<ul class="depth_t">
+<li class="t_01"><a href="/main/bbslist.do?bbsId=FD1">공지사항</a></li>
+<li class="t_02"><a href="/main/bbslist.do?bbsId=FD2">오늘의 주요집회</a></li>
+</ul>
+</li>
+<li class="depth_s s_02"><a href="/main/bbslist.do?bbsId=FD31">보도자료</a></li>
+<li class="depth_s s_03"><a href="/main/bbslist.do?bbsId=FD32">사실은 이렇습니다</a></li>
+<li class="depth_s s_04"><a href="/main/bbslist.do?bbsId=FD4">채용공고</a></li>
+<li class="depth_s s_05"><a href="/main/bbslist.do?bbsId=FD5">입찰공고</a></li>
+</ul>
+</div>
+</li>
+<li class="nav-item t_depth_05">
+<a aria-controls="accessible-megamenu-1660230010825-10" aria-expanded="false" aria-haspopup="true" aria-owns="accessible-megamenu-1660230010825-10" href="/main/bbslist.do?bbsId=FE11" id="accessible-megamenu-1660230010825-9">홍보마당</a>
+<div aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1660230010825-9" class="sub-nav" id="accessible-megamenu-1660230010825-10" role="group">
+<h2>홍보마당</h2>
+<ul class="sub-nav-group">
+<li class="depth_s s_01"><a href="/main/bbslist.do?bbsId=FE11">경기남부경찰활동</a>
+<ul class="depth_t">
+<li class="t_01"><a href="/main/bbslist.do?bbsId=FE11">포토존</a></li>
+<li class="t_02"><a href="/main/bbslist.do?bbsId=FE20">GGPOL 카드뉴스</a></li>
+<li class="t_03"><a href="/main/bbslist.do?bbsId=FE13">무비존</a></li>
+<li class="t_04"><a href="/main/bbslist.do?bbsId=FE23">경기남부경찰 이야기</a></li>
+<li class="t_05"><a href="/main/bbslist.do?bbsId=FE24">피싱지킴이</a></li>
+<!--li class="t_04"><a href="/main/bbslist.do?bbsId=FE15">웹툰존</a></li-->
+</ul>
+</li>
+<li class="depth_s s_03"><a href="/main/html.do?menu=HE3">경찰홍보관</a>
+<ul class="depth_t">
+<li class="t_01"><a href="/main/html.do?menu=HE3">홍보관을 개관하며</a></li>
+<li class="t_02"><a href="/main/html.do?menu=HE32">경찰홍보관 소개</a></li>
+<!-- <li class="t_01"><a href="/main/html.do?menu=HE34">견학 프로그램 소개</a></li> -->
+<li class="t_02"><a href="#" onclick="alert('코로나19, 감염 예방을 위해 경찰홍보관 예약을 받지 않고 있으니 양해 부탁드립니다.');" style="cursor:pointer">견학신청</a></li>
+<!-- <li class="t_02"><a href="/main/promotion/visit.do">견학신청</a></li> -->
+<li class="t_03"><a href="/main/bbslist.do?bbsId=FE3">사진</a></li>
+</ul>
+</li>
+<li class="depth_s s_04"><a href="/main/html.do?menu=HE4">KCSI체험관</a>
+<ul class="depth_t">
+<li class="t_01"><a href="/main/html.do?menu=HE4">소개</a></li>
+<li class="t_02"><a href="/main/html.do?menu=HE42">체험프로그램</a></li>
+<!--<li class="t_02"><a href="/main/promotion/experience.do">체험신청</a></li> -->
+<li class="t_03"><a href="#" onclick="alert('내부공사 등의 사유로 체험관 신청을 받지 않고 있으니 양해 부탁드립니다');" style="cursor:pointer">체험신청</a></li>
+<li class="t_04"><a href="/main/bbslist.do?bbsId=FE4">사진</a></li>
+</ul>
+</li>
+<!-- li class="depth_s s_02"><a href="/main/html.do?menu=HE2">경기남부경찰홍보단</a>
+									<ul class="depth_t">
+										<!--li class="t_01"><a href="/main/html.do?menu=HE2">홍보단소개</a></li>
+										<li class="t_02"><a href="/main/html.do?menu=HE22">공연신청</a></li>
+										<li class="t_03"><a href="/main/bbslist.do?bbsId=FE21">공연사진</a></li>
+										<li class="t_04"><a href="/main/bbslist.do?bbsId=FE22">공지사항</a></li-->
+<!-- /ul -->
+<!-- /li -->
+<!-- <li class="depth_s s_04"><a href="http://blog.naver.com/PostList.nhn?blogId=polinlove2&from=postList&categoryNo=8" target="_blank" title="새창열림">정책홍보실</a></li> -->
+<!--li class="depth_s s_05"><a href="/main/bbslist.do?bbsId=FE5">청렴소식</a></li-->
+</ul>
+</div>
+</li>
+<li class="nav-item t_depth_06">
+<a aria-controls="accessible-megamenu-1660230010826-12" aria-expanded="false" aria-haspopup="true" aria-owns="accessible-megamenu-1660230010826-12" href="/main/bbslist.do?bbsId=FG1" id="accessible-megamenu-1660230010826-11">의경마당</a>
+<div aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1660230010826-11" class="sub-nav" id="accessible-megamenu-1660230010826-12" role="group">
+<h2>의경마당</h2>
+<ul class="sub-nav-group">
+<li class="depth_s s_01"><a href="/main/bbslist.do?bbsId=FG1">공지사항</a></li>
+<li class="depth_s s_02"><a href="/main/bbslist.do?bbsId=FG2">활동사항</a></li>
+<li class="depth_s s_03"><a href="http://ap.police.go.kr/ap/main.do" target="_blank">대한민국 의무경찰</a></li>
+</ul>
+</div>
+</li>
+<li class="nav-item t_depth_07">
+<a aria-controls="accessible-megamenu-1660230010826-14" aria-expanded="false" aria-haspopup="true" aria-owns="accessible-megamenu-1660230010826-14" href="/main/bbslist.do?bbsId=FF1" id="accessible-megamenu-1660230010826-13">자료실</a>
+<div aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1660230010826-13" class="sub-nav" id="accessible-megamenu-1660230010826-14" role="group">
+<h2>자료실</h2>
+<ul class="sub-nav-group">
+<li class="depth_s s_01"><a href="/main/bbslist.do?bbsId=FF1">경기남부청 행정규칙</a></li>
+</ul>
+</div>
+</li>
+<li class="nav-item t_depth_09">
+<a class="col_s_blue" href="https://minwon.police.go.kr/" id="accessible-megamenu-1660230010826-15" target="_blank" title="새창열림">경찰민원포털</a>
+</li>
+</ul>
+</div>
+</nav>
+<script>
+		  
+		$("#gnb_nav").accessibleMegaMenu({
+			/* prefix for generated unique id attributes, which are required 
+			   to indicate aria-owns, aria-controls and aria-labelledby */
+			uuidPrefix: "accessible-megamenu",
+
+			/* css class used to define the megamenu styling */
+			menuClass: "nav-menu",
+
+			/* css class for a top-level navigation item in the megamenu */
+			topNavItemClass: "nav-item",
+
+			/* css class for a megamenu panel */
+			panelClass: "sub-nav",
+
+			/* css class for a group of items within a megamenu panel */
+			panelGroupClass: "sub-nav-group",
+
+			/* css class for the hover state */
+			hoverClass: "hover",
+
+			/* css class for the focus state */
+			focusClass: "focus",
+
+			/* css class for the open state */
+			openClass: "open"
+		});
+
+			gnb_nav();//skip to content 부분
+		</script>
+<script>
+			gnb_nav();//skip to content 부분
+		</script>
+<article class="mgn_b20">
+<h3 class="hidden_word">sns 바로가기</h3>
+<ul class="sns_wrap float_wrap">
+<li>
+<a href="https://www.facebook.com/gyeonggipol" target="_blank" title="새창열림">
+<img alt="페이스북 바로가기" src="/include/main/images/site/sns_1.jpg" style="padding-left: 36px;"/>
+</a>
+</li>
+<li>
+<a href="https://www.youtube.com/channel/UC4rSPvhWB6Lqx2hV28yD2uQ" target="_blank" title="새창열림">
+<img alt="유튜브 바로가기" src="/include/main/images/site/sns_2.jpg"/>
+</a>
+</li>
+<!-- <li>
+					<a href="http://twtkr.com/gyeonggipol" target="_blank" title="새창열림">
+						<img src="/include/main/images/site/sns_3.jpg" alt="트위터 바로가기">
+					</a>
+				</li> -->
+<li>
+<a href="http://polinlove.tistory.com/" target="_blank" title="새창열림">
+<img alt="블로그 바로가기" src="/include/main/images/site/sns_4.jpg"/>
+</a>
+</li>
+</ul>
+</article>
+<article class="go_to_po_box">
+<h3 class="hidden_word">각 지방경찰청과 경찰서 바로가기</h3>
+<div class="go_to_police1">
+<a class="js_open_police_btn_1" href="#mpol_01" title="지방경찰청 리스트 열기"><img alt="지방경찰청 바로가기" src="/include/main/images/site/go_to_police.jpg"/></a>
+<ul class="js_open_police_1" id="mpol_01">
+<li><a href="http://www.police.go.kr/" target="_blank" title="새창열림">경찰청</a></li>
+<li><a href="http://www.smpa.go.kr/" target="_blank" title="새창열림">서울경찰청</a></li>
+<li><a href="http://www.bspolice.go.kr/" target="_blank" title="새창열림">부산경찰청</a></li>
+<li><a href="http://dgpolice.go.kr/" target="_blank" title="새창열림">대구경찰청</a></li>
+<li><a href="http://www.icpolice.go.kr/" target="_blank" title="새창열림">인천경찰청</a></li>
+<li><a href="http://www.gjpolice.go.kr/" target="_blank" title="새창열림">광주경찰청</a></li>
+<li><a href="http://www.djpolice.go.kr/" target="_blank" title="새창열림">대전경찰청</a></li>
+<li><a href="http://www.uspolice.go.kr/" target="_blank" title="새창열림">울산경찰청</a></li>
+<li><a href="http://www.ggpolice.go.kr/" target="_blank" title="새창열림">경기남부경찰청</a></li>
+<li><a href="http://www.ggbpolice.go.kr/" target="_blank" title="새창열림">경기북부경찰청</a></li>
+<li><a href="http://www.gwpolice.go.kr/" target="_blank" title="새창열림">강원경찰청</a></li>
+<li><a href="http://www.cbpolice.go.kr/" target="_blank" title="새창열림">충북경찰청</a></li>
+<li><a href="http://www.cnpolice.go.kr/" target="_blank" title="새창열림">충남경찰청</a></li>
+<li><a href="http://www.jbpolice.go.kr/" target="_blank" title="새창열림">전북경찰청</a></li>
+<li><a href="http://www.jnpolice.go.kr/" target="_blank" title="새창열림">전남경찰청</a></li>
+<li><a href="http://www.gbpolice.go.kr/" target="_blank" title="새창열림">경북경찰청</a></li>
+<li><a href="http://www.gnpolice.go.kr/" target="_blank" title="새창열림">경남경찰청</a></li>
+<li><a href="http://www.jjpolice.go.kr/" target="_blank" title="새창열림">제주경찰청</a></li>
+<li><a href="http://sjpolice.go.kr/" target="_blank" title="새창열림">세종경찰청</a></li>
+</ul>
+</div>
+<div class="go_to_police2">
+<a class="js_open_police_btn_2" href="#mpol_02" title="경찰서 리스트 열기"><img alt="산하경찰서 바로가기" src="/include/main/images/site/go_to_police_seo.jpg"/></a>
+<ul class="js_open_police_2" id="mpol_02">
+<!-- <li><a target="_blank" title="새창열림" href="/gp/index.do">가평경찰서</a></li> -->
+<li><a href="/gc/index.do" target="_blank" title="새창열림">과천경찰서</a></li>
+<li><a href="/gm/index.do" target="_blank" title="새창열림">광명경찰서</a></li>
+<li><a href="/gj/index.do" target="_blank" title="새창열림">광주경찰서</a></li>
+<!-- <li><a target="_blank" title="새창열림" href="/gy/index.do">고양경찰서</a></li>
+					<li><a target="_blank" title="새창열림" href="/guri/index.do">구리경찰서</a></li> -->
+<li><a href="/gunpo/index.do" target="_blank" title="새창열림">군포경찰서</a></li>
+<li><a href="/gimpo/index.do" target="_blank" title="새창열림">김포경찰서</a></li>
+<!-- <li><a target="_blank" title="새창열림" href="/nyj/index.do">남양주경찰서</a></li> -->
+<!-- <li><a target="_blank" title="새창열림" href="/ddc/index.do">동두천경찰서</a></li> -->
+<li><a href="/bcym/index.do" target="_blank" title="새창열림">부천원미경찰서</a></li>
+<li><a href="/bcoj/index.do" target="_blank" title="새창열림">부천오정경찰서</a></li>
+<li><a href="/bcss/index.do" target="_blank" title="새창열림">부천소사경찰서</a></li>
+<li><a href="/bd/index.do" target="_blank" title="새창열림">분당경찰서</a></li>
+<li><a href="/snjw/index.do" target="_blank" title="새창열림">성남중원경찰서</a></li>
+<li><a href="/snsj/index.do" target="_blank" title="새창열림">성남수정경찰서</a></li>
+<li><a href="/swnb/index.do" target="_blank" title="새창열림">수원남부경찰서</a></li>
+<li><a href="/swjb/index.do" target="_blank" title="새창열림">수원중부경찰서</a></li>
+<li><a href="/swsb/index.do" target="_blank" title="새창열림">수원서부경찰서</a></li>
+<li><a href="/sh/index.do" target="_blank" title="새창열림">시흥경찰서</a></li>
+<li><a href="/ansan/index.do" target="_blank" title="새창열림">안산단원경찰서</a></li>
+<li><a href="/assn/index.do" target="_blank" title="새창열림">안산상록경찰서</a></li>
+<li><a href="/as/index.do" target="_blank" title="새창열림">안성경찰서</a></li>
+<li><a href="/ayda/index.do" target="_blank" title="새창열림">안양동안경찰서</a></li>
+<li><a href="/ayma/index.do" target="_blank" title="새창열림">안양만안경찰서</a></li>
+<!-- <li><a target="_blank" title="새창열림" href="/yangju/index.do">양주경찰서</a></li> -->
+<li><a href="/yp/index.do" target="_blank" title="새창열림">양평경찰서</a></li>
+<li><a href="/yj/index.do" target="_blank" title="새창열림">여주경찰서</a></li>
+<!-- <li><a target="_blank" title="새창열림" href="/yc/index.do">연천경찰서</a></li> -->
+<li><a href="/yidb/index.do" target="_blank" title="새창열림">용인동부경찰서</a></li>
+<li><a href="/yisb/index.do" target="_blank" title="새창열림">용인서부경찰서</a></li>
+<!-- <li><a target="_blank" title="새창열림" href="/ujb/index.do">의정부경찰서</a></li> -->
+<li><a href="/uw/index.do" target="_blank" title="새창열림">의왕경찰서</a></li>
+<li><a href="/ic/index.do" target="_blank" title="새창열림">이천경찰서</a></li>
+<!-- <li><a target="_blank" title="새창열림" href="/is/index.do">일산경찰서</a></li>
+					<li><a target="_blank" title="새창열림" href="/pj/index.do">파주경찰서</a></li> -->
+<li><a href="/pt/index.do" target="_blank" title="새창열림">평택경찰서</a></li>
+<!-- <li><a target="_blank" title="새창열림" href="/pc/index.do">포천경찰서</a></li> -->
+<li><a href="/hn/index.do" target="_blank" title="새창열림">하남경찰서</a></li>
+<li><a href="/hsdt/index.do" target="_blank" title="새창열림">화성동탄경찰서</a></li>
+<li><a href="/os/index.do" target="_blank" title="새창열림">오산경찰서</a></li>
+<li><a href="/hssb/index.do" target="_blank" title="새창열림">화성서부경찰서</a></li>
+</ul>
+</div>
+<script> js_open_police_1();</script>
+</article>
+<article class="go_fast_box1 mgn_b20">
+<h3 class="hidden_word">자주찾는 주요 정보 링크</h3>
+<ul>
+<li><a href="javascript:bbsDirect('FA21','1');">청장업무추진비</a></li>
+<li><a href="javascript:bbsDirect('FA21','2');">계약현황</a></li>
+<!--li><a href="/main/bbslist.do?bbsId=FE5">청렴소식</a></li-->
+<li><a href="/main/html.do?menu=HC46">부서별 연락처</a></li>
+</ul>
+</article>
+<!-- <span class="jungbu3-0"><img src="/include/main/images/site/jungbu3_0.gif" alt="2015년도 정부3.0 우수기관 - 대한민국 정부" /></span> -->
+</header>
+<hr/>
+<form id="bbsDForm" method="post" name="bbsDForm">
+<input id="bbsId2" name="bbsId" type="hidden"/>
+<input id="search_type2" name="search_type" type="hidden" value="all"/>
+<input id="search_word2" name="search_word" type="hidden"/>
+</form>
+<script>
+		function bbsDirect(bbsId, type){
+			bbsDForm.bbsId.value=bbsId;
+			if(type=='1'){
+				bbsDForm.search_word.value="업무추진비";
+			}else if(type=='2'){
+				bbsDForm.search_word.value="계약";
+			}
+			bbsDForm.action = "/main/bbslist.do";
+			bbsDForm.submit();
+		}
+	</script>
+<!--// 레이어팝업 -->
+<div class="main_popup" id="pop">
+<div class="layer-popup">
+<!--  팝업내용 -->
+<article class="popupzone">
+<div id="close">
+<a href="#" onclick="closePop();" title="레이어 팝업 닫기"><img alt="" src="/include/main/images/site/pop_close.jpg"/></a>
+</div>
+<div class="popupzone-list">
+<div class="popupzone-list__item">
+<a href="www.안보지킴이.com">
+<img alt="안보지킴이 공모전" src="/download/main/202206/202201210501461.jpeg"/></a>
+</div>
+</div>
+<div class="close_wrap">
+<form class="popup_bottom" name="pop_form">
+<div id="check">
+<label for="popup_layer">오늘 하루동안 보지 않기
+							<input id="popup_layer" name="chkbox" onclick="notice_closeWin()" type="checkbox" value="checkbox"/>
+</label></div>
+</form>
+</div>
+</article>
+<!-- // 팝업내용 -->
+</div>
+</div>
+<!--// 레이어팝업 -->
+<div class="container" id="cont_sbj">
+<p class="hidden_word loc_tit">경기남부경찰청에 오신걸 환영합니다</p>
+<section class="main_wrap float_wrap">
+<h2 class="hidden_word">경기남부경찰청 메인 컨텐츠들.</h2>
+<article class="cycle-slideshow" data-cycle-fx="fade" data-cycle-manual-fx="scrollHorz" data-cycle-manual-speed="500" data-cycle-next="#js_next1" data-cycle-pager="#nav1" data-cycle-pager-template="&lt;a href=#&gt; {{slideNum}} &lt;/a&gt;" data-cycle-prev="#js_prev1" data-cycle-speed="1500" data-cycle-timeout="5000" id="ma_1" style="position: relative;"><img alt="배려 / 인권 / 공정 경기남부경찰" class="cycle-slide cycle-sentinel" src="/include/main/images/site/main_fl_01.jpg" style="position: static; top: 0px; left: 0px; z-index: 100; opacity: 1; display: block; visibility: hidden;"/>
+<h3 class="hidden_word">경기남부경찰 슬로건, 사진 이미지</h3>
+<div class="pos_controll_1">
+<a href="#" id="js_prev1"><img alt="이전 이미지" src="/include/main/images/site/sl_left2.png"/></a>
+<a href="#" id="js_next1"><img alt="다음 이미지" src="/include/main/images/site/sl_right2.png"/></a>
+</div>
+<p class="pos_controll_2">
+<a data-cycle-cmd="resume" data-cycle-context="#ma_1" href="#" onclick="return false;"><img alt="재생" src="/include/main/images/site/start_btn2.png"/></a>
+<a data-cycle-cmd="pause" data-cycle-context="#ma_1" href="#" onclick="return false;"><img alt="정지" src="/include/main/images/site/pause_btn2.png"/></a>
+</p><!--// popup_control -->
+<div id="nav1"><a class="cycle-pager-active" href="#"> 1 </a><a href="#"> 2 </a><a href="#"> 3 </a><a href="#"> 4 </a></div>
+<!-- <img src="/include/main/images/site/main_fl_05.jpg" alt="작은 실천으로 우리 모두 Safe-UP -DMB시청X, 정지선 준수, 안전띠 착용 -국민의 경찰, 안전한 경기(올 세이프UP)" /> -->
+<img alt="배려 / 인권 / 공정 경기남부경찰" class="cycle-slide cycle-slide-active" src="/include/main/images/site/main_fl_01.jpg" style="position: absolute; top: 0px; left: 0px; z-index: 100; opacity: 1; display: block; visibility: visible;"/><img alt="국민과 함께하는 경기남부경찰" class="cycle-slide" src="/include/main/images/site/main_fl_02.jpg" style="position: absolute; top: 0px; left: 0px; z-index: 99; visibility: hidden;"/><img alt="배려 / 인권 / 공정 경기남부경찰" class="cycle-slide" src="/include/main/images/site/main_fl_03.jpg" style="position: absolute; top: 0px; left: 0px; z-index: 97; visibility: hidden;"/><img alt="국민과 함께하는 경기남부경찰" class="cycle-slide" src="/include/main/images/site/main_fl_04.jpg" style="position: absolute; top: 0px; left: 0px; z-index: 96; visibility: hidden;"/></article>
+<article class="ma_2" id="ma_2">
+<h3>현장스케치</h3>
+<nav class="sketch_nav">
+<h4 class="hidden_word">현장스케치 분류</h4>
+<ul class="float_wrap">
+<li class="js_bs_menu selected"><a href="#md_1">사진</a></li>
+<li class="js_bs_menu"><a href="#md_2">영상</a></li>
+<!-- 2017-01-12 <li class="js_bs_menu" style="width:80px;"><a href="#md_3" style="width:80px;">안매켜소릴레이</a></li> -->
+<!-- <li class="js_bs_menu"><a href="#md_3">TV</a></li> -->
+</ul>
+</nav>
+<div class="js_bs_t_box selected" id="md_1">
+<h4 class="hidden_word">사진</h4>
+<a href="javascript:bbsView('FC2','760');">
+<p class="img_line"><img alt="220810 경기남부청장 고속도로순찰대 치안현장 방문" src="/download/main/202208/202236110236191.jpg"/></p>
+<p class="txt_line">220810 경기남부청장 고속도로순찰대 치안현장 방문</p>
+</a>
+<span class="pos_more"><a href="/main/bbslist.do?bbsId=FC2"><img alt="더보기_사진" src="/include/main/images/site/go_btn_s.png"/></a></span>
+</div>
+<div class="js_bs_t_box" id="md_2">
+<h4 class="hidden_word">영상</h4>
+<a href="javascript:bbsView('FC3','96');">
+<p class="img_line"><img alt="항공대, 지하철경찰대 방문" src="/download/main/202207/202234210234241.jpg"/></p>
+<p class="txt_line">항공대, 지하철경찰대 방문</p>
+</a>
+<span class="pos_more"><a href="/main/bbslist.do?bbsId=FC3"><img alt="더보기_영상" src="/include/main/images/site/go_btn_s.png"/></a></span>
+</div>
+<!-- <div class="js_bs_t_box" id="md_3">
+								<h4 class="hidden_word">안매켜소릴레이</h4>
+								
+									
+									<a href="javascript:bbsView('FC5','34');">
+									
+										
+										
+										
+											<p class="img_line"><img src="/download/main/201611/201605020205291.jpg" alt="안매켜소 릴레이 응원메세지 2"></p>
+										
+										
+										
+										
+									
+									<p class="txt_line">안매켜소 릴레이 응원메세지 2</p>
+									</a>
+									
+								
+									
+								
+									
+								
+									
+								
+									
+								
+									
+								
+									
+								
+									
+								
+									
+								
+									
+								
+								<span class="pos_more"><a href="/main/bbslist.do?bbsId=FC5"><img src="/include/main/images/site/go_btn_s.png" alt="더보기_안매켜소릴레이"/></a></span>
+							</div> -->
+<script>mainBbs2();</script>
+</article>
+<div class="main_left">
+<article class="mal_top">
+<h3>청장과의 만남</h3>
+<p class="mgn_b30"><a href="/main/html.do?menu=HC2"><img alt="청장과의 대화 바로가기" src="/include/main/images/site/talk_cap.jpg"/></a></p>
+<span class="pos_more"><a href="/main/html.do?menu=HC2"><img alt="더보기_청장과의 만남" src="/include/main/images/site/go_btn_s.png"/></a></span>
+<!-- <h3 class="hidden_word">공연 및 견학신청 바로가기</h3>
+							<div class="go_box1" style="padding-left:0px;padding-top:0px;text-align:center;">								
+								<a href="/main/promotion/visit.do"><img src="/include/main/images/site/go_to_link02.jpg" alt="경기남부경찰 홍보관 견학신청"></a>
+								<a href="/main/html.do?menu=HE22"><img src="/include/main/images/site/go_to_link01.jpg" alt="경기남부경찰 홍보단 공연신청"></a>>
+								<a href="/main/promotion/experience.do"><img src="/include/main/images/site/go_to_link03.jpg" alt="KCSI 체험관 견학신청"></a> 
+							</div>-->
+</article>
+<article class="mal_bottom">
+<h3>즐겨찾는 메뉴</h3>
+<div class="fav_box">
+<div class="fav_nav">
+<a href="#" id="fav_prev"><img alt="이전 목록" src="/include/main/images/site/fav_left.jpg"/></a>
+<a href="#" id="fav_next"><img alt="다음 목록" src="/include/main/images/site/fav_right.jpg"/></a>
+</div><div class="fav_caption">1 / 3</div>
+<div class="cycle-slideshow" data-cycle-caption=".fav_caption" data-cycle-fx="fade" data-cycle-manual-fx="fade" data-cycle-manual-speed="500" data-cycle-next="#fav_next" data-cycle-prev="#fav_prev" data-cycle-slides=".fav_cycle_itme" data-cycle-timeout="0" id="slideshow_fav" style="position: relative;"><div class="fav_cycle_itme cycle-slide cycle-sentinel" style="position: static; top: 0px; left: 0px; z-index: 100; opacity: 1; display: block; visibility: hidden;">
+<div class="goto_in" style="visibility: hidden;">
+<ul class="float_wrap" style="visibility: hidden;">
+<li style="visibility: hidden;"><a href="/main/bbslist.do?bbsId=FB2" style="visibility: hidden;"><span class="goto01" style="visibility: hidden;">4칭찬해주세요</span></a></li>
+<li style="visibility: hidden;"><a href="/main/html.do?menu=HA1" style="visibility: hidden;"><span class="goto02" style="visibility: hidden;">5정보공개</span></a></li>
+<li style="visibility: hidden;"><a href="/main/html.do?menu=HC44" style="visibility: hidden;"><span class="goto03" style="visibility: hidden;">6경찰관서 찾기</span></a></li>
+<li style="visibility: hidden;"><a href="/main/bbslist.do?bbsId=FE11" style="visibility: hidden;"><span class="goto04" style="visibility: hidden;">1포토존</span></a></li>
+<li style="visibility: hidden;"><a href="/main/bbslist.do?bbsId=FD32" style="visibility: hidden;"><span class="goto05" style="visibility: hidden;">2사실은이렇습니다</span></a></li>
+<li style="visibility: hidden;"><a href="/main/bbslist.do?bbsId=FE13" style="visibility: hidden;"><span class="goto06" style="visibility: hidden;">3무비존</span></a></li>
+</ul>
+</div>
+</div>
+<div class="fav_cycle_itme_all">
+</div>
+<script>fav_img()</script>
+<div class="fav_cycle_itme cycle-slide cycle-slide-active" style="position: absolute; top: 0px; left: 0px; z-index: 100; opacity: 1; display: block; visibility: visible;">
+<div class="goto_in">
+<ul class="float_wrap">
+<li><a href="/main/bbslist.do?bbsId=FB2"><span class="goto01">4칭찬해주세요</span></a></li>
+<li><a href="/main/html.do?menu=HA1"><span class="goto02">5정보공개</span></a></li>
+<li><a href="/main/html.do?menu=HC44"><span class="goto03">6경찰관서 찾기</span></a></li>
+<li><a href="/main/bbslist.do?bbsId=FE11"><span class="goto04">1포토존</span></a></li>
+<li><a href="/main/bbslist.do?bbsId=FD32"><span class="goto05">2사실은이렇습니다</span></a></li>
+<li><a href="/main/bbslist.do?bbsId=FE13"><span class="goto06">3무비존</span></a></li>
+</ul>
+</div>
+</div><div class="fav_cycle_itme cycle-slide" style="position: absolute; top: 0px; left: 0px; z-index: 99; visibility: hidden;">
+<div class="goto_in">
+<ul class="float_wrap">
+<li><a href="http://cyber112.police.go.kr/cyber112/main/contents.do?menuNo=1200026" target="_blank" title="새창으로 열립니다"><span class="goto07">7나의 사건조회</span></a></li>
+<li><a href="https://www.efine.go.kr/common/swInstall.do" target="_blank" title="새창으로 열립니다"><span class="goto08">8교통범칙금/과태료</span></a></li>
+<li><a href="https://minwon.police.go.kr/#customerCenter/fileDown" target="_blank" title="새창열림"><span class="goto09">9민원서식</span></a></li>
+<li><a href="/main/html.do?menu=HC4"><span class="goto10">10부서별 연락처</span></a></li>
+<li><a href="/main/html.do?menu=HC43"><span class="goto11">11오시는 길</span></a></li>
+<li><a href="http://www.safe182.go.kr/index.do" target="_blank" title="새창으로 열립니다"><span class="goto12">12안전드림</span></a></li>
+</ul>
+</div>
+</div><div class="fav_cycle_itme cycle-slide" style="position: absolute; top: 0px; left: 0px; z-index: 97; visibility: hidden;">
+<div class="goto_in">
+<ul class="float_wrap">
+<li><a href="http://www.koroad.or.kr/kp_web/eduRsv_1.do" target="_blank" title="새창으로 열립니다"><span class="goto13">13교통참여교육</span></a></li>
+<li><a href="/main/html.do?menu=HB4" target="_self" title="새창으로 열립니다"><span class="goto14">14경찰관 채용</span></a></li>
+<li><a href="/main/html.do?menu=HB5" target="_self" title="새창으로 열립니다"><span class="goto15">15의무경찰</span></a></li>
+<li><a href="https://www.lost112.go.kr/" target="_blank"><span class="goto16">16유실물 찾기</span></a></li>
+<li><a href="https://minwon.police.go.kr/" target="_blank" title="새창으로 열립니다"><span class="goto17">17신고민원</span></a></li>
+<li><a href="http://www.police.go.kr/portal/main/contents.do?menuNo=200562" target="_blank" title="새창으로 열립니다"><span class="goto18">18신용금융범죄</span></a></li>
+</ul>
+</div>
+</div></div>
+<span class="pos_more"><a href="#fav_pop" id="return_a" onclick="document.getElementById('fav_pop').style.display = 'block'; return false;"><img alt="더보기_즐겨찾기 메뉴" src="/include/main/images/site/go_btn_s.png"/></a></span>
+<div class="fav_cycle_itme_all lay_pop_ver" id="fav_pop">
+<div class="fav_pop_in">
+<h3>즐겨찾는 메뉴</h3>
+<div class="goto_in">
+<ul class="float_wrap">
+<li><a href="/main/bbslist.do?bbsId=FB2"><span class="goto01">4칭찬해주세요</span></a></li>
+<li><a href="/main/html.do?menu=HA1"><span class="goto02">5정보공개</span></a></li>
+<li><a href="/main/html.do?menu=HC44"><span class="goto03">6경찰관서 찾기</span></a></li>
+<li><a href="/main/bbslist.do?bbsId=FE11"><span class="goto04">1포토존</span></a></li>
+<li><a href="/main/bbslist.do?bbsId=FD32"><span class="goto05">2사실은 이렇습니다.</span></a></li>
+<li><a href="/main/bbslist.do?bbsId=FE13"><span class="goto06">3무비존</span></a></li>
+<li><a href="http://cyber112.police.go.kr/cyber112/main/contents.do?menuNo=1200026" target="_blank" title="새창으로 열립니다"><span class="goto07">7나의 사건조회</span></a></li>
+<li><a href="https://www.efine.go.kr/common/swInstall.do" target="_blank" title="새창으로 열립니다"><span class="goto08">8교통범칙금/과태료</span></a></li>
+<li><a href="https://minwon.police.go.kr/#customerCenter/fileDown" target="_blank" title="새창열림"><span class="goto09">9민원서식</span></a></li>
+<li><a href="/main/html.do?menu=HC4"><span class="goto10">10부서별 연락처</span></a></li>
+<li><a href="/main/html.do?menu=HC43"><span class="goto11">11오시는 길</span></a></li>
+<li><a href="http://www.safe182.go.kr/index.do" target="_blank" title="새창으로 열립니다"><span class="goto12">12안전드림</span></a></li>
+<li><a href="http://www.koroad.or.kr/kp_web/eduRsv_1.do" target="_blank" title="새창으로 열립니다"><span class="goto13">13교통참여교육</span></a></li>
+<li><a href="/main/html.do?menu=HB4" target="_self" title="새창으로 열립니다"><span class="goto14">14경찰관 채용</span></a></li>
+<li><a href="/main/html.do?menu=HB5" target="_self" title="새창으로 열립니다"><span class="goto15">15의무경찰</span></a></li>
+<li><a href="https://www.lost112.go.kr/" target="_blank"><span class="goto16">16유실물 찾기</span></a></li>
+<li><a href="https://minwon.police.go.kr/" target="_blank" title="새창으로 열립니다"><span class="goto17">17신고민원</span></a></li>
+<li><a href="http://www.police.go.kr/portal/main/contents.do?menuNo=200562" target="_blank" title="새창으로 열립니다"><span class="goto18">18신용금융범죄</span></a></li>
+</ul>
+</div>
+<script>fav_img2()</script>
+<a class="fav_close" href="#return_a" onclick="document.getElementById('fav_pop').style.display = 'none';"><img alt="닫기" src="/include/main/images/site/close_btn_big.jpg"/></a>
+</div>
+</div><!--//fav_cycle_itme_all -->
+</div>
+</article>
+</div><!--//main_left -->
+<div class="main_center">
+<article class="mac_top">
+<h3 class="hidden_word">게시판 요약</h3>
+<div class="lay_bbs">
+<ul class="bbs_tab float_wrap">
+<li class="bs_menu selected"><a href="#bbs1">공지사항</a></li>
+<li class="bs_menu"><a href="#bbs2">입찰공고</a></li>
+<li class="bs_menu"><a href="#bbs3">보도자료</a></li>
+<li class="bs_menu"><a href="#bbs4">채용공고</a></li>
+</ul>
+<div class="bbs_list_all">
+<div class="main_bbs_list bs_t_box selected" id="bbs1">
+<h4 class="hidden_word">공지사항</h4>
+<ul>
+<li>
+<a href="javascript:bbsView('FD1','4039');">운전면허 취소처분 결정공고</a>
+<span>[2022-08-09]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD1','4038');">홈페이지 서비스 일시중단 안내</a>
+<span>[2022-08-09]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD1','4037');">기능검정원 강사 자격 행정처분 사전통지 공고</a>
+<span>[2022-08-08]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD1','4036');">운전면허 조건부 취소처분 결정공고</a>
+<span>[2022-08-05]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD1','4035');">운전면허 취소처분 결정공고</a>
+<span>[2022-08-05]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD1','4034');">운전면허 취소처분 결정공고</a>
+<span>[2022-08-03]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD1','4033');">개인정보 목적외 제3자 제공 공고</a>
+<span>[2022-08-02]</span>
+</li>
+</ul>
+<span class="pos_more"><a href="javascript:bbsList('FD1');"><img alt="더보기_공지사항" src="/include/main/images/site/go_btn_s.png"/></a></span>
+</div><!--/main_bbs_list -->
+<div class="main_bbs_list bs_t_box" id="bbs2">
+<h4 class="hidden_word">입찰공고</h4>
+<ul>
+<li>
+<a href="javascript:bbsView('FD5','259');">건설공사 안전점검 수행기관 등록명부 공개 알림</a>
+<span>[2022-08-03]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD5','258');">건설공사 안전점검 수행기관 모집공고</a>
+<span>[2022-07-15]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD5','257');">기동2중대 식자재 납품업체 입찰 공고(2022년)</a>
+<span>[2021-11-03]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD5','256');">'21년 맞춤 피복 제조업체 선정 결과</a>
+<span>[2021-03-04]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD5','255');">807의무경찰대 식자재 납품업체 입찰 공고</a>
+<span>[2021-02-25]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD5','254');">기동2중대 식자재 납품업체 입찰 공고</a>
+<span>[2020-11-09]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD5','253');">안양동안경찰서 149중대 식자재 납품업체 입찰 공고</a>
+<span>[2020-06-01]</span>
+</li>
+</ul>
+<span class="pos_more"><a href="javascript:bbsList('FD5');"><img alt="더보기_입찰공고" src="/include/main/images/site/go_btn_s.png"/></a></span>
+</div><!--/main_bbs_list -->
+<div class="main_bbs_list bs_t_box" id="bbs3">
+<h4 class="hidden_word">보도자료</h4>
+<ul>
+<li>
+<a href="javascript:bbsView('FD31','2508');">범죄단체 조직한 다크웹 마약류 유통 총책 및 대마초 재배·판매 등 피의자 67명 검거(13명 구속)</a>
+<span>[2022-07-21]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD31','2507');">이제는‘캥거루’도 과속단속 피할 수 없다!</a>
+<span>[2022-07-15]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD31','2506');">경기남부경찰청, 불법 통신중계소(15개소) 적발 및 운영책(15명) 검거</a>
+<span>[2022-07-12]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD31','2505');">보행자 보호의무 강화, 개정 도로교통법 12일 시행</a>
+<span>[2022-07-10]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD31','2504');">경기남부경찰청, 안전하고 쾌적한 어린이 보호구역 보행환경 개선 추진 ‘주민만족 UP’</a>
+<span>[2022-07-08]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD31','2503');">“영화만 재미있게 보세요”, 「제26회 부천국제판타스틱영화제」 대비 대테러 훈련 실시</a>
+<span>[2022-07-01]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD31','2502');">경기남부경찰, 온라인과 결합한 기업형 성매매 사범 집중 검거</a>
+<span>[2022-06-22]</span>
+</li>
+</ul>
+<span class="pos_more"><a href="javascript:bbsList('FD31');"><img alt="더보기_보도자료" src="/include/main/images/site/go_btn_s.png"/></a></span>
+</div><!--/main_bbs_list -->
+<div class="main_bbs_list bs_t_box" id="bbs4">
+<h4 class="hidden_word">채용공고</h4>
+<ul>
+<li>
+<a href="javascript:bbsView('FD4','420');">경기남부경찰청 구내식당 영양사(계약직) 채용 공고</a>
+<span>[2022-07-21]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD4','419');">2022년 하반기 경찰공무원 경력경쟁채용시험 공고</a>
+<span>[2022-07-15]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD4','418');">2022년 제2차 경찰공무원(순경) 공개경쟁채용시험 공고</a>
+<span>[2022-07-15]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD4','417');">경기남부경찰청 무기계약근로자 (환경미화원) 최종합격자 공고</a>
+<span>[2022-07-12]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD4','416');">경기남부경찰청 무기계약근로자 (환경미화원) 서류전형 합격자 및 면접시험 안내 공고</a>
+<span>[2022-07-05]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD4','415');">경기남부경찰청 무기계약 (환경미화원) 근로자 채용 공고</a>
+<span>[2022-06-22]</span>
+</li>
+<li>
+<a href="javascript:bbsView('FD4','414');">용인 체력단련장 무기계약근로자(시설관리원) 최종합격자 공고</a>
+<span>[2022-06-21]</span>
+</li>
+</ul>
+<span class="pos_more"><a href="javascript:bbsList('FD4');"><img alt="더보기_채용공고" src="/include/main/images/site/go_btn_s.png"/></a></span>
+</div><!--/main_bbs_list -->
+<script type="text/javascript">mainBbs();</script>
+</div>
+</div><!--// lay_bbs -->
+</article>
+<article class="mac_bottom">
+<h3 class="hidden_word">경기남부경찰 이야기</h3>
+<p class="mgn_b10">
+<a href="/main/bbslist.do?bbsId=FE23">
+<img alt="" src="/include/main/images/cont/ggp_story.jpg"/>
+</a>
+</p>
+<h3 class="hidden_word">e-사람 현장경찰</h3>
+<p class="mgn_b10">
+<a href="/main/bbslist.do?bbsId=FE24">
+<img alt="" src="/include/main/images/cont/e-human.jpg"/>
+</a>
+</p>
+<h3 class="hidden_word">GGPOL 카드뉴스</h3>
+<p class="mgn_b10">
+<a href="/main/bbslist.do?bbsId=FE20">
+<img alt="생활속 궁금한 치안정보 소식을 만나보세요" src="/include/main/images/cont/cardnews.jpg"/>
+</a>
+</p>
+<!-- <span class="pos_more">
+								<a href="/main/bbslist.do?bbsId=FE20">
+									<img alt="생활속 궁금한 치안정보 소식을 만나보세요" src="/include/main/images/site/go_btn_s.png">
+								</a>
+							</span> -->
+<ul class="float_wrap">
+<li><a href="https://www.safetyreport.go.kr/api?apiKey=13200008IUFRLJU4XWPL1V8CNPI" target="_blank" title="새창열림">
+<img alt="안전신문고" src="/download/main/201712/201735080435301.jpg"/>
+</a></li>
+<li><a href="http://www.110.go.kr/start.do" target="_blank" title="새창열림">
+<img alt="110 정부민원안내콜센터" src="/download/main/201701/201713020913511.jpg"/>
+</a></li>
+<li><a href="http://onetouch.police.go.kr/" target="_blank" title="새창열림">
+<img alt="smart국민제보 목격자를 찾습니다" src="/download/main/201601/201608131108191.jpg"/>
+</a></li>
+<!-- 
+								<li><a href="https://www.creativekorea.or.kr/" target="_blank"><img src="/include/main/images/site/main_banner_01.jpg" alt="다함께 만들어가는 창조경제타운"></a></li>
+								<li><a href="http://www.normal.go.kr/pmo/normalization/" target="_blank"><img src="/include/main/images/site/main_banner_02.jpg" alt="기본이 바로선 국가를 위한 비정상의 정상화. 국민여러분과 함께 만들어 가겠습니다."></a></li>
+								<li><a href="http://www.safepeople.go.kr/safepeople/cms_iba/main.do" target="_blank"><img src="/include/main/images/site/main_banner_03.jpg" alt="경제혁신 지원을 위한 기업, 상공인 상담창구"></a></li>
+								<li><a href="http://www.110.go.kr/ic.do?pi=chatCamMain" target="_blank"><img src="/include/main/images/site/main_banner_04.jpg" alt="정부민원안내콜센터 110."></a></li>
+								-->
+</ul>
+</article>
+</div><!--//main_right -->
+<div class="main_right">
+<article class="mar_top">
+<h3>팝업존</h3>
+<p class="cycle-pager"><a class="cycle-pager-active" href="#"> 1 </a><a href="#"> 2 </a><a href="#"> 3 </a></p>
+<ul class="popup_control control float_wrap">
+<li><a data-cycle-cmd="resume" data-cycle-context="#slideshow_alim" href="#" onclick="return false;"><img alt="재생" src="/include/main/images/site/start_btn2.png"/></a></li>
+<li><a data-cycle-cmd="pause" data-cycle-context="#slideshow_alim" href="#" onclick="return false;"><img alt="정지" src="/include/main/images/site/pause_btn2.png"/></a></li>
+</ul><!--// popup_control -->
+<div class="cycle-slideshow" data-cycle-fx="fade" data-cycle-pager=".cycle-pager" data-cycle-pager-template="&lt;a href=#&gt; {{slideNum}} &lt;/a&gt;" data-cycle-slides=".js_cycle_itme" data-cycle-timeout="5000" id="slideshow_alim" style="position: relative;"><a class="js_cycle_itme cycle-slide cycle-sentinel" href="http://www.mois.go.kr/html/taegeukgi/0815.html" style="position: static; top: 0px; left: 0px; z-index: 100; opacity: 1; display: block; visibility: hidden;" target="_blank" title="새창열림">
+<img alt="온 국민 태극기 달기 운동 " src="/download/main/202208/202227050827531.JPG" style="visibility: hidden;"/>
+</a>
+<a class="js_cycle_itme cycle-slide cycle-slide-active" href="http://www.mois.go.kr/html/taegeukgi/0815.html" style="position: absolute; top: 0px; left: 0px; z-index: 100; opacity: 1; display: block; visibility: visible;" target="_blank" title="새창열림">
+<img alt="온 국민 태극기 달기 운동 " src="/download/main/202208/202227050827531.JPG"/>
+</a><a class="js_cycle_itme cycle-slide" href="https://gwff.kr/031cut/" style="position: absolute; top: 0px; left: 0px; z-index: 99; visibility: hidden;" target="_blank" title="새창열림">
+<img alt="경기도 디지털성범죄 피해자원스톱 지원센터" src="/download/main/202206/202243270143171.png"/>
+</a><a class="js_cycle_itme cycle-slide" href="https://www.clean.go.kr/index.es?sid=a1" style="position: absolute; top: 0px; left: 0px; z-index: 97; visibility: hidden;" target="_blank" title="새창열림">
+<img alt="공익신고자 보호법" src="/download/main/202111/202125240125571.jpg"/>
+</a></div>
+</article>
+<article class="mar_bottom">
+<h3>바로가기 서비스</h3>
+<div class="main_link">
+<a href="https://www.epeople.go.kr/index.jsp" target="_blank"><img alt="국민신문고" src="/include/main/images/site/link1.jpg"/></a>
+<a href="http://www.minwon.go.kr/main?a=AA020InfoMainApp" target="_blank"><img alt="민원24" src="/include/main/images/site/link2.jpg"/></a>
+<a href="http://onetouch.police.go.kr/" target="_blank"><img alt="국민제보" src="/include/main/images/site/link3.jpg"/></a>
+<a href="https://minwon.police.go.kr/" target="_blank"><img alt="경찰민원포털" src="/include/main/images/site/link4.jpg"/></a>
+<a href="https://www.gov.kr/portal/main" target="_blank"><img alt="정부24" src="/include/main/images/site/link5.jpg"/></a>
+<a href="#" onclick="alert('코로나19, 감염 예방을 위해 경찰홍보관 예약을 받지 않고 있으니 양해 부탁드립니다.');" style="cursor:pointer" target="_self"><img alt="홍보관견학신청" src="/include/main/images/site/link6.jpg"/></a>
+<!-- <a href="/main/promotion/visit.do"><img src="/include/main/images/site/go_to_link02.jpg" alt="경기남부경찰 홍보관 견학신청"></a> -->
+</div>
+</article>
+</div><!--//main_right -->
+</section><!--// main_wrap -->
+<article id="quick_wrap" style="position: absolute; top: 1px;">
+<h2><img alt="QUICK MENU" src="/include/main/images/site/quick_h2.jpg"/></h2>
+<div class="quick_in">
+<!-- <a href="https://minwon.police.go.kr/" target="_blank" title="새창열림"><span class="quick01">1</span>경찰민원포털</a> -->
+<a href="https://minwon.police.go.kr/#customerCenter/fileDown" target="_blank" title="새창열림"><span class="quick02">2</span>민원서식</a>
+<a href="http://www.kics.go.kr/" target="_blank" title="새창열림"><span class="quick03">3</span>내사건 검색</a>
+<a href="http://www.koroad.or.kr/kp_web/eduRsv_1.do" target="_blank" title="새창열림"><span class="quick04">4</span>교통참여교육</a>
+<a href="https://www.pticc.go.kr/" target="_blank"><span class="quick05">5</span>경기남부경찰청<br/>용인체력단련장</a>
+<a href="http://www.knpgun.go.kr/initech/plugin/download.html" target="_blank" title="새창열림"><span class="quick06">6</span>총포화약시스템</a>
+<a href="https://www.police.go.kr/user/bbs/BD_selectBbsList.do?q_bbsCode=1015" target="_blank" title="새창열림"><span class="quick07">7</span>순직경찰추모관</a>
+<a href="http://susa.go.kr/" target="_blank" title="새창열림"><span class="quick08">8</span>수사구조개혁</a>
+<a href="http://fss.or.kr/fss/main/sub1voice.do?menuNo=200012" target="_blank" title="새창열림"><span class="quick09">9</span>보이스피싱<br/>지킴이</a>
+<a href="http://crims.police.go.kr/" target="_blank" title="새창열림"><span class="quick10">10</span>범죄경력회보서<br/>발급시스템</a>
+<a href="http://www.efine.go.kr/" target="_blank"><span class="quick11">11</span>e-FINE</a>
+<a href="https://www.safe182.go.kr/cont/homeLogContents.do?contentsNm=sexual_chatbot" target="_blank"><span class="quick12">12</span>성범죄 피해자<br/>상담 챗봇</a>
+</div><!--//quick_in -->
+<script type="text/javascript">initMoving(document.getElementById("quick_wrap"), 1, 0, 50);
+			</script>
+</article><!--//quick_wrap -->
+<hr/>
+<footer id="footer">
+<div class="footer_in_wrap">
+<article class="foot_box1">
+<h2 class="hidden_word">배너존</h2>
+<div class="banner_zone_wrap">
+<div class="foot_roll_nav float_wrap">
+<span class="r_prev"><a href="#"><img alt="prev" src="/include/main/images/site/left_btn.jpg"/></a></span>
+<span class="r_next"><a href="#"><img alt="next" src="/include/main/images/site/right_btn.jpg"/></a></span>
+<span class="r_pause"><a href="#"><img alt="pause" src="/include/main/images/site/pause_btn1.jpg"/></a></span>
+<span class="r_go_page"><a href="#banner_all" onclick="document.getElementById('banner_all').style.display = 'block';"><img alt="배너 전체보기 바로가기" src="/include/main/images/site/r_go_page.jpg"/></a></span>
+</div>
+<div class="banner_zone" id="test">
+<ul class="listwrap" style="width: 720px;">
+<li><a href="https://www.gov.kr" target="_blank" title="새창열기">
+<img alt="대한민국정부" src="/download/main/202008/202055181155041.jpg"/></a>
+</li>
+<li><a href="https://www.kics.go.kr/" target="_blank" title="새창열기">
+<img alt="법무부 형사사법포털" src="/download/main/202008/202010181110181.jpg"/></a>
+</li>
+<li><a href="https://www.better.go.kr/" target="_blank" title="새창열기">
+<img alt="규제정보포털" src="/download/main/202008/202010181110281.jpg"/></a>
+</li>
+<li><a href="http://www.easylaw.go.kr/CSP/Main.laf" target="_blank" title="새창열기">
+<img alt="&lt;찾기쉬운 생활법령정보&gt;" src="/download/main/201910/201956070456201.jpg"/></a>
+</li>
+<li><a href="https://www.women1366.kr/_main/main.html" target="_blank" title="새창열기">
+<img alt="여성폭력 사이버 상담" src="/download/main/201708/201752170952401.jpg"/></a>
+</li>
+<li><a href="http://www.mois.go.kr/frt/a01/frtMain.do" target="_blank" title="새창열기">
+<img alt="안전행정부" src="/download/main/201708/201703070703391.jpg"/></a>
+</li>
+<!-- 
+					<li><a href="http://www.index.go.kr/" target="_blank"><img src="/include/main/images/site/banner02.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.kisa.or.kr " target="_blank"><img src="/include/main/images/site/banner03.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.ktv.go.kr/" target="_blank"><img src="/include/main/images/site/banner04.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.pmaa.or.kr/police/" target="_blank"><img src="/include/main/images/site/banner05.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.ftc.go.kr/" target="_blank"><img src="/include/main/images/site/banner06.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.better.go.kr/" target="_blank"><img src="/include/main/images/site/banner07.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.korea.go.kr/main.do" target="_blank"><img src="/include/main/images/site/banner08.jpg" width="110" height="30" /></a></li>
+					<li><a href=" http://koroad.or.kr/" target="_blank"><img src="/include/main/images/site/banner09.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://youtu.be/muB4_LNZ2Rk" target="_blank"><img src="/include/main/images/site/banner10.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.minwon.go.kr" target="_blank"><img src="/include/main/images/site/banner11.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.kics.go.kr/" target="_blank"><img src="/include/main/images/site/banner12.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.sexoffender.go.kr/" target="_blank"><img src="/include/main/images/site/banner13.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://wonmun.open.go.kr/" target="_blank"><img src="/include/main/images/site/banner14.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.korea.kr/main.do" target="_blank"><img src="/include/main/images/site/banner15.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.president.go.kr/" target="_blank"><img src="/include/main/images/site/banner16.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.mogaha.go.kr/frt/a01/frtMain.do" target="_blank"><img src="/include/main/images/site/banner17.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.policemuseum.go.kr" target="_blank"><img src="/include/main/images/site/banner18.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://nph.go.kr" target="_blank"><img src="/include/main/images/site/banner19.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://snskorea.go.kr/main.view" target="_blank"><img src="/include/main/images/site/banner21.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://120.gg.go.kr/index.jsp" target="_blank"><img src="/include/main/images/site/banner22.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://cyberbureau.police.go.kr/index.do" target="_blank"><img src="/include/main/images/site/banner23.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://phishing-keeper.fss.or.kr/fss/vstop/main.jsp" target="_blank"><img src="/include/main/images/site/banner24.jpg" width="110" height="30" /></a></li>
+					-->
+</ul>
+</div><!--// banner_zone -->
+<script type="text/javascript">mainRolling();</script>
+</div>
+<div class="lay_pop_ver2" id="banner_all" style="display: none;">
+<div class="b_all_pop_in">
+<h3>배너 전체보기</h3>
+<ul class="float_wrap">
+<li><a href="https://www.gov.kr" target="_blank" title="새창열기">
+<img alt="대한민국정부" src="/download/main/202008/202055181155041.jpg"/></a>
+</li>
+<li><a href="https://www.kics.go.kr/" target="_blank" title="새창열기">
+<img alt="법무부 형사사법포털" src="/download/main/202008/202010181110181.jpg"/></a>
+</li>
+<li><a href="https://www.better.go.kr/" target="_blank" title="새창열기">
+<img alt="규제정보포털" src="/download/main/202008/202010181110281.jpg"/></a>
+</li>
+<li><a href="http://www.easylaw.go.kr/CSP/Main.laf" target="_blank" title="새창열기">
+<img alt="&lt;찾기쉬운 생활법령정보&gt;" src="/download/main/201910/201956070456201.jpg"/></a>
+</li>
+<li><a href="https://www.women1366.kr/_main/main.html" target="_blank" title="새창열기">
+<img alt="여성폭력 사이버 상담" src="/download/main/201708/201752170952401.jpg"/></a>
+</li>
+<li><a href="http://www.mois.go.kr/frt/a01/frtMain.do" target="_blank" title="새창열기">
+<img alt="안전행정부" src="/download/main/201708/201703070703391.jpg"/></a>
+</li>
+<!-- 
+					<li><a href="http://koroad.or.kr/" target="_blank"><img src="/include/main/images/site/banner01.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.index.go.kr/" target="_blank"><img src="/include/main/images/site/banner02.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.kisa.or.kr " target="_blank"><img src="/include/main/images/site/banner03.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.ktv.go.kr/" target="_blank"><img src="/include/main/images/site/banner04.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.pmaa.or.kr/police/" target="_blank"><img src="/include/main/images/site/banner05.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.ftc.go.kr/" target="_blank"><img src="/include/main/images/site/banner06.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.better.go.kr/" target="_blank"><img src="/include/main/images/site/banner07.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.korea.go.kr/main.do" target="_blank"><img src="/include/main/images/site/banner08.jpg" width="110" height="30" /></a></li>
+					<li><a href=" http://koroad.or.kr/" target="_blank"><img src="/include/main/images/site/banner09.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://youtu.be/muB4_LNZ2Rk" target="_blank"><img src="/include/main/images/site/banner10.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.minwon.go.kr" target="_blank"><img src="/include/main/images/site/banner11.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.kics.go.kr/" target="_blank"><img src="/include/main/images/site/banner12.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.sexoffender.go.kr/" target="_blank"><img src="/include/main/images/site/banner13.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://wonmun.open.go.kr/" target="_blank"><img src="/include/main/images/site/banner14.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.korea.kr/main.do" target="_blank"><img src="/include/main/images/site/banner15.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.epeople.go.kr" target="_blank"><img src="/include/main/images/site/banner16.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.mogaha.go.kr/frt/a01/frtMain.do" target="_blank"><img src="/include/main/images/site/banner17.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://www.policemuseum.go.kr" target="_blank"><img src="/include/main/images/site/banner18.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://nph.go.kr" target="_blank"><img src="/include/main/images/site/banner19.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://snskorea.go.kr/main.view" target="_blank"><img src="/include/main/images/site/banner21.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://120.gg.go.kr/index.jsp" target="_blank"><img src="/include/main/images/site/banner22.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://cyberbureau.police.go.kr/index.do" target="_blank"><img src="/include/main/images/site/banner23.jpg" width="110" height="30" /></a></li>
+					<li><a href="http://phishing-keeper.fss.or.kr/fss/vstop/main.jsp" target="_blank"><img src="/include/main/images/site/banner24.jpg" width="110" height="30" /></a></li>
+					-->
+</ul>
+<a class="fav_close" href="#" onclick="document.getElementById('banner_all').style.display = 'none'; return false;"><img alt="닫기" src="/include/main/images/site/close_btn_big.jpg"/></a>
+</div>
+</div>
+</article>
+<article class="foot_box2">
+<h2 class="hidden_word">사이트 기본정보 링크</h2>
+<ul class="float_wrap">
+<li><a class="col_red" href="/main/html.do?menu=HG1">개인정보처리방침</a></li>
+<li><a href="/main/html.do?menu=HG2">이메일무단수집거부</a></li>
+<li><a href="/main/html.do?menu=HG3">저작권정책</a></li>
+<li><a href="/main/html.do?menu=HC46">부서별 전화번호</a></li>
+<li><a href="http://www.juso.go.kr/openIndexPage.do" target="_blank" title="도로명 주소안내시스템 홈페이지_새창열림">도로명 주소</a></li>
+<li><a href="/main/html.do?menu=HC43" target="_blank">찾아오시는 길</a></li>
+</ul>
+</article>
+<article class="foot_box3">
+<h2 class="hidden_word">주소 및 웹사이트 정보, 취득 인증마크</h2>
+<address>경기도 수원시 장안구 창룡대로 223 (16218)</address>
+<p class="item1"><!-- 대표메일 : <a href="mailto:ggpol@police.go.kr">ggpol@police.go.kr</a> --> <strong class="col_red">경찰민원 콜센터 182(유료)</strong></p>
+<!-- <p class="item2"><a href="http://www.kwacc.or.kr/CertificationSite/WA/Detail?page=1&SearchSiteName=%EA%B2%BD%EC%B0%B0&seq=152" title="한국웹접근성평가센터_새창열림" target="_blank"><img src="/include/main/images/site/web_acc.jpg" alt="미래창조과학부 (사)한국장애인단체총연합회 한국웹접근성인증평가원 인증 마크"></a></p> -->
+<p class="item3">COPYRIGHT ⓒ 2014 GYEONGGI NAMBU POLICE AGENCY. ALL RIGHTS RESERVED.</p>
+</article>
+</div>
+</footer>
+<script> title_copy();</script>
+<script src="http://wcs.naver.net/wcslog.js" type="text/javascript"></script>
+<script type="text/javascript">
+		if(!wcs_add) var wcs_add = {};
+		wcs_add["wa"] = "10e82fd68cc61ac";
+		wcs_do();
+		</script>
+</div><!--//container -->
+</div><!--// wrap_in -->
+</div><!--// wrap -->
+</body></html>>

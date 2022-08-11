@@ -32,6 +32,7 @@ pip install pymysql
 pip install selenium
 pip install requests
 pip install pillow
+pip install webdriver-manager
 
 # optional
 pip install gtts

@@ -52,13 +52,10 @@ def get_org_url_list(c, keyword):
     if(keyword.get('SITE_URL')):
         sql += f" and b.url_addr like '%{keyword.get('SITE_URL')}%'"
     
-    sql += f" order by b.url_addr"
-
-    #sql += f"select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no where b.url_fg = 1 and a.org_title='{org_title}'"
+    #sql += f" order by b.url_addr"
     print(sql)
     c.execute(sql)
-
-    #c.execute("select b.* from tb_org as a right outer join tb_url as b on a.org_no = b.org_no where b.url_fg = 1 and a.org_title=%s", org_title)
+    
     return c.fetchall()
 
 # def get_org_url_list(c, org_title):
