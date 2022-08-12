@@ -28,11 +28,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tb_monitor` (
-  `url_no` int(11) NOT NULL,
   `mon_no` int(11) NOT NULL,
+  `url_no` int(11) NOT NULL,
   `mon_dt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `mon_status_code` int(11) DEFAULT NULL COMMENT '상태코드 200=ok, 404, 304 등'
+  `status_code` int(3) DEFAULT NULL COMMENT '상태코드 200=ok, 404, 304 등',
+  `file_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `tb_monitor`
+  ADD PRIMARY KEY (`mon_no`);
+
+ALTER TABLE `tb_monitor`
+  MODIFY `mon_no` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 
 -- --------------------------------------------------------
 
@@ -41,42 +50,49 @@ CREATE TABLE `tb_monitor` (
 --
 
 CREATE TABLE `tb_org` (
-  `org_no` int(4) NOT NULL DEFAULT 0,
+  `org_no` int(4) NOT NULL,
   `org_title` varchar(255) CHARACTER SET utf8 NOT NULL,
   `org_short_title` varchar(100) CHARACTER SET utf8 NOT NULL,
   `org_img` varchar(255) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+ALTER TABLE `tb_org`
+  ADD PRIMARY KEY (`org_no`);
+
+ALTER TABLE `tb_org`
+  MODIFY `org_no` int(4) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 --
 -- 테이블의 덤프 데이터 `tb_org`
 --
 
-INSERT INTO `tb_org` (`org_no`, `org_title`, `org_short_title`, `org_img`) VALUES
-(1, '경찰청', '경찰청', 'org_img_police.jpg'),
-(2, '법무부', '법무부', ''),
-(3, '기획재정부', '기재부', ''),
-(4, '외교부', '외교부', ''),
-(5, '통일부', '통일부', ''),
-(6, '행정안전부', '행안부', ''),
-(7, '대검찰청', '검찰청', 'org_img_spo.jpg'),
-(8, '농림축산식품부', '농식품부', ''),
-(9, '특허청', '특허청', ''),
-(10, '농촌진흥청', '농진청', ''),
-(11, '산림청', '산림청', ''),
-(12, '보건복지부', '복지부', ''),
-(13, '기상청', '기상청', ''),
-(14, '여성가족부', '여가부', ''),
-(15, '국토교통부', '국토부', ''),
-(16, '해양수산부', '해수부', ''),
-(17, '새만금개발청', '새만금', ''),
-(18, '해양경찰청', '해경청', 'org_img_kcg.jpg'),
-(19, '중소기업벤처부', '중기부', ''),
-(20, '고위공직자범죄수사처', '공수처', ''),
-(21, '국민권익위원회', '권익위', ''),
-(22, '국세청', '국세청', ''),
-(29, '대량작업용', '작업용', ''),
-(31, '국가보훈처', '보훈처', ''),
-(32, '공정거래위원회', '공정위', '');
+INSERT INTO `tb_org` (`org_title`, `org_short_title`, `org_img`) VALUES
+  ('경찰청', '경찰청', 'org_img_police.jpg'),
+  ('법무부', '법무부', ''),
+  ('기획재정부', '기재부', ''),
+  ('외교부', '외교부', ''),
+  ('통일부', '통일부', ''),
+  ('행정안전부', '행안부', ''),
+  ('대검찰청', '검찰청', 'org_img_spo.jpg'),
+  ('농림축산식품부', '농식품부', ''),
+  ('특허청', '특허청', ''),
+  ( '농촌진흥청', '농진청', ''),
+  ( '산림청', '산림청', ''),
+  ( '보건복지부', '복지부', ''),
+  ( '기상청', '기상청', ''),
+  ( '여성가족부', '여가부', ''),
+  ( '국토교통부', '국토부', ''),
+  ( '해양수산부', '해수부', ''),
+  ( '새만금개발청', '새만금', ''),
+  ( '해양경찰청', '해경청', 'org_img_kcg.jpg'),
+  ( '중소기업벤처부', '중기부', ''),
+  ( '고위공직자범죄수사처', '공수처', ''),
+  ( '국민권익위원회', '권익위', ''),
+  ( '국세청', '국세청', ''),
+  ( '대량작업용', '작업용', ''),
+  ( '국가보훈처', '보훈처', ''),
+  ( '공정거래위원회', '공정위', '');
 
 -- --------------------------------------------------------
 
