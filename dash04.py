@@ -1,20 +1,17 @@
 #!/usr/bin/env python
 from pickle import TRUE
+from re import S
 from socket import timeout
 from threading import TIMEOUT_MAX
 import PySimpleGUI as sg
 import pymysql
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 
 from webdriver_manager.chrome import ChromeDriverManager
-# from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 
 from uptime_model import *
-#from wrapt_timeout_decorator import *
 from bs4 import BeautifulSoup
 from datetime import datetime
 
@@ -30,6 +27,7 @@ import asyncio
     URL healthcheck dashboard introduction...
     ....
     .... copyright usuall@gmail.com
+    .... python 교육훈련 중에 개발...
 '''
 
 # 실행경로
@@ -104,8 +102,12 @@ def get_sysdate():
     return str(sysdate)
 
 def get_request_code(web_url):
-    response = requests.get(web_url, verify=False) # SSLerror 오류 발생 회피 
-    requests_code = response.status_code
+    try:
+        response = requests.get(web_url, verify=False) # SSLerror 오류 발생 회피 
+        requests_code = response.status_code
+    except:
+        pass
+
     return requests_code        
 
 def save_html(url_no, mon_no, src_text):
@@ -129,7 +131,25 @@ def save_html(url_no, mon_no, src_text):
     # DB insert
     
 
+def log_output(message, log_type=None):
 
+    if(log_type == 1):
+        log_type = '(CRITICAL)'
+    elif(log_type == 2):
+        log_type = '(ERROR)'
+    elif(log_type == 3):
+        log_type = '(WANRING)'
+    else:
+        log_type = '(INFO)'
+    
+    print(get_sysdate(), log_type, message)
+    
+    # log = get_sysdate() + log_type + message
+
+    # f = open(full_path_name, 'w', encoding='UTF-8')
+    # print(type(src_text))
+    # f.write(str(src_text))
+    # f.close()
     
 #기관단위 모니터링
 def get_monitoring(window, keyword):
@@ -140,13 +160,15 @@ def get_monitoring(window, keyword):
     driver = set_browser_option(bg_exec)
         
     cnt = 0
-    print(' 모니터링 시작 : ')
+    log_output(message='모니터링 시작 : ')
     result = get_org_url_list(keyword)
     # print('resutl ',type(result), len(result))
     total_cnt = len(result) # 조회 건수
     window['-OUTPUT-'].update(value='- 조회건수 : '+ str(total_cnt) +'건\n', append=True)
     window['-OUTPUT-'].update(value='------------------------------\n', append=True)
-
+    
+    total_step = 12
+    steped = 1
     for row in result:
         cnt += 1
         
@@ -166,18 +188,22 @@ def get_monitoring(window, keyword):
         get_url_timout = keyword.get('TIME_OUT') #디폴트 10초
         driver.set_page_load_timeout(get_url_timout)
         outtime = time.time()
-        print('url_get(1/2)', time.time() - outtime, web_url)
+        #print('url_get(1/2)', round((time.time() - outtime),2), web_url)
+        log_output('url_get(1/2) ' + web_url + ' ('+str(round((time.time() - outtime), 2))+'s)')
         try:
             driver.get(web_url)
-            print('url_get(2/2)', time.time() - outtime)
-        except TimeoutException as ex:
-            print('url_get(time_out exception !)', time.time() - outtime)
+            log_output('url_get(2/2) '+ 'URL Loading ('+ str(round((time.time() - outtime), 2))+'s)')
+        except TimeoutException as e:
+            #print('url_get(time_out exception : '+ str(e) +')', round((time.time() - outtime),2))
+            log_output('url_get(time_out exception : '+ str(e) , log_type=3)
             pass
+        except Exception as e:  # 기타 오류 발생시 처리 정지
+            log_output('Exception Occured : '+ str(e) , log_type=1)
+            #print("(Error) Exception Occured : " + e )
+            break
         
         redirected_url = driver.current_url
-        print('next_stepping .... ')
-        # 특정 태그
-        #element = driver.find_element(By.TAG_NAME, "body")
+        log_output('Redirected URL : '+ redirected_url+ ' ('+ str(round(time.time()-pertime, 2))+'s)')
         window['-OUTPUT-'].update(value=' Redirected → '+redirected_url+ ' ('+ str(round(time.time()-pertime, 2))+'s)\n', append=True)
         # print('redirected -->', driver.current_url)
         window.refresh() # 작업내용 출력 반영        
@@ -189,6 +215,7 @@ def get_monitoring(window, keyword):
         
         #todo timeout.... exception...
         driver.save_screenshot(img_path + img_str)
+        log_output('Image capture Completed ('+ str(round(time.time()-pertime, 2))+'s)')
         window['-OUTPUT-'].update(value=' → captured ('+ str(round(time.time()-pertime, 2))+'s)', append=True)
         window.refresh() 
         #html 소스코드 취득
@@ -198,11 +225,12 @@ def get_monitoring(window, keyword):
         # window['-OUTPUT-'].update(value='11111-------------------------------------------\n', append=True)
         # window['-OUTPUT-'].update(value=html_source, append=True)
         
+        #로그를 보기좋게 정리(prettfy)
         html_source = BeautifulSoup(html_source, 'html.parser').prettify
         # window['-OUTPUT-'].update(value='22222-------------------------------------------\n', append=True)
         # window['-OUTPUT-'].update(value=html_source, append=True)
         # window['-OUTPUT-'].update(value='33333-------------------------------------------\n', append=True)
-        window.refresh()
+        # window.refresh()
         
         #html 저장
         #add_html_source(row['url_no'], row['url_no'], html_source)
@@ -211,7 +239,7 @@ def get_monitoring(window, keyword):
         window.refresh()
         
         # Request Code 취득 : (200 : ok, 404 : page not found)
-        #req_code = get_request_code(web_url)
+        # req_code = get_request_code(web_url)
         req_code = get_request_code(redirected_url)
         
         t_color='Black'
@@ -231,7 +259,7 @@ def get_monitoring(window, keyword):
         #모니터링 데이터 DB
         add_monitoring(row['url_no'], req_code, file_name)
         
-        print('---- url checking ended----')
+        log_output('---- URL Health Check End ----')
 
     if(cnt > 0):
         endtime = time.time()

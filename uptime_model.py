@@ -1,5 +1,6 @@
 import pymysql
 import time
+from dash04 import log_output
 
 # DB 환경에 맞게 입력할것
 host = "localhost"
@@ -53,7 +54,7 @@ def get_org_url_list(c, keyword):
         sql += f" and b.url_addr like '%{keyword.get('SITE_URL')}%'"
     
     #sql += f" order by b.url_addr"
-    print(sql)
+    log_output('조회 SQL : '+sql)
     c.execute(sql)
     
     return c.fetchall()
